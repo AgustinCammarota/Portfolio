@@ -1,0 +1,36 @@
+---
+import { Icon } from 'astro-icon/components'
+import { getLangFromUrl, useTranslations } from '@i18n/utils';
+import { SelectLanguage } from '@islands/select-language/SelectLanguage';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const currentLang = getLangFromUrl(Astro.url);
+const currentPath: string = Astro.url.pathname;
+
+const links: string[] = ['works', 'skills', 'projects', 'contacts']
+const currentLink: string = currentPath.split('/').filter(path => links.includes(path))[0];
+---
+
+<section class="language-section">
+    <label class="language-container" for="language">
+        <span class="sr-only">{t('datepicker.label')}</span>
+        <Icon class="language-icon" name="language" title="language" size="24"/>
+        <SelectLanguage client:load currentLang={currentLang} currentLink={currentLink}/>
+        <Icon class="language-icon" name="arrow" title="arrow" size="14"/>
+    </label>
+</section>
+<style>
+    .language-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        --backgroud-icon-color: var(--gray-color);
+    }
+    .language-icon {
+        color: var(--backgroud-icon-color);
+    }
+    .language-container:hover {
+        --backgroud-icon-color: var(--white-color)
+    }
+</style>

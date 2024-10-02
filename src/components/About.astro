@@ -1,0 +1,92 @@
+---
+import { getCollection } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '@i18n/utils';
+import { Icon } from 'astro-icon/components';
+import Banner from './Banner.astro';
+
+const lang = getLangFromUrl(Astro.url);
+
+const aboutCollection = await getCollection('about', ({ id }) => {
+    return id.startsWith(`${lang}/`);
+});
+const { Content } = await aboutCollection[0].render();
+const aboutInformation = aboutCollection[0].data;
+const t = useTranslations(lang);
+---
+
+<section class="about-section">
+    <h1 class="about-title">{aboutInformation.author} <span class="about-title__rol" >{aboutInformation.rol}</span></h1>
+    <Banner company={aboutInformation.company} imagePath={aboutInformation.image.src} altText={aboutInformation.image.alt}></Banner>
+    <Content/>
+    <a class="about-cv-link" href="/assets/agustin_cammarota_cv.pdf" download title={t('about.cv.title')} aria-label={t('about.cv.aria')}>
+        <Icon class="about-cv-link__icon" name="file" title="file" size="24"/>
+        <span class="about-cv-link__text">{t('about.cv.link')}</span>
+    </a>
+</section>
+<style>
+    .about-section {
+        width: 100%;
+        margin-bottom: 100px;
+        height: auto;
+
+        p {
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 24px;
+            text-wrap: pretty;
+            color: var(--gray-color);
+        }
+    }
+    .about-cv-link {
+        width: 100%;
+        height: auto;
+        padding: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 32px auto 0 auto;
+        gap: 8px;
+        border: 1px outset var(--primary-color);
+        color: var(--primary-color);
+        cursor: pointer;
+        font-weight: 500;
+    }
+    .about-cv-link:hover {
+        color: var(--white-color);
+        border: 1px inset var(--white-color);
+    }
+    .about-title {
+        text-wrap: balance;
+        line-height: 40px;
+        font-weight: 600;
+        font-size: 2.5rem;
+        color: var(--white-color);
+        .about-title__rol {
+            color: var(--primary-color);
+        }
+    }
+    .about-title::after {
+        content: '|';
+        opacity: 1;
+        display: inline-block;
+        color: var(--primary-color);
+        will-change: opacity;
+        animation-name: machine;
+        animation-iteration-count: infinite;
+        animation-duration: .7s;
+        animation-timing-function: ease-in-out;
+    }
+    @keyframes machine {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .about-title::after {
+            animation: none;
+        }
+    }
+</style>

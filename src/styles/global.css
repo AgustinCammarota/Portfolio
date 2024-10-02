@@ -1,0 +1,94 @@
+:root {
+    --primary-color: #C778DD;
+    --white-color: #FFFFFF;
+    --gray-color: #ABB2BF;
+    --backgroud-color: #282C33;
+}
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+html,
+body {
+    font-family: 'Fira Code Variable', monospace;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 62.5%;
+    transition: font-family 0.2s ease-in-out;
+    background: var(--backgroud-color);
+}
+body,
+nav {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 1.6rem;
+}
+header {
+    width: 100%;
+    height: auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+}
+main {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    padding: 16px;
+    margin-top: 32px;
+}
+footer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 50;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+}
+select {
+    appearance: none;
+    background-color: var(--backgroud-color);
+    color: var(--gray-color);
+    border: none;
+    padding: 6px 16px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+select:focus {
+    border-color: transparent;
+    outline: none;
+}
+select:hover {
+    border-color: transparent;
+}
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}

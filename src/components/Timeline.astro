@@ -1,0 +1,119 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { JSX } from 'astro/jsx-runtime';
+
+interface ExperiencePost {
+    id: string;
+    slug: string;
+    data: {
+        title: string;
+        time: string
+    };
+    render: () => Promise<{
+        Content: () => JSX.Element;
+    }>;
+}
+
+interface Props {
+    experiences: ExperiencePost[];
+}
+
+const { experiences } = Astro.props;
+
+---
+<div class="timeline-container">
+    <ol class="timeline-list">
+      {experiences.map(async (experience) => {
+          const { Content } = await experience.render();
+
+          return (
+              <li class="timeline-item">
+                <span class="timeline-item__icon">
+                    <Icon name="calendar" title="calendar" size="24"/>
+                </span>
+                  <h3 class="timeline-item__title">{experience.data.title}</h3>
+                  <time class="timeline-item__time">{experience.data.time}</time>
+                  <div class="timeline-item-description-container">
+                      <Content/>
+                  </div>
+              </li>
+          );
+      })}
+    </ol>
+</div>
+<style>
+    .timeline-container {
+        width: 100%;
+        height: auto;
+        padding-left: 16px;
+    }
+    .timeline-list {
+        padding-left: 0;
+        position: relative;
+        border-left: 1px solid var(--primary-color);
+    }
+    .timeline-item {
+        padding-left: 8px;
+        margin-bottom: 24px;
+        margin-left: 16px;
+        position: relative;
+    }
+    .timeline-item__icon {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        left: -28px;
+        top: 0;
+        box-shadow: 0 0 0 0.5rem var(--backgroud-color);
+        background-color: var(--backgroud-color);
+    }
+    .timeline-item__icon svg {
+        color: var(--primary-color);
+    }
+    .timeline-item__title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 4px;
+        font-size: 1.8rem;
+        font-weight: 600;
+        line-height: 24px;
+        text-wrap: balance;
+        color: var(--primary-color);
+    }
+    .timeline-item__time {
+        display: block;
+        font-size: 1.6rem;
+        font-weight: lighter;
+        color: var(--white-color);
+    }
+    .timeline-item-description-container {
+        margin-top: 12px;
+        text-wrap: pretty;
+        font-weight: normal;
+        line-height: 24px;
+        color: var(--gray-color);
+
+        p {
+            font-size: 1.6rem;
+        }
+
+        strong {
+            display: contents;
+        }
+
+        li {
+            display: flex;
+            justify-content: start;
+            align-items: start;
+            margin-bottom: 8px;
+            font-size: 1.4rem;
+        }
+
+        li:before {
+            content: '\25A0';
+            padding: 0 12px;
+            color: var(--primary-color);
+        }
+    }
+</style>

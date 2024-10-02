@@ -1,12 +1,12 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import AboutSection from "@components/About.astro";
+import WorksSection from '@components/Works.astro';
 import { getLangFromUrl, useTranslations } from '@i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout title={t('title.home')}>
-    <AboutSection/>
+<Layout title={t('title.works')}>
+    <WorksSection></WorksSection>
 </Layout>

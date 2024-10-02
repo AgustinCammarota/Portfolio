@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import type { JSX } from 'astro/jsx-runtime';
+import { getLangFromUrl } from '@i18n/utils';
+import Timeline from './Timeline.astro';
+import Section from './Section.astro';
+
+const lang = getLangFromUrl(Astro.url);
+
+const worksCollection = (await getCollection('works', ({ id }) => {
+    return id.startsWith(`${lang}/`);
+})).map((work) => ({
+    id: work.id,
+    slug: work.slug,
+    data: {
+        title: work.data.title,
+        time: work.data.time,
+    },
+    render: work.render as JSX.Element,
+}));
+---
+
+<Section name="works">
+    <Timeline experiences={worksCollection}></Timeline>
+</Section>

@@ -1,0 +1,62 @@
+---
+import { Icon } from 'astro-icon/components'
+import { getLangFromUrl, useTranslations } from '@i18n/utils';
+
+interface Social {
+  icon: string;
+  action: string;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const socials: Social[] = [
+  {
+    icon: 'github',
+    action: import.meta.env.PUBLIC_GITHUB
+  },
+  {
+    icon: 'linkedin',
+    action: import.meta.env.PUBLIC_LINKEDIN
+  },
+  {
+    icon: 'email',
+    action: import.meta.env.PUBLIC_EMAIL
+  },
+  {
+    icon: 'phone',
+    action: import.meta.env.PUBLIC_WHATSAPP
+  }
+];
+
+---
+
+<section class="social-section">
+  {socials.map((social: Social) => (
+      <a href={social.action}
+              class="social-icon-container"
+              target="_blank" rel="noopener noreferrer"
+              title={t(`social.${social.icon}`)}
+              aria-label={t(`social.${social.icon}`)}>
+          <Icon name={social.icon} title={social.icon} size="21"/>
+      </a>
+  ))}
+</section>
+<style>
+    .social-section {
+        width: max-content;
+        height: auto;
+    }
+    .social-icon-container {
+        display: inline-block;
+        width: max-content;
+        height: auto;
+        padding: 0 6px;
+        color: var(--gray-color);
+        cursor: pointer;
+    }
+    .social-icon-container:hover {
+        color: var(--white-color);
+        transform: scale(1.2);
+    }
+</style>

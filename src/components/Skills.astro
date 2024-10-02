@@ -1,0 +1,246 @@
+---
+import { getLangFromUrl, useTranslations } from '@i18n/utils';
+import { Icon } from 'astro-icon/components';
+import Section from './Section.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface Skills {
+    title: string;
+    description: string;
+    icons: Icon[];
+}
+
+interface Icon {
+    name: string;
+    description: string;
+}
+
+const skills: Skills[] = [
+    {
+        title: t('skills.languages.title'),
+        icons: [
+            {
+                name: 'javascript',
+                description: t('skills.javascript.description'),
+            },
+            {
+                name: 'typescript',
+                description: t('skills.typescript.description'),
+            },
+            {
+                name: 'html',
+                description: t('skills.html.description'),
+            },
+            {
+                name: 'css',
+                description: t('skills.css.description'),
+            },
+            {
+                name: 'sql',
+                description: t('skills.sql.description'),
+            }
+        ]
+    },
+    {
+      title: t('skills.frontend.title'),
+      icons: [
+        {
+          name: 'angular',
+          description: t('skills.angular.description'),
+        },
+        {
+          name: 'astro',
+          description: t('skills.astro.description'),
+        },
+        {
+          name: 'lit',
+          description: t('skills.lit.description'),
+        },
+        {
+          name: 'solid',
+          description: t('skills.solid.description'),
+        }
+      ]
+    },
+    {
+      title: t('skills.backend.title'),
+      icons: [
+        {
+          name: 'nodejs',
+          description: t('skills.express.description'),
+        },
+        {
+          name: 'postgresql',
+          description: t('skills.postgresql.description'),
+        },
+        {
+          name: 'mongodb',
+          description: t('skills.mongodb.description'),
+        }
+      ]
+    },
+    {
+      title: t('skills.testing.title'),
+      icons: [
+        {
+          name: 'cucumber',
+          description: t('skills.cucumber.description'),
+        },
+        {
+          name: 'jasmine',
+          description: t('skills.jasmine.description'),
+        },
+        {
+          name: 'jest',
+          description: t('skills.jest.description'),
+        },
+        {
+          name: 'puppeteer',
+          description: t('skills.puppeteer.description'),
+        },
+        {
+          name: 'selenium',
+          description: t('skills.selenium.description'),
+        },
+        {
+          name: 'webdriver',
+          description: t('skills.webdriver.description'),
+        }
+      ]
+    },
+    {
+      title: t('skills.others.title'),
+      icons: [
+        {
+          name: 'rxjs',
+          description: t('skills.rxjs.description'),
+        },
+        {
+          name: 'sass',
+          description: t('skills.sass.description'),
+        },
+        {
+          name: 'storybook',
+          description: t('skills.storybook.description'),
+        },
+        {
+          name: 'tailwind',
+          description: t('skills.tailwind.description'),
+        },
+        {
+          name: 'vite',
+          description: t('skills.vite.description'),
+        },
+        {
+          name: 'webpack',
+          description: t('skills.webpack.description'),
+        },
+        {
+          name: 'turborepo',
+          description: t('skills.turborepo.description'),
+        },
+        {
+          name: 'npm',
+          description: t('skills.npm.description'),
+        },
+        {
+          name: 'redux',
+          description: t('skills.redux.description'),
+        },
+        {
+          name: 'ionic',
+          description: t('skills.ionic.description'),
+        },
+        {
+          name: 'cordova',
+          description: t('skills.cordova.description'),
+        }
+      ]
+    }
+];
+
+---
+
+<Section name="skills">
+    {skills.map((skill: Skill) => (
+        <div class="skill-card">
+            <h3 class="skill-card__title">{skill.title}</h3>
+            <div class="skill-container">
+                {skill.icons.map((icon: Icon) => (
+                    <div class="skill-icon">
+                        <Icon class="skill-icon__icon" name={icon.name} title={icon.description} size="32"/>
+                        <p class="skill-icon__description">{icon.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    ))}
+</Section>
+<style>
+    .skill-card {
+        width: 100%;
+        height: auto;
+        margin-bottom: 24px;
+        border: 1px solid var(--gray-color);
+        animation: borderAnimation 6s infinite linear;
+        border-image: linear-gradient(90deg, var(--gray-color), var(--gray-color), var(--gray-color), var(--gray-color)) 1;
+
+        .skill-card__title {
+            width: 100%;
+            padding: 16px;
+            border-bottom: 1px solid var(--gray-color);
+            color: var(--white-color);
+            margin: 0;
+            font-size: 1.6rem;
+            font-weight: 500;
+        }
+    }
+    .skill-container {
+        width: 100%;
+        height: auto;
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+    .skill-icon {
+        width: 45%;
+        min-width: 140px;
+        height: auto;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 8px;
+
+        .skill-icon__description {
+            margin: 0;
+            color: var(--gray-color);
+        }
+    }
+    @keyframes borderAnimation {
+        0% {
+            border-image-source: linear-gradient(90deg, var(--primary-color), var(--primary-color), var(--gray-color), var(--gray-color));
+        }
+        25% {
+            border-image-source: linear-gradient(180deg, var(--primary-color), var(--primary-color), var(--gray-color), var(--gray-color));
+        }
+        50% {
+            border-image-source: linear-gradient(270deg, var(--primary-color), var(--primary-color), var(--gray-color), var(--gray-color));
+        }
+        75% {
+            border-image-source: linear-gradient(360deg, var(--primary-color), var(--primary-color), var(--gray-color), var(--gray-color));
+        }
+        100% {
+            border-image-source: linear-gradient(90deg, var(--primary-color), var(--primary-color), var(--gray-color), var(--gray-color));
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .skill-card {
+            animation: none;
+        }
+    }
+</style>
