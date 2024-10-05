@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '@i18n/utils';
+import Banner from '@components/Banner.astro';
+import DownloadButton from '@components/DownloadButton.astro';
+import AboutTitle from "@components/AboutTitle.astro";
+
+const lang = getLangFromUrl(Astro.url);
+
+const aboutCollection = await getCollection('about', ({ id }) => {
+    return id.startsWith(`${lang}/`);
+});
+const { Content } = await aboutCollection[0].render();
+const aboutInformation = aboutCollection[0].data;
+const t = useTranslations(lang);
+---
+
+<section class="about-section">
+    <AboutTitle author={aboutInformation.author} rol={aboutInformation.rol}/>
+    <Banner
+        text={t('banner.text')}
+        company={aboutInformation.company}
+        imagePath={aboutInformation.image.src}
+        altText={aboutInformation.image.alt}/>
+    <Content/>
+    <DownloadButton
+        link="/assets/agustin_cammarota_cv.pdf"
+        icon="file"
+        title={t('about.cv.title')}
+        ariaLabel={t('about.cv.aria')}
+        linkText={t('about.cv.link')}/>
+</section>
+<style>
+    .about-section {
+        width: 100%;
+        margin-bottom: 100px;
+        height: auto;
+
+        p {
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 24px;
+            text-wrap: pretty;
+            color: var(--gray-color);
+        }
+    }
+</style>

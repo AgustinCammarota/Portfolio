@@ -13,9 +13,10 @@
     "title.home": "Home",
     "title.works": "Works",
     "title.skills": "Skills",
+    "title.projects": "Projects",
     "section.works": "Works Experience",
     "section.skills": "Skills",
-    "section.projects": "",
+    "section.projects": "Projects",
     "section.contacts": "",
     "social.github": "Access Agustín Cammarota's GitHub profile",
     "social.linkedin": "Access Agustín Cammarota's Linkedin profile",
@@ -46,7 +47,7 @@
     "skills.others.title": "Others",
     "skills.rxjs.description": "RXJS",
     "skills.sass.description": "Sass",
-    "skills.storybook.description": "StoryBook",
+    "skills.storybook.description": "Storybook",
     "skills.tailwind.description": "Tailwind",
     "skills.vite.description": "Vite",
     "skills.webpack.description": "Webpack",
@@ -54,7 +55,9 @@
     "skills.npm.description": "NPM",
     "skills.redux.description": "Redux",
     "skills.ionic.description": "Ionic",
-    "skills.cordova.description": "Cordova"
+    "skills.cordova.description": "Cordova",
+    "project.card.link": "GitHub",
+    "project.card.title": "GitHub Project Link"
   },
   "es": {
     "about.cv.link": "Descargar CV",
@@ -70,9 +73,10 @@
     "title.home": "Inicio",
     "title.works": "Experiencia",
     "title.skills": "Skills",
+    "title.projects": "Proyectos",
     "section.works": "Experiencia",
     "section.skills": "Skills",
-    "section.projects": "",
+    "section.projects": "Proyectos",
     "section.contacts": "",
     "social.github": "Acceder al perfil de GitHub de Agustín Cammarota",
     "social.linkedin": "Acceder al perfil de LinkedIn de Agustín Cammarota",
@@ -103,7 +107,7 @@
     "skills.others.title": "Otros",
     "skills.rxjs.description": "RXJS",
     "skills.sass.description": "Sass",
-    "skills.storybook.description": "StoryBook",
+    "skills.storybook.description": "Storybook",
     "skills.tailwind.description": "Tailwind",
     "skills.vite.description": "Vite",
     "skills.webpack.description": "Webpack",
@@ -111,6 +115,8 @@
     "skills.npm.description": "NPM",
     "skills.redux.description": "Redux",
     "skills.ionic.description": "Ionic",
-    "skills.cordova.description": "Cordova"
+    "skills.cordova.description": "Cordova",
+    "project.card.link": "GitHub",
+    "project.card.title": "GitHub Project Link"
   }
 }

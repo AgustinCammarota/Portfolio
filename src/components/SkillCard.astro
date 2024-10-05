@@ -1,0 +1,76 @@
+---
+import SkillIcon from './SkillIcon.astro';
+
+interface Icon {
+  name: string;
+  description: string;
+}
+
+interface Props {
+  title: string;
+  icons: Icon[];
+}
+
+const { title, icons } = Astro.props;
+---
+
+<div class="skill-card">
+    <h3 class="skill-card__title">{title}</h3>
+    <div class="skill-container">
+      {icons.map((icon: Icon) => (
+          <SkillIcon description={icon.description} name={icon.name}/>
+      ))}
+    </div>
+</div>
+<style>
+    .skill-card {
+        width: 100%;
+        height: auto;
+        margin-bottom: 24px;
+        border: 1px solid var(--gray-color);
+        animation: borderAnimation 6s infinite linear;
+        border-image: linear-gradient(90deg, var(--gray-color), var(--gray-color), var(--gray-color), var(--gray-color)) 1;
+
+        .skill-card__title {
+            width: 100%;
+            padding: 16px;
+            border-bottom: 1px solid var(--gray-color);
+            color: var(--white-color);
+            margin: 0;
+            font-size: 1.6rem;
+            font-weight: 500;
+        }
+    }
+    .skill-container {
+        width: 100%;
+        height: auto;
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+    @keyframes borderAnimation {
+        0% {
+            border-image-source: linear-gradient(90deg, var(--primary-color), var(--primary-color), var(--gray-color), var(--gray-color));
+        }
+        25% {
+            border-image-source: linear-gradient(180deg, var(--primary-color), var(--primary-color), var(--gray-color), var(--gray-color));
+        }
+        50% {
+            border-image-source: linear-gradient(270deg, var(--primary-color), var(--primary-color), var(--gray-color), var(--gray-color));
+        }
+        75% {
+            border-image-source: linear-gradient(360deg, var(--primary-color), var(--primary-color), var(--gray-color), var(--gray-color));
+        }
+        100% {
+            border-image-source: linear-gradient(90deg, var(--primary-color), var(--primary-color), var(--gray-color), var(--gray-color));
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .skill-card {
+            animation: none;
+        }
+    }
+</style>

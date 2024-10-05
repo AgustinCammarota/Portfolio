@@ -1,16 +1,14 @@
 ---
 import CustomImage from './CustomImage.astro';
-import { getLangFromUrl, useTranslations } from '@i18n/utils';
 
 interface Props {
+  text: string;
   company: string;
   imagePath: string;
   altText: string;
 }
 
-const { company, imagePath, altText } = Astro.props;
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const { text, company, imagePath, altText } = Astro.props;
 ---
 
 <div class="banner">
@@ -18,7 +16,7 @@ const t = useTranslations(lang);
         <CustomImage className="banner-image" imagePath={imagePath} altText={altText}></CustomImage>
     </figure>
     <div class="banner-work-container">
-        <p class="work-text">{t('banner.text')} <span class="work-text__company">{company}</span></p>
+        <p class="work-text">{text} <span class="work-text__company">{company}</span></p>
     </div>
 </div>
 <style>

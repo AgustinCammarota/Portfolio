@@ -5,6 +5,7 @@ import { getLangFromUrl, useTranslations } from '@i18n/utils';
 interface Social {
   icon: string;
   action: string;
+  ariaLabel: string;
 }
 
 const lang = getLangFromUrl(Astro.url);
@@ -13,19 +14,23 @@ const t = useTranslations(lang);
 const socials: Social[] = [
   {
     icon: 'github',
-    action: import.meta.env.PUBLIC_GITHUB
+    action: import.meta.env.PUBLIC_GITHUB,
+    ariaLabel: t('social.github')
   },
   {
     icon: 'linkedin',
-    action: import.meta.env.PUBLIC_LINKEDIN
+    action: import.meta.env.PUBLIC_LINKEDIN,
+    ariaLabel: t('social.linkedin')
   },
   {
     icon: 'email',
-    action: import.meta.env.PUBLIC_EMAIL
+    action: import.meta.env.PUBLIC_EMAIL,
+    ariaLabel: t('social.email')
   },
   {
     icon: 'phone',
-    action: import.meta.env.PUBLIC_WHATSAPP
+    action: import.meta.env.PUBLIC_WHATSAPP,
+    ariaLabel: t('social.phone')
   }
 ];
 
@@ -36,8 +41,8 @@ const socials: Social[] = [
       <a href={social.action}
               class="social-icon-container"
               target="_blank" rel="noopener noreferrer"
-              title={t(`social.${social.icon}`)}
-              aria-label={t(`social.${social.icon}`)}>
+              title={social.ariaLabel}
+              aria-label={social.ariaLabel}>
           <Icon name={social.icon} title={social.icon} size="21"/>
       </a>
   ))}

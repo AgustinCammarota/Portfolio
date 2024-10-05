@@ -1,0 +1,86 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+    title: string;
+    time: string;
+}
+
+const { title, time } = Astro.props;
+---
+<li class="timeline-item">
+        <span class="timeline-item__icon">
+            <Icon name="calendar" title="Calendar" size="24"/>
+        </span>
+    <h3 class="timeline-item__title">{title}</h3>
+    <time class="timeline-item__time">{time}</time>
+    <div class="timeline-item-description-container">
+        <slot></slot>
+    </div>
+</li>
+<style>
+    .timeline-item {
+        padding-left: 8px;
+        margin-bottom: 24px;
+        margin-left: 16px;
+        position: relative;
+    }
+    .timeline-item__icon {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        left: -28px;
+        top: 0;
+        box-shadow: 0 0 0 0.5rem var(--backgroud-color);
+        background-color: var(--backgroud-color);
+    }
+    .timeline-item__icon svg {
+        color: var(--primary-color);
+    }
+    .timeline-item__title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 4px;
+        font-size: 1.8rem;
+        font-weight: 600;
+        line-height: 24px;
+        text-wrap: balance;
+        color: var(--primary-color);
+    }
+    .timeline-item__time {
+        display: block;
+        font-size: 1.6rem;
+        font-weight: lighter;
+        color: var(--white-color);
+    }
+    .timeline-item-description-container {
+        margin-top: 12px;
+        text-wrap: pretty;
+        font-weight: normal;
+        line-height: 24px;
+        color: var(--gray-color);
+
+        p {
+            font-size: 1.6rem;
+        }
+
+        strong {
+            display: contents;
+        }
+
+        li {
+            display: flex;
+            justify-content: start;
+            align-items: start;
+            margin-bottom: 8px;
+            font-size: 1.4rem;
+        }
+
+        li:before {
+            content: '\25A0';
+            padding: 0 12px;
+            color: var(--primary-color);
+        }
+    }
+</style>

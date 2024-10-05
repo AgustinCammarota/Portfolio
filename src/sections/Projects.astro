@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import { getLangFromUrl } from "@i18n/utils";
+import Section from '@components/Section.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+
+const lang = getLangFromUrl(Astro.url);
+
+const projectsCollection = await getCollection('projects', ({ id }) => {
+    return id.startsWith(`${lang}/`);
+});
+const { Content } = await projectsCollection[0].render();
+---
+
+<Section name="projects">
+    {projectsCollection.map(project => (
+        <ProjectCard
+            image={project.data.image.src}
+            alt={project.data.image.alt}
+            title={project.data.title}
+            video={project.data.video}
+            technologies={project.data.technologies}
+            hasLink={project.data.hasLink}
+            link={project.data.link}>
+            <Content/>
+        </ProjectCard>
+    ))}
+</Section>

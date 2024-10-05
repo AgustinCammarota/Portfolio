@@ -1,7 +1,7 @@
 ---
 import '@fontsource-variable/fira-code';
 import { ViewTransitions } from 'astro:transitions';
-import Nav from '@components/Nav.astro';
+import Navbar from '@components/Navbar.astro';
 import LanguagePicker from '@components/LanguagePicker.astro';
 import Social from '@components/Social.astro';
 import { getLangFromUrl } from '@i18n/utils';
@@ -30,7 +30,7 @@ const lang = getLangFromUrl(Astro.url);
 	</head>
 	<body>
 		<header>
-			<Nav></Nav>
+			<Navbar></Navbar>
 		</header>
 
 		<main transition:animate="slide">
