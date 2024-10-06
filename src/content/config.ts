@@ -32,7 +32,9 @@ const projectsCollection = defineCollection({
     technologies: z.string(),
     title: z.string(),
     hasLink: z.boolean(),
-    link: z.string()
+    github: z.string(),
+    hasWebsite: z.boolean(),
+    website: z.string(),
   })
 });
 

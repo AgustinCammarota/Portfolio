@@ -56,8 +56,10 @@
     "skills.redux.description": "Redux",
     "skills.ionic.description": "Ionic",
     "skills.cordova.description": "Cordova",
-    "project.card.link": "GitHub",
-    "project.card.title": "GitHub Project Link"
+    "project.card.github.link": "GitHub",
+    "project.card.github.title": "GitHub project link",
+    "project.card.website.link": "Website",
+    "project.card.website.title": "Website link"
   },
   "es": {
     "about.cv.link": "Descargar CV",
@@ -116,7 +118,9 @@
     "skills.redux.description": "Redux",
     "skills.ionic.description": "Ionic",
     "skills.cordova.description": "Cordova",
-    "project.card.link": "GitHub",
-    "project.card.title": "GitHub Project Link"
+    "project.card.github.link": "GitHub",
+    "project.card.github.title": "Link al proyecto en GitHub",
+    "project.card.website.link": "Website",
+    "project.card.website.title": "Link a la Website"
   }
 }

@@ -21,7 +21,9 @@ const { Content } = await projectsCollection[0].render();
             video={project.data.video}
             technologies={project.data.technologies}
             hasLink={project.data.hasLink}
-            link={project.data.link}>
+            github={project.data.link}
+            hasWebsite={project.data.hasWebsite}
+            website={project.data.website}>
             <Content/>
         </ProjectCard>
     ))}

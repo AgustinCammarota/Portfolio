@@ -67,7 +67,7 @@ const ProjectVideo: Component<Props> = (props: Props) => {
         <button
             onClick={handlerPlayVideo}
             onMouseOver={mouseOver}
-            style={{ opacity: !isPlaying() ? '0.4' : '0' }}
+            style={{ opacity: !isPlaying() ? '0.5' : '0' }}
             class="card-video__button"
             type="button">
         </button>
