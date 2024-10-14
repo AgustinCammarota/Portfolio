@@ -13,24 +13,8 @@ const currentLink: string = currentPath.split('/').filter(path => links.includes
 ---
 
 <section class="language-section">
-    <label class="language-container" for="language">
-        <span class="sr-only">{t('datepicker.label')}</span>
-        <Icon class="language-icon" name="language" title="language" size="24"/>
-        <SelectLanguage client:load currentLang={currentLang} currentLink={currentLink}/>
-        <Icon class="language-icon" name="arrow" title="arrow" size="14"/>
-    </label>
+    <SelectLanguage client:idle datepickerLabel={t('datepicker.label')} currentLang={currentLang} currentLink={currentLink}>
+        <Icon slot="iconLeft" class="language-icon" name="language" title="language" size="24"/>
+        <Icon slot="iconRight" class="language-icon" name="arrow" title="arrow" size="14"/>
+    </SelectLanguage>
 </section>
-<style>
-    .language-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        --backgroud-icon-color: var(--gray-color);
-    }
-    .language-icon {
-        color: var(--backgroud-icon-color);
-    }
-    .language-container:hover {
-        --backgroud-icon-color: var(--white-color)
-    }
-</style>

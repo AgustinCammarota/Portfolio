@@ -1,3 +1,17 @@
+.language-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    --backgroud-icon-color: var(--gray-color);
+}
+.language-icon {
+    color: var(--backgroud-icon-color);
+}
+.language-container:hover {
+    --backgroud-icon-color: var(--white-color)
+}
+
 .language-select {
     padding: 0 0 0 6px;
     color: var(--backgroud-icon-color);

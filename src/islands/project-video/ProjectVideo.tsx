@@ -9,7 +9,7 @@ interface Props {
 
 const ProjectVideo: Component<Props> = (props: Props) => {
   const [isPlaying, setIsPlaying] = createSignal(false);
-  let video: HTMLVideoElement | null;
+  let video!: HTMLVideoElement;
 
   const handlerPlayVideo = async(event: Event) => {
     event.stopPropagation();
@@ -21,7 +21,6 @@ const ProjectVideo: Component<Props> = (props: Props) => {
   }
 
   const pauseVideo = () => {
-    if (!video) return;
     setIsPlaying(false);
     video.currentTime = 0;
     video.style.position = 'unset';
@@ -30,7 +29,6 @@ const ProjectVideo: Component<Props> = (props: Props) => {
   }
 
   const startVideo = async() => {
-    if (!video) return;
     setIsPlaying(true);
     video.style.position = 'absolute';
     video.style.maxHeight = '100%';
@@ -57,7 +55,7 @@ const ProjectVideo: Component<Props> = (props: Props) => {
             onClick={handlerPlayVideo}
             onMouseOut={mouseOut}
             onEnded={pauseVideo}
-            ref={(el) => (video = el!)}
+            ref={(el) => video = el}
             poster={props.image}
             preload="auto"
             muted>

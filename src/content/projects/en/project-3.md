@@ -1,6 +1,6 @@
 ---
 title: "Portfolio"
-technologies: "Astro SolidJS ThreeJS HTML Typescript Vite i18n SSG"
+technologies: "Astro SolidJS ThreeJS HTML Typescript CSS Vite i18n SSG"
 image:
   alt: "Portfolio"
   src: "/src/assets/portfolio.webp"

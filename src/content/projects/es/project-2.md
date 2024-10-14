@@ -10,4 +10,4 @@ github: "https://github.com/AgustinCammarota/GreenHeat"
 hasWebsite: true
 website: "https://greenheatclima.com.ar/"
 ---
-En este proyecto desarrollé una landing page para un sitio web que ofrece servicios de climatización. Utilicé **Angular** como framework principal, aprovechando la reactividad de **RXJS** para gestionar de manera eficiente los flujos de datos asíncronos.
+En este proyecto desarrollé una landing page para un sitio web que ofrece servicios de climatización. Utilicé **Angular** como framework principal, aprovechando la reactividad de **RXJS** y **Signals** para gestionar de manera eficiente los flujos de datos asíncronos.

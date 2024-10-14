@@ -1,5 +1,5 @@
 ---
-import CustomImage from './CustomImage.astro';
+import CustomImage from '@components/CustomImage.astro';
 
 interface Props {
   text: string;
@@ -13,7 +13,7 @@ const { text, company, imagePath, altText } = Astro.props;
 
 <div class="banner">
     <figure class="banner-image-container">
-        <CustomImage className="banner-image" imagePath={imagePath} altText={altText}></CustomImage>
+        <CustomImage className="banner-image" imagePath={imagePath} altText={altText}/>
     </figure>
     <div class="banner-work-container">
         <p class="work-text">{text} <span class="work-text__company">{company}</span></p>

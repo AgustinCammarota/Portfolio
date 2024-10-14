@@ -38,7 +38,7 @@ const t = useTranslations(lang);
     <div class="card-body">
         <h3 class="card-body__title">{title}</h3>
         <div class="card-body-description">
-            <slot></slot>
+            <slot name="description"/>
         </div>
       <div class="card-body-links">
           {hasLink && (

@@ -9,11 +9,10 @@ const lang = getLangFromUrl(Astro.url);
 const projectsCollection = await getCollection('projects', ({ id }) => {
     return id.startsWith(`${lang}/`);
 });
-const { Content } = await projectsCollection[0].render();
 ---
 
 <Section name="projects">
-    {projectsCollection.map(project => (
+    {projectsCollection.map((project) => (
         <ProjectCard
             image={project.data.image.src}
             alt={project.data.image.alt}
@@ -21,10 +20,12 @@ const { Content } = await projectsCollection[0].render();
             video={project.data.video}
             technologies={project.data.technologies}
             hasLink={project.data.hasLink}
-            github={project.data.link}
+            github={project.data.github}
             hasWebsite={project.data.hasWebsite}
             website={project.data.website}>
-            <Content/>
+            <Fragment slot="description">
+              {project.render().then(({ Content }) => <Content/>)}
+            </Fragment>
         </ProjectCard>
     ))}
 </Section>
