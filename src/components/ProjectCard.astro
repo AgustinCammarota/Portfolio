@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components'
 import { ProjectVideo } from '@islands/project-video/ProjectVideo';
 import { getLangFromUrl, useTranslations } from '@i18n/utils';
+import CustomImage from '@components/CustomImage.astro';
 
 interface Props {
   image: string;
@@ -32,7 +33,9 @@ const t = useTranslations(lang);
 ---
 
 <div class="project-card">
-    <ProjectVideo client:load image={image} altImage={alt} video={video}/>
+    <ProjectVideo client:load video={video}>
+        <CustomImage className="image" imagePath={image} altText={alt} height={160} width={400}/>
+    </ProjectVideo>
     <p class="card-technologies">{technologies}</p>
 
     <div class="card-body">
@@ -58,7 +61,8 @@ const t = useTranslations(lang);
 </div>
 <style>
     .project-card {
-        width: 350px;
+        width: 100%;
+        max-width: 400px;
         min-width: 300px;
         height: max-content;
         margin-bottom: 32px;
