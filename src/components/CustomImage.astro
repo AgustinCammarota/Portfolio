@@ -5,21 +5,38 @@ import type { ImageMetadata } from 'astro';
 interface Props {
   imagePath: string;
   altText: string;
+  width: number;
+  height: number;
   className?: string;
+  quality?: 'low' | 'mid' | 'high' | 'max';
 }
 
-const { imagePath, altText, className = '' } = Astro.props;
+const {
+  imagePath,
+  altText,
+  width,
+  height,
+  className = '',
+  quality = 'low'
+} = Astro.props;
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif,webp}');
 if (!images[imagePath]) throw new Error('Path does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif,webp}');
 ---
 
-<Image class={className} src={images[imagePath]()} alt={altText}/>
+<Image
+        class={className}
+        src={images[imagePath]()}
+        width={width}
+        height={height}
+        alt={altText}
+        quality={quality}/>
 <style>
     img {
         width: 100%;
         height: 100%;
         display: block;
         object-fit: cover;
+        object-position: center;
     }
 </style>

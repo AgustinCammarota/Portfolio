@@ -1,4 +1,4 @@
-import { type Component, createSignal } from 'solid-js';
+import { type Component, createSignal, Show } from 'solid-js';
 import './project-video.css';
 
 interface Props {
@@ -51,21 +51,31 @@ const ProjectVideo: Component<Props> = (props: Props) => {
 
   return (
       <div class="card-video">
-        <video
-            onClick={handlerPlayVideo}
-            onMouseOut={mouseOut}
-            onEnded={pauseVideo}
-            ref={(el) => video = el}
-            poster={props.image}
-            preload="auto"
-            muted>
-          <source src={props.video} type="video/webm"/>
-          <img src={props.image} alt={props.altImage} loading="lazy"/>
-        </video>
+        <Show when={isPlaying()}>
+          <video
+              class="video"
+              preload="auto"
+              onClick={handlerPlayVideo}
+              onMouseOut={mouseOut}
+              onEnded={pauseVideo}
+              ref={(el) => video = el}
+              playsinline
+              muted>
+            <source src={props.video} type="video/webm"/>
+            <img src={props.image} alt={props.altImage}/>
+          </video>
+        </Show>
+
+        <Show when={!isPlaying()}>
+          <img class="image"
+               src={props.image}
+               alt={props.altImage}/>
+        </Show>
+
         <button
             onClick={handlerPlayVideo}
             onMouseOver={mouseOver}
-            style={{ opacity: !isPlaying() ? '0.5' : '0' }}
+            style={{opacity: !isPlaying() ? '0.5' : '0'}}
             class="card-video__button"
             type="button">
         </button>

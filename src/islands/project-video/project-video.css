@@ -2,15 +2,26 @@
     width: 100%;
     height: 160px;
 
-    video {
+    .video {
         width: 100%;
         height: 100%;
+        display: block;
         max-height: 160px;
-        object-position: center;
+        object-position: top;
         object-fit: cover;
         cursor: pointer;
         transition: max-height .5s ease-in-out;
         z-index: 200;
+    }
+
+    .image {
+        width: 100%;
+        height: 160px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-position: center;
+        object-fit: cover;
     }
 
     .card-video__button {

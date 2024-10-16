@@ -12,20 +12,30 @@ const projectsCollection = await getCollection('projects', ({ id }) => {
 ---
 
 <Section name="projects">
+  <div class="projects-grid">
     {projectsCollection.map((project) => (
-        <ProjectCard
-            image={project.data.image.src}
-            alt={project.data.image.alt}
-            title={project.data.title}
-            video={project.data.video}
-            technologies={project.data.technologies}
-            hasLink={project.data.hasLink}
-            github={project.data.github}
-            hasWebsite={project.data.hasWebsite}
-            website={project.data.website}>
-            <Fragment slot="description">
-              {project.render().then(({ Content }) => <Content/>)}
-            </Fragment>
-        </ProjectCard>
+            <ProjectCard
+                    image={project.data.image.src}
+                    alt={project.data.image.alt}
+                    title={project.data.title}
+                    video={project.data.video}
+                    technologies={project.data.technologies}
+                    hasLink={project.data.hasLink}
+                    github={project.data.github}
+                    hasWebsite={project.data.hasWebsite}
+                    website={project.data.website}>
+                <Fragment slot="description">
+                  {project.render().then(({ Content }) => <Content/>)}
+                </Fragment>
+            </ProjectCard>
     ))}
+  </div>
 </Section>
+<style>
+    .projects-grid {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+</style>
