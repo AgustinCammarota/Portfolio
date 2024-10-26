@@ -1,7 +1,7 @@
 import { navigate } from 'astro:transitions/client';
 import type { Component, JSX } from 'solid-js';
 import { createSignal, For } from 'solid-js';
-import { languages, ROUTES } from '@i18n/ui.ts';
+import { languages, PATHS } from '@i18n/ui.ts';
 import './select-language.css';
 
 interface Props {
@@ -21,7 +21,7 @@ const SelectLanguage: Component<Props> = (props: Props) => {
     const selectedLang = (event.target as HTMLSelectElement).value as 'es' | 'en';
     setSelected(selectedLang);
     const path = props.currentLink ? `${props.currentLink}/` : '';
-    await navigate(ROUTES[selected()].concat(path));
+    await navigate(PATHS[selected()].concat(path));
   }
 
   const openSelect = (event: Event): void => {

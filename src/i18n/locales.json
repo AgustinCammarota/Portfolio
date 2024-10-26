@@ -64,7 +64,15 @@
     "project.card.website.title": "Website link",
     "not.found.title": "404 page",
     "not.found.header": "Ops, page not found.",
-    "not.found.link": "Home"
+    "not.found.link": "Home",
+    "contact.section.title": "I am open to freelance opportunities. If you have any other requests or questions, please feel free to reach out.",
+    "form.loading.state": "Please wait...",
+    "form.sent.state": "Sent",
+    "form.title.text": "Subject",
+    "form.email.text": "Email Address",
+    "form.message.text": "Message",
+    "form.button.text": "Send",
+    "form.fail.state": "Retry"
   },
   "es": {
     "about.cv.link": "Descargar CV",
@@ -131,6 +139,14 @@
     "project.card.website.title": "Link a la Website",
     "not.found.title": "Página 404",
     "not.found.header": "Ops, página no encontrada.",
-    "not.found.link": "Home"
+    "not.found.link": "Home",
+    "contact.section.title": "Estoy abierto a oportunidades freelance. Si tienes alguna otra solicitud o pregunta, no dudes en ponerte en contacto.",
+    "form.loading.state": "Por favor, espera...",
+    "form.sent.state": "Enviado",
+    "form.title.text": "Asunto",
+    "form.email.text": "Correo electrónico",
+    "form.message.text": "Mensaje",
+    "form.button.text": "Enviar",
+    "form.fail.state": "Reintentar"
   }
 }

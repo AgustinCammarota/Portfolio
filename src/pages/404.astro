@@ -1,7 +1,7 @@
 ---
 import '@fontsource-variable/fira-code';
 import { getLangFromUrl, useTranslations } from '@i18n/utils';
-import { ROUTES } from '@i18n/ui';
+import { PATHS } from '@i18n/ui';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -22,7 +22,7 @@ const title = t('not.found.title');
    <section class="not-found-section">
        <h1 class="not-found-status">4&#9785;4</h1>
        <h2 class="not-found-title">{t('not.found.header')}</h2>
-       <a class="not-found-link" href={ROUTES[lang]} title={t('not.found.link')}>{t('not.found.link')}</a>
+       <a class="not-found-link" href={PATHS[lang]} title={t('not.found.link')}>{t('not.found.link')}</a>
    </section>
 </main>
 
@@ -35,6 +35,12 @@ const title = t('not.found.title');
         height: 100vh;
         margin: 0;
         padding: 0;
+        overflow: hidden;
+    }
+    @supports (height: 100dvh) {
+        main {
+            height: 100dvh;
+        }
     }
     .not-found-section {
         width: 100%;

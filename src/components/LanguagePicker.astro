@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components'
 import { getLangFromUrl, useTranslations } from '@i18n/utils';
+import { ROUTES } from '@i18n/ui';
 import { SelectLanguage } from '@islands/select-language/SelectLanguage';
 
 const lang = getLangFromUrl(Astro.url);
@@ -8,7 +9,7 @@ const t = useTranslations(lang);
 const currentLang = getLangFromUrl(Astro.url);
 const currentPath: string = Astro.url.pathname;
 
-const links: string[] = ['works', 'skills', 'projects', 'contacts']
+const links: string[] = ROUTES;
 const currentLink: string = currentPath.split('/').filter(path => links.includes(path))[0];
 ---
 

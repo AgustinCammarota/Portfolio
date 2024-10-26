@@ -1,3 +1,10 @@
+# Env
+.env.development
+.env.production
+
+# Netlify
+.netlify
+
 # Npm
 .npmrc
 .nvmrc

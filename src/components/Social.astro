@@ -1,4 +1,5 @@
 ---
+import { PUBLIC_EMAIL, PUBLIC_LINKEDIN, PUBLIC_GITHUB, PUBLIC_WHATSAPP } from 'astro:env/client';
 import { Icon } from 'astro-icon/components'
 import { getLangFromUrl, useTranslations } from '@i18n/utils';
 
@@ -14,22 +15,22 @@ const t = useTranslations(lang);
 const socials: Social[] = [
   {
     icon: 'github',
-    action: import.meta.env.PUBLIC_GITHUB,
+    action: PUBLIC_GITHUB,
     ariaLabel: t('social.github')
   },
   {
     icon: 'linkedin',
-    action: import.meta.env.PUBLIC_LINKEDIN,
+    action: PUBLIC_LINKEDIN,
     ariaLabel: t('social.linkedin')
   },
   {
     icon: 'email',
-    action: import.meta.env.PUBLIC_EMAIL,
+    action: PUBLIC_EMAIL,
     ariaLabel: t('social.email')
   },
   {
     icon: 'phone',
-    action: import.meta.env.PUBLIC_WHATSAPP,
+    action: PUBLIC_WHATSAPP,
     ariaLabel: t('social.phone')
   }
 ];
