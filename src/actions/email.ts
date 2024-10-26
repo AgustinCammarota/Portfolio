@@ -1,7 +1,7 @@
 import { defineAction } from 'astro:actions';
 import { z } from 'astro:schema';
 import { PUBLIC_API_EMAILJS } from 'astro:env/client';
-import { SECRET_SERVICE_ID, SECRET_TEMPLATE_ID, SECRET_USER_ID } from 'astro:env/server';
+import { SECRET_PRIVATE_KEY, SECRET_SERVICE_ID, SECRET_TEMPLATE_ID, SECRET_USER_ID } from 'astro:env/server';
 
 
 interface SendEmail {
@@ -14,18 +14,17 @@ async function requestEmail({
                               email, subject , message
                             }: SendEmail): Promise<boolean> {
   try {
-    console.log(PUBLIC_API_EMAILJS, SECRET_SERVICE_ID, SECRET_TEMPLATE_ID, SECRET_USER_ID);
-    console.log(email, subject, message);
-    const response: Response = await fetch(`https://api.emailjs.com/api/v1.0/email/send`, {
+    const response: Response = await fetch(`${PUBLIC_API_EMAILJS}/send`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(
           {
-            service_id: 'service_sh88w0r',
-            template_id: 'template_69t6fsc',
-            user_id: 'pFW5lXkXQFEH-tYgc',
+            service_id: SECRET_SERVICE_ID,
+            template_id: SECRET_TEMPLATE_ID,
+            user_id: SECRET_USER_ID,
+            accessToken: SECRET_PRIVATE_KEY,
             template_params: {
               subject: subject,
               email: email,
@@ -34,10 +33,8 @@ async function requestEmail({
           }
       )
     });
-    console.log(response);
     return response.ok;
   } catch(error) {
-    console.log(error);
     return false
   }
 }

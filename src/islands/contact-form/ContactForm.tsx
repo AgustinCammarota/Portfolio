@@ -35,14 +35,11 @@ const ContactForm: Component<Props> = (props: Props) => {
         icon: '⏳'
       });
 
-      const { data, error } = await actions.email.sendEmail({
+      const { data } = await actions.email.sendEmail({
         email: email(),
         subject: subject(),
         message: message()
       });
-
-      console.log(data)
-      console.log(error)
 
       if (data) {
         resetForm();
@@ -67,7 +64,7 @@ const ContactForm: Component<Props> = (props: Props) => {
   };
 
   return (
-      <form class="contact-form" onSubmit={handleSubmit}>
+      <form name="contact" class="contact-form" onSubmit={handleSubmit}>
         <div class="form-field">
           <label class="form-label form-email sr-only" for="email">{props.emailText}</label>
           <input

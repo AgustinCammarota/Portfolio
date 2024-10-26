@@ -38,6 +38,7 @@ export default defineConfig({
         SECRET_SERVICE_ID: envField.string({ context: "server", access: "secret" }),
         SECRET_TEMPLATE_ID: envField.string({ context: "server", access: "secret" }),
         SECRET_USER_ID: envField.string({ context: "server", access: "secret" }),
+        SECRET_PRIVATE_KEY: envField.string({ context: "server", access: "secret" }),
       }
     }
   }
