@@ -2,6 +2,10 @@
 .env.development
 .env.production
 
+#IDE
+.vscode
+.idea
+
 # Netlify
 .netlify
 

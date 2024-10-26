@@ -1,7 +1,31 @@
 ---
 import Section from '@components/Section.astro';
+import { ContactForm } from '@islands/contact-form/ContactForm';
+import { useTranslations, getLangFromUrl } from '@i18n/utils';
+
+const currentUrl = Astro.url;
+const lang = getLangFromUrl(currentUrl);
+const t = useTranslations(lang);
 ---
 
 <Section name="contact">
-    <h1>Welcome Contact Section</h1>
+    <h2 class="contact-title">{t('contact.section.title')}</h2>
+    <ContactForm
+        client:load
+        currentUrl={currentUrl}
+        subjectText={t('form.title.text')}
+        emailText={t('form.email.text')}
+        messageText={t('form.message.text')}
+        buttonText={t('form.button.text')}/>
 </Section>
+<style>
+    .contact-title {
+        color: var(--gray-color);
+        font-size: 1.6rem;
+        font-weight: 500;
+        text-wrap: pretty;
+        line-height: 24px;
+        margin-top: 0;
+        margin-bottom: 24px;
+    }
+</style>

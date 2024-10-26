@@ -1,0 +1,94 @@
+input, textarea, button,
+input::placeholder,
+textarea::placeholder {
+    color: var(--gray-color);
+    font-family: 'Fira Code Variable', monospace;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-size: 1.6rem;
+    font-style: normal;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: var(--gray-color);
+    background-color: var(--backgroud-color);
+    color: var(--gray-color);
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+input:focus-visible,
+textarea:focus-visible {
+    outline: var(--primary-color) auto 1px;
+}
+
+.contact-form {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-field {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.form-label {
+    width: 100%;
+    height: 100%;
+    display: block;
+    color: var(--gray-color);
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 8px;
+}
+
+.form-input {
+    width: 100%;
+    height: 37px;
+    padding: 8px;
+    border: 1px solid var(--gray-color);
+    border-radius: 0;
+    color: var(--gray-color);
+    background-color: var(--backgroud-color);
+}
+
+.form-textarea {
+    width: 100%;
+    height: 120px;
+    padding: 8px;
+    border-color: 1px solid var(--gray-color);
+    color: var(--gray-color);
+    background-color: var(--backgroud-color);
+    border-radius: 0;
+    resize: none;
+}
+
+.form-submit {
+    width: 100%;
+    height: 48px;
+    background-color: var(--backgroud-color);
+    color: var(--primary-color);
+    border: 1px outset var(--primary-color);
+    cursor: pointer;
+
+    span {
+        font-size: 1.6rem;
+        font-weight: 500;
+    }
+}
+
+.form-submit:hover {
+    border: 1px inset var(--white-color);
+    color: var(--white-color);
+}
+
+.form-submit[disabled] {
+    border: 1px solid var(--gray-color);
+    color: var(--gray-color);
+    cursor: default;
+}

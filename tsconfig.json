@@ -21,6 +21,7 @@
       "@layouts/*": ["src/layouts/*"],
       "@content/*": ["src/content/*"],
       "@islands/*": ["src/islands/*"],
+      "@actions/*": ["src/actions/*"],
       "@assets/*": ["src/assets/*"],
       "@i18n/*": ["src/i18n/*"]
     }
