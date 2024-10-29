@@ -1,5 +1,6 @@
 ---
 import '@fontsource-variable/fira-code';
+import '../styles/global.css';
 import { ViewTransitions } from 'astro:transitions';
 import Navbar from '@components/Navbar.astro';
 import LanguagePicker from '@components/LanguagePicker.astro';
@@ -26,6 +27,21 @@ Astro.response.headers.set('CDN-Cache-Control', 'public, max-age=45, must-revali
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
 		<meta name="generator" content={Astro.generator}/>
 
+		<!-- Sitemap start -->
+		<link rel="sitemap" href="/sitemap-index.xml"/>
+		<!-- Sitemap end -->
+
+		<!-- Google tag start -->
+		<script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-0CE2K20GS5"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-0CE2K20GS5');
+		</script>
+		<!-- Google tag end -->
+
 		<title>{title}</title>
 		<ViewTransitions/>
 	</head>
@@ -44,6 +60,3 @@ Astro.response.headers.set('CDN-Cache-Control', 'public, max-age=45, must-revali
 		</footer>
 	</body>
 </html>
-<style is:global>
-	@import '../styles/global.css';
-</style>

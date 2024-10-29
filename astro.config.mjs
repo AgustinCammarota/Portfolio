@@ -2,10 +2,13 @@
 import { defineConfig, envField } from 'astro/config';
 import solid from '@astrojs/solid-js';
 import netlify from '@astrojs/netlify';
+import partytown from '@astrojs/partytown';
+import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://agustincammarota.com',
   output: 'hybrid',
   adapter: netlify(
     {
@@ -16,7 +19,26 @@ export default defineConfig({
   ),
   integrations: [
     icon(),
-    solid({ devtools: true })
+    solid({ devtools: true }),
+    partytown(
+      {
+        config: {
+          debug: false,
+          forward: ['dataLayer.push']
+        }
+      }
+    ),
+    sitemap(
+      {
+        i18n: {
+          defaultLocale: 'en',
+          locales: {
+            en: 'en',
+            es: 'es',
+          },
+        },
+      }
+    )
   ],
   prefetch: true,
   i18n: {
