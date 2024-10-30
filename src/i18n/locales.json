@@ -72,7 +72,8 @@
     "form.email.text": "Email Address",
     "form.message.text": "Message",
     "form.button.text": "Send",
-    "form.fail.state": "Retry"
+    "form.fail.state": "Retry",
+    "theme.manager.aria.label": "Selected theme"
   },
   "es": {
     "about.cv.link": "Descargar CV",
@@ -147,6 +148,7 @@
     "form.email.text": "Correo electrónico",
     "form.message.text": "Mensaje",
     "form.button.text": "Enviar",
-    "form.fail.state": "Reintentar"
+    "form.fail.state": "Reintentar",
+    "theme.manager.aria.label": "Tema seleccionado"
   }
 }

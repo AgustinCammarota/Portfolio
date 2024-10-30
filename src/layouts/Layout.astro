@@ -3,7 +3,7 @@ import '@fontsource-variable/fira-code';
 import '../styles/global.css';
 import { ViewTransitions } from 'astro:transitions';
 import Navbar from '@components/Navbar.astro';
-import LanguagePicker from '@components/LanguagePicker.astro';
+import ConfigurationPicker from '@components/ConfigurationPicker.astro';
 import Social from '@components/Social.astro';
 import { getLangFromUrl } from '@i18n/utils';
 
@@ -51,12 +51,19 @@ Astro.response.headers.set('CDN-Cache-Control', 'public, max-age=45, must-revali
 		</header>
 
 		<main transition:animate="fade">
-			<slot />
+			<slot/>
 		</main>
 
 		<footer>
-			<Social></Social>
-			<LanguagePicker/>
+			<Social/>
+			<ConfigurationPicker/>
 		</footer>
 	</body>
 </html>
+<script is:inline>
+	const storedTheme = localStorage.getItem('theme');
+	const defaultTheme = storedTheme || 'dark';
+	document.documentElement.setAttribute('data-theme', defaultTheme);
+	document.documentElement.style.colorScheme = defaultTheme;
+</script>
+

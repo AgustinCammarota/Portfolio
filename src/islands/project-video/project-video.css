@@ -34,7 +34,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-image: url('/src/assets/play-button.webp');
-        background-color: var(--gray-color);
+        background-color: var(--tertiary-color);
         opacity: 0.5;
         cursor: pointer;
         z-index: 100;

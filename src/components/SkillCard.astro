@@ -29,15 +29,15 @@ const { title, icons } = Astro.props;
         min-width: 300px;
         height: max-content;
         margin-bottom: 24px;
-        border: 1px solid var(--gray-color);
+        border: 1px solid var(--tertiary-color);
         animation: borderAnimation 6s infinite linear;
-        border-image: linear-gradient(90deg, var(--gray-color), var(--gray-color), var(--gray-color), var(--gray-color)) 1;
+        border-image: linear-gradient(90deg, var(--tertiary-color), var(--tertiary-color), var(--tertiary-color), var(--tertiary-color)) 1;
 
         .skill-card__title {
             width: 100%;
             padding: 16px;
-            border-bottom: 1px solid var(--gray-color);
-            color: var(--white-color);
+            border-bottom: 1px solid var(--tertiary-color);
+            color: var(--secondary-color);
             margin: 0;
             font-size: 1.6rem;
             font-weight: 500;
@@ -55,19 +55,19 @@ const { title, icons } = Astro.props;
     }
     @keyframes borderAnimation {
         0% {
-            border-image-source: linear-gradient(90deg, var(--primary-color), var(--primary-color), var(--gray-color), var(--gray-color));
+            border-image-source: linear-gradient(90deg, var(--primary-color), var(--primary-color), var(--tertiary-color), var(--tertiary-color));
         }
         25% {
-            border-image-source: linear-gradient(180deg, var(--primary-color), var(--primary-color), var(--gray-color), var(--gray-color));
+            border-image-source: linear-gradient(180deg, var(--primary-color), var(--primary-color), var(--tertiary-color), var(--tertiary-color));
         }
         50% {
-            border-image-source: linear-gradient(270deg, var(--primary-color), var(--primary-color), var(--gray-color), var(--gray-color));
+            border-image-source: linear-gradient(270deg, var(--primary-color), var(--primary-color), var(--tertiary-color), var(--tertiary-color));
         }
         75% {
-            border-image-source: linear-gradient(360deg, var(--primary-color), var(--primary-color), var(--gray-color), var(--gray-color));
+            border-image-source: linear-gradient(360deg, var(--primary-color), var(--primary-color), var(--tertiary-color), var(--tertiary-color));
         }
         100% {
-            border-image-source: linear-gradient(90deg, var(--primary-color), var(--primary-color), var(--gray-color), var(--gray-color));
+            border-image-source: linear-gradient(90deg, var(--primary-color), var(--primary-color), var(--tertiary-color), var(--tertiary-color));
         }
     }
     @media (prefers-reduced-motion: reduce) {

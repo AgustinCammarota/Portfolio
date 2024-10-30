@@ -7,7 +7,7 @@ image:
 video: "/assets/portfolio.webm"
 hasLink: true
 github: "https://github.com/AgustinCammarota/Portfolio"
-hasWebsite: false
-website: ""
+hasWebsite: true
+website: "https://agustincammarota.com/"
 ---
 In this project, I developed my portfolio with the goal of providing you with a better way to get to know me. I used technologies like **Astro and Solid.js**, leveraging their efficiency and flexibility to create a fast and modern web experience.

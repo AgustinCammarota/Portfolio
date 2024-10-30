@@ -1,0 +1,5 @@
+.theme-button {
+    display: contents;
+    cursor: pointer;
+    color: var(--tertiary-color);
+}

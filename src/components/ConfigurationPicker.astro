@@ -1,0 +1,34 @@
+---
+import { Icon } from 'astro-icon/components'
+import { getLangFromUrl, useTranslations } from '@i18n/utils';
+import { ROUTES } from '@i18n/ui';
+import { SelectLanguage } from '@islands/select-language/SelectLanguage';
+import { ThemeManager } from '@islands/theme-manager/ThemeManager';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const currentLang = getLangFromUrl(Astro.url);
+const currentPath: string = Astro.url.pathname;
+
+const links: string[] = ROUTES;
+const currentLink: string = currentPath.split('/').filter(path => links.includes(path))[0];
+---
+
+<section class="configuration-picker-section">
+    <ThemeManager client:only="solid-js" defaultTheme="dark" ariaLabel={t('theme.manager.aria.label')}>
+        <Icon slot="iconDark" class="theme-icon" name="dark-mode" title="Dark Mode" size="24"/>
+        <Icon slot="iconLight" class="theme-icon" name="light-mode" title="Light Mode" size="24"/>
+    </ThemeManager>
+    <SelectLanguage client:idle datepickerLabel={t('datepicker.label')} currentLang={currentLang} currentLink={currentLink}>
+        <Icon slot="iconLeft" class="language-icon" name="language" title="Language" size="24"/>
+        <Icon slot="iconRight" class="language-icon" name="arrow" title="Arrow" size="14"/>
+    </SelectLanguage>
+</section>
+<style>
+    .configuration-picker-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+    }
+</style>

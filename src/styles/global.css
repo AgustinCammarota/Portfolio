@@ -1,8 +1,17 @@
-:root {
+:root,
+:root[data-theme="dark"] {
     --primary-color: #C778DD;
-    --white-color: #FFFFFF;
-    --gray-color: #ABB2BF;
+    --secondary-color: #FFFFFF;
+    --tertiary-color: #ABB2BF;
     --backgroud-color: #282C33;
+    color-scheme: dark;
+}
+:root[data-theme="light"] {
+    --primary-color: #a94ac3;
+    --secondary-color: #4A4E56;
+    --tertiary-color: #282C33;
+    --backgroud-color: #FFFFFF;
+    color-scheme: light;
 }
 *, *:before, *:after {
     box-sizing: border-box;
@@ -60,13 +69,14 @@ li {
 }
 a {
     text-decoration: none;
+    touch-action: manipulation;
     outline: none;
     cursor: pointer;
 }
 select {
     appearance: none;
     background-color: var(--backgroud-color);
-    color: var(--gray-color);
+    color: var(--tertiary-color);
     border: none;
     padding: 6px 16px;
     font-size: 1.4rem;

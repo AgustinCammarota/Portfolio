@@ -8,6 +8,7 @@ interface Props {
   width: number;
   height: number;
   className?: string;
+  loading?: 'eager' | 'lazy' | null | undefined;
   quality?: 'low' | 'mid' | 'high' | 'max';
 }
 
@@ -17,6 +18,7 @@ const {
   width,
   height,
   className = '',
+  loading = 'lazy',
   quality = 'low'
 } = Astro.props;
 
@@ -29,6 +31,7 @@ if (!images[imagePath]) throw new Error('Path does not exist in glob: "src/asset
         src={images[imagePath]()}
         width={width}
         height={height}
+        loading={loading}
         alt={altText}
         quality={quality}/>
 <style>
