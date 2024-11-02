@@ -1,0 +1,65 @@
+---
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+    isAbsolute?: boolean;
+}
+
+interface Geometry {
+    icon: string;
+    title: string;
+    size: string;
+}
+
+const { isAbsolute = false } = Astro.props;
+
+const geometries: Geometry[] = [
+    {
+        icon: 'geometry',
+        title: 'Geometry',
+        size: '110',
+    },
+    {
+        icon: 'dots',
+        title: 'Dots',
+        size: '60',
+    },
+    {
+        icon: 'rectangle',
+        title: 'Rectangle',
+        size: '80'
+    }
+].sort(() => Math.random() - 0.5);
+
+---
+<div class:list={[ 'geometry-container', { absolute: isAbsolute }]}  aria-hidden="true">
+    {geometries.map((geometry, index) => (
+        <span class={`geometry geometry-${index + 1}`} key={index}>
+            <Icon name={geometry.icon} title={geometry.title} size={geometry.size} />
+        </span>
+    ))}
+</div>
+<style>
+    .geometry-container {
+        width: 100%;
+        height: 100%;
+        margin-top: 12px;
+    }
+    .absolute {
+        position: absolute;
+    }
+    .geometry {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    .geometry-1 {
+        text-align: start;
+    }
+    .geometry-2 {
+        text-align: end;
+    }
+    .geometry-3 {
+        text-align: start;
+    }
+</style>

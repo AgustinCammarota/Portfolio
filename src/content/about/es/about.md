@@ -4,7 +4,7 @@ company: "#Globant"
 rol: "Arquitecto de Software"
 image: 
     alt: "Agustín Cammarota, Arquitecto de Software"
-    src: "/src/assets/agustin.png" 
+    src: "/src/assets/agustin-cammarota.webp"
 ---
 ¡Hola! **Soy Agustín**, un **ingeniero informático** apasionado con una sólida formación académica y amplia experiencia en el desarrollo de soluciones tecnológicas innovadoras. Con un enfoque proactivo y orientado a resultados, he dedicado mi carrera a enfrentar desafíos complejos y encontrar soluciones **eficientes** que impulsen el éxito de los proyectos.
 

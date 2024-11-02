@@ -13,7 +13,7 @@ const { text, company, imagePath, altText } = Astro.props;
 
 <div class="banner">
     <figure class="banner-image-container">
-        <CustomImage className="banner-image" width={300} height={300} quality="high" loading="eager" imagePath={imagePath} altText={altText}/>
+        <CustomImage className="banner-image" width={800} height={800} quality="max" loading="eager" imagePath={imagePath} altText={altText}/>
     </figure>
     <div class="banner-work-container">
         <p class="work-text">{text} <span class="work-text__company">{company}</span></p>
@@ -22,7 +22,7 @@ const { text, company, imagePath, altText } = Astro.props;
 <style>
     .banner-image-container {
         width: 100%;
-        height: 300px;
+        height: 350px;
         border-radius: 2px;
         overflow: hidden;
         margin: 0;

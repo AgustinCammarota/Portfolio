@@ -1,0 +1,7 @@
+<svg aria-label="Rectangle" role="img" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48">
+    <style type="text/css">
+        .rt0{stroke: var(--secondary-color, black); fill: none;}
+    </style>
+<circle class="rt0" cx="17.069" cy="30.672" r="12.98" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="rt0" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M29.123 4.348L14.335 29.962h29.576z"/>
+</svg>
