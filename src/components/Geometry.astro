@@ -34,7 +34,7 @@ const geometries: Geometry[] = [
 ---
 <div class:list={[ 'geometry-container', { absolute: isAbsolute }]}  aria-hidden="true">
     {geometries.map((geometry, index) => (
-        <span class={`geometry geometry-${index + 1}`} key={index}>
+        <span class={`geometry geometry-${index + 1}`}>
             <Icon name={geometry.icon} title={geometry.title} size={geometry.size} />
         </span>
     ))}
