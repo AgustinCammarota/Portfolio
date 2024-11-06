@@ -2,6 +2,20 @@
   "name": "portfolio",
   "type": "module",
   "version": "1.0.0",
+  "homepage": "https://agustincammarota.com",
+  "bugs": {
+    "url": "https://github.com/AgustinCammarota/Portfolio/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AgustinCammarota/Portfolio"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Agustin Cammarota",
+    "email": "agustincammarota@hotmail.com",
+    "url": "https://agustincammarota.com"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -22,5 +36,8 @@
   },
   "devDependencies": {
     "solid-devtools": "^0.30.1"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   }
 }
