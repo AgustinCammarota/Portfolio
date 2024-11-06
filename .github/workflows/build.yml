@@ -36,6 +36,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Verify environment variables
+        run: |
+         echo "PUBLIC_EMAIL: ${PUBLIC_EMAIL}"
+         echo "PUBLIC_GITHUB: ${PUBLIC_GITHUB}"
+         echo "PUBLIC_WHATSAPP: ${PUBLIC_WHATSAPP}"
+         echo "PUBLIC_LINKEDIN: ${PUBLIC_LINKEDIN}"
+         echo "PUBLIC_API_EMAILJS: ${PUBLIC_API_EMAILJS}"
+
       # Runs a setup node environment
       - name: Setup Node.js environment
         uses: actions/setup-node@v4.0.3
