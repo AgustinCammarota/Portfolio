@@ -7,6 +7,8 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout title={t('title.home')}>
-    <AboutSection></AboutSection>
+<Layout title={t('title.home')}
+        description={t('description.home')}
+        keywords={t('keywords.home')}>
+    <AboutSection/>
 </Layout>
