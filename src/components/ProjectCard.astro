@@ -34,7 +34,7 @@ const t = useTranslations(lang);
 
 <div class="project-card">
     <ProjectVideo client:load video={video}>
-        <CustomImage quality="mid" className="image" imagePath={image} altText={alt} height={500} width={500}/>
+        <CustomImage quality="mid" loading="eager" className="image" imagePath={image} altText={alt} height={500} width={500}/>
     </ProjectVideo>
     <p class="card-technologies">{technologies}</p>
 
