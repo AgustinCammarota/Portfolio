@@ -1,0 +1,66 @@
+# This is a basic workflow to build the app
+
+name: Build
+run-name: ¡Build App!
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "master" branch
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: [ "master" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+# This workflow contains a single job called "build"
+  build:
+    # Define a time-out flow
+    timeout-minutes: 15
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    environment: PUBLICS_ENVIRONMENTS
+    env:
+      PUBLIC_EMAIL: ${{ vars.PUBLIC_EMAIL }}
+      PUBLIC_GITHUB: ${{ vars.PUBLIC_GITHUB }}
+      PUBLIC_WHATSAPP: ${{ vars.PUBLIC_WHATSAPP }}
+      PUBLIC_LINKEDIN: ${{ vars.PUBLIC_LINKEDIN }}
+      PUBLIC_API_EMAILJS: ${{ vars.PUBLIC_API_EMAILJS }}
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Verify environment variables
+        run: |
+         echo "PUBLIC_EMAIL: ${PUBLIC_EMAIL}"
+         echo "PUBLIC_GITHUB: ${PUBLIC_GITHUB}"
+         echo "PUBLIC_WHATSAPP: ${PUBLIC_WHATSAPP}"
+         echo "PUBLIC_LINKEDIN: ${PUBLIC_LINKEDIN}"
+         echo "PUBLIC_API_EMAILJS: ${PUBLIC_API_EMAILJS}"
+
+      # Runs a setup node environment
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4.0.3
+        with:
+          node-version: 20.11.1
+
+      # Get npm cache directory
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        shell: bash
+        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
+
+      # 1) Install dependencies
+      - name: Install dependencies
+        run: npm i
+
+      # 2) Run e2e test
+      - name: Build
+        run: npm run build
