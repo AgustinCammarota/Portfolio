@@ -5,5 +5,8 @@ export const worksCollection = defineCollection({
   schema: z.object({
     time: z.string(),
     title: z.string(),
+    companyName: z.string(),
+    companyLink: z.string(),
+    companyIcon: z.string(),
   })
 });

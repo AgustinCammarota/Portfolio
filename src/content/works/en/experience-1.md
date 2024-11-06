@@ -1,6 +1,9 @@
 ---
 title: "Junior Software Architect at Globant"
 time: "Jan 2024 - Present"
+companyName: "Globant"
+companyIcon: "globant-logo"
+companyLink: "https://www.linkedin.com/company/globant/"
 ---
 Added to my previous assignments:
 * Participation in the technology migration team.

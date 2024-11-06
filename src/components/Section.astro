@@ -35,7 +35,7 @@ const t = useTranslations(lang);
         overflow: hidden;
     }
     .divider {
-        width: 60%;
+        width: 90%;
         height: 1px;
         margin-left: 12px;
         background-color: var(--primary-color);
@@ -49,6 +49,15 @@ const t = useTranslations(lang);
         span {
             margin-right: 8px;
             color: var(--primary-color);
+        }
+    }
+    /* @media */
+    @media (min-width: 600px) {
+        section {
+            margin-bottom: 130px;
+        }
+        .title-container {
+            margin: 24px 0 40px 0;
         }
     }
 </style>

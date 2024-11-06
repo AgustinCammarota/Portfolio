@@ -175,9 +175,43 @@ const skills: Skill[] = [
 </Section>
 <style>
     .skills-grid {
+        width: 100%;
+        height: 100%;
         display: flex;
-        justify-content: center;
+        align-content: center;
         align-items: center;
+        justify-items: center;
+        justify-content: center;
         flex-wrap: wrap;
+        gap: 24px;
+    }
+    /* @media */
+    @media (min-width: 600px) {
+        .skills-grid :global([data-name="skill-languages"]) {
+            grid-area: languages;
+        }
+        .skills-grid :global([data-name="skill-frontend"]) {
+            grid-area: frontend;
+        }
+        .skills-grid :global([data-name="skill-backend"]) {
+            grid-area: backend;
+        }
+        .skills-grid :global([data-name="skill-others"]) {
+            grid-area: others;
+        }
+        .skills-grid :global([data-name="skill-testing"]) {
+            grid-area: testing;
+        }
+    }
+    @media (min-width: 730px) {
+        .skills-grid {
+            display: grid;
+            grid-template-areas:
+            "languages testing"
+            "frontend others"
+            "backend others";
+            align-items: start;
+            gap: 12px;
+        }
     }
 </style>

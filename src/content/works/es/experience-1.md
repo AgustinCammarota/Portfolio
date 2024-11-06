@@ -1,6 +1,9 @@
 ---
 title: "Arquitecto de Software Junior en Globant"
 time: "Ene 2024 - Presente"
+companyName: "Globant"
+companyIcon: "globant-logo"
+companyLink: "https://www.linkedin.com/company/globant/"
 ---
 Agregado a mis tareas anteriores:
 

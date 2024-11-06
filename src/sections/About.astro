@@ -16,21 +16,36 @@ const t = useTranslations(lang);
 ---
 
 <section class="about-section">
-    <AboutTitle author={aboutInformation.author} rol={aboutInformation.rol}/>
-    <Banner
-        text={t('banner.text')}
-        company={aboutInformation.company}
-        imagePath={aboutInformation.image.src}
-        altText={aboutInformation.image.alt}/>
-    <Content/>
-    <DownloadButton
-        link="/assets/agustin-cammarota-cv.pdf"
-        icon="file"
-        title={t('about.cv.title')}
-        ariaLabel={t('about.cv.aria')}
-        linkText={t('about.cv.link')}/>
+    <div class="about-grid">
+        <AboutTitle author={aboutInformation.author} rol={aboutInformation.rol}/>
+        <Banner
+            text={t('banner.text')}
+            company={aboutInformation.company}
+            imagePath={aboutInformation.image.src}
+            altText={aboutInformation.image.alt}/>
+
+        <div class="about-container">
+            <Content class="content" className="content"/>
+        </div>
+
+        <DownloadButton
+            link="/assets/agustin-cammarota-cv.pdf"
+            icon="file"
+            title={t('about.cv.title')}
+            ariaLabel={t('about.cv.aria')}
+            linkText={t('about.cv.link')}/>
+    </div>
 </section>
 <style>
+    .about-grid {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .about-container {
+        width: 100%;
+        height: 100%;
+    }
     .about-section {
         width: 100%;
         margin-bottom: 100px;
@@ -42,6 +57,47 @@ const t = useTranslations(lang);
             line-height: 24px;
             text-wrap: pretty;
             color: var(--tertiary-color);
+        }
+    }
+    /* @media */
+    @media (min-width: 600px) {
+        .about-grid {
+            margin-top: 16px;
+            display: grid;
+            grid-template-areas:
+                "title banner"
+                "about banner"
+                "about download";
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto;
+            column-gap: 16px;
+            align-content: center;
+            justify-items: center;
+            justify-content: space-between;
+        }
+        .about-grid :global(.banner) {
+            grid-area: banner;
+        }
+        .about-grid :global(.download-button) {
+            grid-area: download;
+        }
+        .about-grid :global(.about-title) {
+            grid-area: title;
+        }
+        .about-container {
+            grid-area: about;
+        }
+    }
+    @media (min-width: 900px) {
+        .about-grid {
+            margin: 16px auto;
+            column-gap: 120px;
+            max-width: 1200px;
+        }
+        .about-container {
+            p {
+                line-height: 32px;
+            }
         }
     }
 </style>

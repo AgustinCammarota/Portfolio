@@ -3,3 +3,7 @@
     cursor: pointer;
     color: var(--tertiary-color);
 }
+
+.theme-button:hover {
+    color: var(--secondary-color);
+}

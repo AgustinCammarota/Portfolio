@@ -10,9 +10,9 @@ export const projectsCollection = defineCollection({
     video: z.string(),
     technologies: z.string(),
     title: z.string(),
-    hasLink: z.boolean(),
-    github: z.string(),
-    hasWebsite: z.boolean(),
-    website: z.string(),
+    hasLink: z.boolean().default(false),
+    github: z.string().default(''),
+    hasWebsite: z.boolean().default(false),
+    website: z.string().default(''),
   })
 });

@@ -17,49 +17,48 @@ const geometries: Geometry[] = [
     {
         icon: 'geometry',
         title: 'Geometry',
-        size: '110',
+        size: '130',
     },
     {
         icon: 'dots',
         title: 'Dots',
-        size: '60',
+        size: '70',
     },
     {
         icon: 'rectangle',
         title: 'Rectangle',
-        size: '80'
+        size: '100'
     }
 ].sort(() => Math.random() - 0.5);
 
 ---
-<div class:list={[ 'geometry-container', { absolute: isAbsolute }]}  aria-hidden="true">
+<div class:list={[ 'geometry', { absolute: isAbsolute }]}  aria-hidden="true">
     {geometries.map((geometry, index) => (
-        <span class={`geometry geometry-${index + 1}`}>
+        <span class={`geometry-icon icon-${index + 1}`}>
             <Icon name={geometry.icon} title={geometry.title} size={geometry.size} />
         </span>
     ))}
 </div>
 <style>
-    .geometry-container {
+    .geometry {
         width: 100%;
         height: 100%;
-        margin-top: 12px;
     }
     .absolute {
         position: absolute;
     }
-    .geometry {
+    .geometry-icon {
         width: 100%;
         height: auto;
         display: block;
     }
-    .geometry-1 {
+    .icon-1 {
         text-align: start;
     }
-    .geometry-2 {
+    .icon-2 {
         text-align: end;
     }
-    .geometry-3 {
+    .icon-3 {
         text-align: start;
     }
 </style>

@@ -4,19 +4,39 @@ import { Icon } from 'astro-icon/components';
 interface Props {
     title: string;
     time: string;
+    companyLink: string;
+    companyName: string;
+    companyIcon: string;
+    className?: string;
 }
 
-const { title, time } = Astro.props;
+const {
+    title,
+    time,
+    companyName,
+    companyLink,
+    companyIcon,
+    className = ''
+} = Astro.props;
 ---
-<li class="timeline-item">
-        <span class="timeline-item__icon">
-            <Icon name="calendar" title="Calendar" size="24"/>
-        </span>
+<li class={`timeline-item ${className}`}>
+    <span class="timeline-item__icon">
+        <Icon name="calendar" title="Calendar" size="24"/>
+    </span>
     <h3 class="timeline-item__title">{title}</h3>
     <time class="timeline-item__time">{time}</time>
     <div class="timeline-item-description-container">
         <slot/>
     </div>
+    <span class="timeline-item__company">
+        <a href={companyLink}
+           target="_blank"
+           rel="noopener noreferrer"
+           title={companyName}
+           aria-label={companyName}>
+            <Icon name={companyIcon} title={companyName} size="120"/>
+        </a>
+    </span>
 </li>
 <style>
     .timeline-item {
@@ -34,6 +54,9 @@ const { title, time } = Astro.props;
         top: 0;
         box-shadow: 0 0 0 0.5rem var(--backgroud-color);
         background-color: var(--backgroud-color);
+    }
+    .timeline-item__company {
+        display: none;
     }
     .timeline-item__icon svg {
         color: var(--primary-color);
@@ -81,6 +104,31 @@ const { title, time } = Astro.props;
             content: '\25A0';
             padding: 0 12px;
             color: var(--primary-color);
+        }
+    }
+    /* @media */
+    @media (min-width: 600px) {
+        .timeline-item__company {
+            width: max-content;
+            height: 100%;
+            top: 0;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            a {
+                transition: transform linear .2s;
+            }
+            a:hover {
+                transform: scale(1.1);
+            }
+        }
+        .timeline-item--left .timeline-item__company {
+            right: -140px;
+        }
+        .timeline-item--right .timeline-item__company {
+            left: -140px;
         }
     }
 </style>

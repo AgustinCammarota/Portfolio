@@ -14,7 +14,7 @@ interface Props {
 const { title, icons } = Astro.props;
 ---
 
-<div class="skill-card">
+<div class="skill-card" data-name={`skill-${title.toLowerCase()}`}>
     <h3 class="skill-card__title">{title}</h3>
     <div class="skill-container">
       {icons.map((icon: Icon) => (
@@ -28,7 +28,6 @@ const { title, icons } = Astro.props;
         max-width: 400px;
         min-width: 300px;
         height: max-content;
-        margin-bottom: 24px;
         border: 1px solid var(--tertiary-color);
         animation: borderAnimation 6s infinite linear;
         border-image: linear-gradient(90deg, var(--tertiary-color), var(--tertiary-color), var(--tertiary-color), var(--tertiary-color)) 1;
@@ -73,6 +72,13 @@ const { title, icons } = Astro.props;
     @media (prefers-reduced-motion: reduce) {
         .skill-card {
             animation: none;
+        }
+    }
+    /* @media */
+    @media (min-width: 600px) {
+        .skill-card {
+            height: 100%;
+            min-width: 350px;
         }
     }
 </style>

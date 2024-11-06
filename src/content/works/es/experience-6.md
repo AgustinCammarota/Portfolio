@@ -1,6 +1,9 @@
 ---
 title: "Desarrollador Full Stack como Freelance"
 time: "Jul 2018 - Ago 2020"
+companyName: "Freelancer"
+companyIcon: "freelancer"
+companyLink: "https://www.linkedin.com/company/freelancer-com/"
 ---
 En este rol, mis principales responsabilidades fueron:
 * **Primer contacto con el cliente**, recopilación de requisitos y análisis funcional.

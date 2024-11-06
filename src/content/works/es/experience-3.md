@@ -1,6 +1,9 @@
 ---
 title: "Ingeniero Frontend Ssr. Avanzado en Globant"
 time: "Mar 2022 - Dic 2022"
+companyName: "Globant"
+companyIcon: "globant-logo"
+companyLink: "https://www.linkedin.com/company/globant/"
 ---
 Agregado a mis tareas anteriores:
 * Parte del equipo responsable de mantener las mejores prácticas, código limpio y optimizado **(revisiones de código)**.

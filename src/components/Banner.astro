@@ -53,4 +53,15 @@ const { text, company, imagePath, altText } = Astro.props;
             color: var(--secondary-color);
         }
     }
+    /* @media */
+    @media (min-width: 600px) {
+        .banner {
+            width: 100%;
+            margin-top: 32px;
+        }
+        .banner-image-container {
+            width: 100%;
+            height: 80%;
+        }
+    }
 </style>

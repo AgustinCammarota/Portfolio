@@ -44,7 +44,7 @@ const socials: Social[] = [
               target="_blank" rel="noopener noreferrer"
               title={social.ariaLabel}
               aria-label={social.ariaLabel}>
-          <Icon name={social.icon} title={social.icon} size="21"/>
+          <Icon name={social.icon} title={social.icon} size="24"/>
       </a>
   ))}
 </section>
@@ -57,12 +57,13 @@ const socials: Social[] = [
         display: inline-block;
         width: max-content;
         height: auto;
-        padding: 0 6px;
+        margin: 0 6px;
         color: var(--tertiary-color);
         cursor: pointer;
+        transition: transform linear .2s;
     }
     .social-icon-container:first-of-type {
-        padding-left: 0;
+        margin-left: 0;
     }
     .social-icon-container:hover {
         color: var(--secondary-color);

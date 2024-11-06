@@ -23,7 +23,7 @@ const ProjectVideo: Component<Props> = (props: Props) => {
     setIsPlaying(false);
     video.currentTime = 0;
     video.style.position = 'unset';
-    video.style.maxHeight = '180px';
+    video.style.maxHeight = '160px';
     video.pause();
   }
 

@@ -1,6 +1,9 @@
 ---
 title: "Ingeniero Frontend Ssr. en Globant"
 time: "Mar 2021 - Mar 2022"
+companyName: "Globant"
+companyIcon: "globant-logo"
+companyLink: "https://www.linkedin.com/company/globant/"
 ---
 En este rol, mis principales responsabilidades fueron:
 * Desarrollo de múltiples **aplicaciones híbridas (web y móvil)** regionales e internacionales relacionadas con el sector **bancario**.

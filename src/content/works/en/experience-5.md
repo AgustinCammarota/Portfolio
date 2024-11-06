@@ -1,6 +1,9 @@
 ---
 title: "Ssr. Frontend Engineer at Gen IT"
 time: "Aug 2020 - Mar 2021"
+companyName: "GenIT"
+companyIcon: "genit"
+companyLink: "https://www.linkedin.com/company/somosgenit/"
 ---
 In this role, my main responsibilities were:
 * Representative for an insurance industry account. **Technical point of contact**, meeting oversight, client-facing responsibilities, task estimation and planning, dashboard generation, and management.

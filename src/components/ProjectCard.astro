@@ -34,7 +34,7 @@ const t = useTranslations(lang);
 
 <div class="project-card">
     <ProjectVideo client:load video={video}>
-        <CustomImage className="image" imagePath={image} altText={alt} height={180} width={400}/>
+        <CustomImage quality="mid" className="image" imagePath={image} altText={alt} height={500} width={500}/>
     </ProjectVideo>
     <p class="card-technologies">{technologies}</p>
 
@@ -62,10 +62,9 @@ const t = useTranslations(lang);
 <style>
     .project-card {
         width: 100%;
-        max-width: 400px;
+        max-width: 350px;
         min-width: 300px;
         height: max-content;
-        margin-bottom: 32px;
         position: relative;
         border: 1px solid var(--primary-color);
     }
@@ -73,6 +72,7 @@ const t = useTranslations(lang);
         margin: 0;
         padding: 8px;
         border-bottom: 1px solid var(--primary-color);
+        border-top: 1px solid var(--primary-color);
         color: var(--primary-color);
         text-wrap: wrap;
         font-weight: 400;

@@ -1,6 +1,9 @@
 ---
 title: "Ssr. Frontend Engineer at Globant"
 time: "Mar 2021 - Mar 2022"
+companyName: "Globant"
+companyIcon: "globant-logo"
+companyLink: "https://www.linkedin.com/company/globant/"
 ---
 In this role, my main responsibilities were:
 * Development of multiple regional and international **hybrid applications (web and mobile)** related to the **banking** sector.

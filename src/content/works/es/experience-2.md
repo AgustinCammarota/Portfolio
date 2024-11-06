@@ -1,6 +1,9 @@
 ---
 title: "Ingeniero Frontend Senior en Globant"
 time: "Dic 2022 - Mar 2024"
+companyName: "Globant"
+companyIcon: "globant-logo"
+companyLink: "https://www.linkedin.com/company/globant/"
 ---
 Agregado a mis tareas anteriores:
 * **Referencia técnica** para el equipo global. Supervisión de los miembros del equipo y sus tareas, contacto con el cliente para estimación y planificación, análisis técnico/viabilidad de nuevos desarrollos.

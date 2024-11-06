@@ -1,6 +1,9 @@
 ---
 title: "Full Stack Developer at Freelancer"
 time: "Jul 2018 - Aug 2020"
+companyName: "Freelancer"
+companyIcon: "freelancer"
+companyLink: "https://www.linkedin.com/company/freelancer-com/"
 ---
 In this role, my main responsibilities were:
 * **First contact with the client**, requirement gathering, and functional analysis.

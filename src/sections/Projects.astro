@@ -37,5 +37,26 @@ const projectsCollection = await getCollection('projects', ({ id }) => {
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
+        gap: 32px;
+    }
+    /* @media*/
+    @media (min-width: 600px) {
+        .projects-grid {
+            margin: 0 auto;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 24px;
+        }
+    }
+    @media (min-width: 760px) {
+        .projects-grid {
+            justify-content: flex-start;
+            max-width: 725px;
+        }
+    }
+    @media (min-width: 1130px) {
+        .projects-grid {
+            max-width: 1100px;
+        }
     }
 </style>
