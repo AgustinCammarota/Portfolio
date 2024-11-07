@@ -1,7 +1,9 @@
 ---
+import { PUBLIC_TAG_MANAGER_KEY } from 'astro:env/client';
 
+const src = `https://www.googletagmanager.com/gtag/js?id=${PUBLIC_TAG_MANAGER_KEY}`;
 ---
-<script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-0CE2K20GS5"></script>
+<script is:inline type="text/partytown" async src={src}></script>
 <script is:inline type="text/partytown">
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
