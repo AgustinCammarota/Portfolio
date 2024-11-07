@@ -6,6 +6,7 @@ import Navbar from '@components/Navbar.astro';
 import ConfigurationPicker from '@components/ConfigurationPicker.astro';
 import Social from '@components/Social.astro';
 import GoogleTagManager from '@components/GoogleTagManager.astro';
+import GoogleRecaptcha from '@components/GoogleRecaptcha.astro';
 import Theme from '@components/Theme.astro';
 import Favicon from '@components/Favicon.astro';
 import Metadata from '@components/Metadata.astro';
@@ -15,9 +16,15 @@ interface Props {
 	title: string;
 	description: string;
 	keywords: string;
+	hasRecaptcha?: boolean;
 }
 
-const { title, description, keywords } = Astro.props;
+const {
+	title,
+	description,
+	keywords,
+	hasRecaptcha = false
+} = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -39,6 +46,10 @@ Astro.response.headers.set('CDN-Cache-Control', 'public, max-age=45, must-revali
 		<link rel="sitemap" href="/sitemap-index.xml"/>
 		<link rel="alternate" hreflang="es" href="https://agustincammarota.com/es/">
 		<!-- Sitemap end -->
+
+		<!-- Google Recaptcha start -->
+		{ hasRecaptcha ? <GoogleRecaptcha/> : '' }
+		<!-- Google Recaptcha end -->
 
 		<!-- Google tag start -->
 		<GoogleTagManager/>

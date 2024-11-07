@@ -1,4 +1,5 @@
 import { actions } from 'astro:actions';
+import { PUBLIC_RECAPTCHA_SITE_KEY } from 'astro:env/client';
 import { type Component, createSignal } from 'solid-js';
 import { getLangFromUrl, useTranslations } from '@i18n/utils';
 import './contact-form.css';
@@ -24,7 +25,45 @@ const ContactForm: Component<Props> = (props: Props) => {
   const lang = getLangFromUrl(props.currentUrl);
   const t = useTranslations(lang);
 
-  const handleSubmit = async (event: Event) => {
+
+  async function sendEmail(): Promise<void> {
+    const { data } = await actions.email.sendEmail({
+      email: email(),
+      subject: subject(),
+      message: message()
+    });
+    validateResponse(data ?? false);
+  }
+
+  async function sendCaptcha(): Promise<void> {
+    const token: string = await window.grecaptcha.execute(PUBLIC_RECAPTCHA_SITE_KEY, { action: "submit" });
+    const { data } = await actions.recaptcha.verifyCaptcha({token});
+    validateResponse(data ?? false);
+  }
+
+  function validateResponse(success: boolean): void {
+    if (success) {
+      setState({
+        text: t('form.sent.state'),
+        icon: '✅'
+      });
+    } else {
+      setDisabled(false);
+      setState({
+        text: t('form.fail.state'),
+        icon: '❌'
+      });
+      return;
+    }
+  }
+
+  function resetForm(): void {
+    setMessage('');
+    setSubject('');
+    setEmail('');
+  }
+
+  async function handleSubmit(event: Event): Promise<void> {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
 
@@ -35,33 +74,11 @@ const ContactForm: Component<Props> = (props: Props) => {
         icon: '⏳'
       });
 
-      const { data } = await actions.email.sendEmail({
-        email: email(),
-        subject: subject(),
-        message: message()
-      });
-
-      if (data) {
-        resetForm();
-        setState({
-          text: t('form.sent.state'),
-          icon: '✅'
-        });
-      } else {
-        setDisabled(false);
-        setState({
-          text: t('form.fail.state'),
-          icon: '❌'
-        });
-      }
+      await sendCaptcha();
+      await sendEmail();
+      resetForm();
     }
-  };
-
-  const resetForm = (): void => {
-    setMessage('');
-    setSubject('');
-    setEmail('');
-  };
+  }
 
   return (
       <form name="contact" class="contact-form" onSubmit={handleSubmit}>
@@ -76,8 +93,6 @@ const ContactForm: Component<Props> = (props: Props) => {
               type="email"
               name="email"
               value={email()}
-              maxlength="60"
-              minlength="5"
               required/>
         </div>
 
@@ -104,7 +119,7 @@ const ContactForm: Component<Props> = (props: Props) => {
               id="message"
               wrap="hard"
               name="message"
-              minLength="20"
+              minLength="10"
               maxLength="500"
               placeholder={props.messageText}
               onInput={(e) => setMessage(e.target.value)}
