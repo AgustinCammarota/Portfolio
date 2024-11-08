@@ -7,6 +7,7 @@ interface Social {
   icon: string;
   action: string;
   ariaLabel: string;
+  nofollow: boolean;
 }
 
 const lang = getLangFromUrl(Astro.url);
@@ -16,22 +17,26 @@ const socials: Social[] = [
   {
     icon: 'github',
     action: PUBLIC_GITHUB,
-    ariaLabel: t('social.github')
+    ariaLabel: t('social.github'),
+    nofollow: false
   },
   {
     icon: 'linkedin',
     action: PUBLIC_LINKEDIN,
-    ariaLabel: t('social.linkedin')
+    ariaLabel: t('social.linkedin'),
+    nofollow: false
   },
   {
     icon: 'email',
     action: PUBLIC_EMAIL,
-    ariaLabel: t('social.email')
+    ariaLabel: t('social.email'),
+    nofollow: false
   },
   {
     icon: 'phone',
     action: PUBLIC_WHATSAPP,
-    ariaLabel: t('social.phone')
+    ariaLabel: t('social.phone'),
+    nofollow: true
   }
 ];
 
@@ -41,7 +46,8 @@ const socials: Social[] = [
   {socials.map((social: Social) => (
       <a href={social.action}
               class="social-icon-container"
-              target="_blank" rel="noopener noreferrer"
+              target="_blank"
+              rel={`${social.nofollow ? 'noopener noreferrer nofollow' : 'noopener noreferrer'}`}
               title={social.ariaLabel}
               aria-label={social.ariaLabel}>
           <Icon name={social.icon} title={social.icon} size="24"/>

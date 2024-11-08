@@ -72,6 +72,7 @@ const ProjectVideo: Component<Props> = (props: Props) => {
             onClick={handlerPlayVideo}
             onMouseOver={mouseOver}
             style={{opacity: !isPlaying() ? '0.5' : '0'}}
+            aria-label="Play"
             class="card-video__button"
             type="button">
         </button>
