@@ -15,7 +15,7 @@ const { title, icons } = Astro.props;
 ---
 
 <div class="skill-card" data-name={`skill-${title.toLowerCase()}`}>
-  <h3 class="skill-card__title">{title}</h3>
+  <h2 class="skill-card__title">{title}</h2>
   <div class="skill-container">
     {
       icons.map((icon: Icon) => (
