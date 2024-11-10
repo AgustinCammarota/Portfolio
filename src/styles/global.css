@@ -1,113 +1,117 @@
 :root,
 :root[data-theme="dark"] {
-    --primary-color: #C778DD;
-    --secondary-color: #FFFFFF;
-    --tertiary-color: #ABB2BF;
-    --backgroud-color: #282C33;
-    --gray-color: #dcdcdc;
-    color-scheme: dark;
+  --primary-color: #c778dd;
+  --secondary-color: #ffffff;
+  --tertiary-color: #abb2bf;
+  --backgroud-color: #282c33;
+  --gray-color: #dcdcdc;
+  color-scheme: dark;
 }
 :root[data-theme="light"] {
-    --primary-color: #a94ac3;
-    --secondary-color: #4A4E56;
-    --tertiary-color: #282C33;
-    --backgroud-color: #FFFFFF;
-    --gray-color: #dcdcdc;
-    color-scheme: light;
+  --primary-color: #a94ac3;
+  --secondary-color: #4a4e56;
+  --tertiary-color: #282c33;
+  --backgroud-color: #ffffff;
+  --gray-color: #dcdcdc;
+  color-scheme: light;
 }
-*, *:before, *:after {
-    box-sizing: border-box;
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
 }
 html,
 body {
-    max-width: 1200px;
-    margin: 0 auto;
-    font-family: 'Fira Code Variable', monospace;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 62.5%;
-    transition: font-family 0.2s ease-in-out;
-    background: var(--backgroud-color);
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: "Fira Code Variable", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 62.5%;
+  transition: font-family 0.2s ease-in-out;
+  background: var(--backgroud-color);
 }
 body,
 nav {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    font-size: 1.6rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 1.6rem;
 }
 header {
-    max-width: 1200px;
-    width: 100%;
-    height: auto;
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 0;
-    z-index: 500;
+  max-width: 1200px;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  z-index: 500;
 }
 main {
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    padding: 16px;
-    margin-top: 32px;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  padding: 16px;
+  margin-top: 32px;
 }
 footer {
-    max-width: 1200px;
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 0;
-    z-index: 50;
+  max-width: 1200px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  z-index: 50;
 }
 ul {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 li {
-    list-style: none;
+  list-style: none;
 }
 a {
-    text-decoration: none;
-    touch-action: manipulation;
-    outline: none;
-    cursor: pointer;
-    color: unset;
+  text-decoration: none;
+  touch-action: manipulation;
+  outline: none;
+  cursor: pointer;
+  color: unset;
 }
 select {
-    appearance: none;
-    background-color: var(--backgroud-color);
-    color: var(--tertiary-color);
-    border: none;
-    padding: 6px 16px;
-    font-size: 1.4rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  appearance: none;
+  background-color: var(--backgroud-color);
+  color: var(--tertiary-color);
+  border: none;
+  padding: 6px 16px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 select:focus {
-    border-color: transparent;
-    outline: none;
+  border-color: transparent;
+  outline: none;
 }
 select:hover {
-    border-color: transparent;
+  border-color: transparent;
 }
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

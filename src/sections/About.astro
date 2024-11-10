@@ -1,14 +1,14 @@
 ---
-import { getCollection } from 'astro:content';
-import { getLangFromUrl, useTranslations } from '@i18n/utils';
-import Banner from '@components/Banner.astro';
-import DownloadButton from '@components/DownloadButton.astro';
+import { getCollection } from "astro:content";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import Banner from "@components/Banner.astro";
+import DownloadButton from "@components/DownloadButton.astro";
 import AboutTitle from "@components/AboutTitle.astro";
 
 const lang = getLangFromUrl(Astro.url);
 
-const aboutCollection = await getCollection('about', ({ id }) => {
-    return id.startsWith(`${lang}/`);
+const aboutCollection = await getCollection("about", ({ id }) => {
+  return id.startsWith(`${lang}/`);
 });
 const { Content } = await aboutCollection[0].render();
 const aboutInformation = aboutCollection[0].data;
@@ -16,88 +16,90 @@ const t = useTranslations(lang);
 ---
 
 <section class="about-section">
-    <div class="about-grid">
-        <AboutTitle author={aboutInformation.author} rol={aboutInformation.rol}/>
-        <Banner
-            text={t('banner.text')}
-            company={aboutInformation.company}
-            imagePath={aboutInformation.image.src}
-            altText={aboutInformation.image.alt}/>
+  <div class="about-grid">
+    <AboutTitle author={aboutInformation.author} rol={aboutInformation.rol} />
+    <Banner
+      text={t("banner.text")}
+      company={aboutInformation.company}
+      imagePath={aboutInformation.image.src}
+      altText={aboutInformation.image.alt}
+    />
 
-        <div class="about-container">
-            <Content class="content" className="content"/>
-        </div>
-
-        <DownloadButton
-            link="/assets/agustin-cammarota-cv.pdf"
-            icon="file"
-            title={t('about.cv.title')}
-            ariaLabel={t('about.cv.aria')}
-            linkText={t('about.cv.link')}/>
+    <div class="about-container">
+      <Content class="content" className="content" />
     </div>
+
+    <DownloadButton
+      link="/assets/agustin-cammarota-cv.pdf"
+      icon="file"
+      title={t("about.cv.title")}
+      ariaLabel={t("about.cv.aria")}
+      linkText={t("about.cv.link")}
+    />
+  </div>
 </section>
 <style>
+  .about-grid {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .about-container {
+    width: 100%;
+    height: 100%;
+  }
+  .about-section {
+    width: 100%;
+    margin-bottom: 100px;
+    height: auto;
+
+    p {
+      font-size: 1.6rem;
+      font-weight: 400;
+      line-height: 24px;
+      text-wrap: pretty;
+      color: var(--tertiary-color);
+    }
+  }
+  /* @media */
+  @media (min-width: 600px) {
     .about-grid {
-        width: 100%;
-        height: 100%;
-        position: relative;
+      margin-top: 16px;
+      display: grid;
+      grid-template-areas:
+        "title banner"
+        "about banner"
+        "about download";
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      column-gap: 16px;
+      align-content: center;
+      justify-items: center;
+      justify-content: space-between;
+    }
+    .about-grid :global(.banner) {
+      grid-area: banner;
+    }
+    .about-grid :global(.download-button) {
+      grid-area: download;
+    }
+    .about-grid :global(.about-title) {
+      grid-area: title;
     }
     .about-container {
-        width: 100%;
-        height: 100%;
+      grid-area: about;
     }
-    .about-section {
-        width: 100%;
-        margin-bottom: 100px;
-        height: auto;
-
-        p {
-            font-size: 1.6rem;
-            font-weight: 400;
-            line-height: 24px;
-            text-wrap: pretty;
-            color: var(--tertiary-color);
-        }
+  }
+  @media (min-width: 900px) {
+    .about-grid {
+      margin: 16px auto;
+      column-gap: 120px;
+      max-width: 1200px;
     }
-    /* @media */
-    @media (min-width: 600px) {
-        .about-grid {
-            margin-top: 16px;
-            display: grid;
-            grid-template-areas:
-                "title banner"
-                "about banner"
-                "about download";
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto;
-            column-gap: 16px;
-            align-content: center;
-            justify-items: center;
-            justify-content: space-between;
-        }
-        .about-grid :global(.banner) {
-            grid-area: banner;
-        }
-        .about-grid :global(.download-button) {
-            grid-area: download;
-        }
-        .about-grid :global(.about-title) {
-            grid-area: title;
-        }
-        .about-container {
-            grid-area: about;
-        }
+    .about-container {
+      p {
+        line-height: 32px;
+      }
     }
-    @media (min-width: 900px) {
-        .about-grid {
-            margin: 16px auto;
-            column-gap: 120px;
-            max-width: 1200px;
-        }
-        .about-container {
-            p {
-                line-height: 32px;
-            }
-        }
-    }
+  }
 </style>

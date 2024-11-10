@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 
 interface Props {
   name: string;
@@ -7,25 +7,25 @@ interface Props {
 }
 
 const { name, description } = Astro.props;
-
 ---
+
 <div class="skill-icon">
-    <Icon class="skill-icon__icon" name={name} title={description} size="32"/>
-    <p class="skill-icon__description">{description}</p>
+  <Icon class="skill-icon__icon" name={name} title={description} size="32" />
+  <p class="skill-icon__description">{description}</p>
 </div>
 <style>
-    .skill-icon {
-        width: 45%;
-        min-width: 140px;
-        height: auto;
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        gap: 8px;
+  .skill-icon {
+    width: 45%;
+    min-width: 140px;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 8px;
 
-        .skill-icon__description {
-            margin: 0;
-            color: var(--tertiary-color);
-        }
+    .skill-icon__description {
+      margin: 0;
+      color: var(--tertiary-color);
     }
+  }
 </style>

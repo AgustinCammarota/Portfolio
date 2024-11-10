@@ -1,62 +1,67 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 import { getLangFromUrl } from "@i18n/utils";
-import Section from '@components/Section.astro';
-import ProjectCard from '@components/ProjectCard.astro';
+import Section from "@components/Section.astro";
+import ProjectCard from "@components/ProjectCard.astro";
 
 const lang = getLangFromUrl(Astro.url);
 
-const projectsCollection = await getCollection('projects', ({ id }) => {
-    return id.startsWith(`${lang}/`);
+const projectsCollection = await getCollection("projects", ({ id }) => {
+  return id.startsWith(`${lang}/`);
 });
 ---
 
 <Section name="projects">
   <div class="projects-grid">
-    {projectsCollection.map((project) => (
-            <ProjectCard
-                    image={project.data.image.src}
-                    alt={project.data.image.alt}
-                    title={project.data.title}
-                    video={project.data.video}
-                    technologies={project.data.technologies}
-                    hasLink={project.data.hasLink}
-                    github={project.data.github}
-                    hasWebsite={project.data.hasWebsite}
-                    website={project.data.website}>
-                <Fragment slot="description">
-                  {project.render().then(({ Content }) => <Content/>)}
-                </Fragment>
-            </ProjectCard>
-    ))}
+    {
+      projectsCollection.map((project) => (
+        <ProjectCard
+          image={project.data.image.src}
+          alt={project.data.image.alt}
+          title={project.data.title}
+          video={project.data.video}
+          technologies={project.data.technologies}
+          hasLink={project.data.hasLink}
+          github={project.data.github}
+          hasWebsite={project.data.hasWebsite}
+          website={project.data.website}
+        >
+          <Fragment slot="description">
+            {project.render().then(({ Content }) => (
+              <Content />
+            ))}
+          </Fragment>
+        </ProjectCard>
+      ))
+    }
   </div>
 </Section>
 <style>
+  .projects-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  /* @media*/
+  @media (min-width: 600px) {
     .projects-grid {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 32px;
+      margin: 0 auto;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 24px;
     }
-    /* @media*/
-    @media (min-width: 600px) {
-        .projects-grid {
-            margin: 0 auto;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 24px;
-        }
+  }
+  @media (min-width: 760px) {
+    .projects-grid {
+      justify-content: flex-start;
+      max-width: 725px;
     }
-    @media (min-width: 760px) {
-        .projects-grid {
-            justify-content: flex-start;
-            max-width: 725px;
-        }
+  }
+  @media (min-width: 1130px) {
+    .projects-grid {
+      max-width: 1100px;
     }
-    @media (min-width: 1130px) {
-        .projects-grid {
-            max-width: 1100px;
-        }
-    }
+  }
 </style>

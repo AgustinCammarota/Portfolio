@@ -1,105 +1,110 @@
 ---
-import { getLangFromUrl } from '@i18n/utils';
-import { getCollection } from 'astro:content';
-import TimelineList from '@components/TimelineList.astro';
+import { getLangFromUrl } from "@i18n/utils";
+import { getCollection } from "astro:content";
+import TimelineList from "@components/TimelineList.astro";
 
 const lang = getLangFromUrl(Astro.url);
 
-const worksCollection = await getCollection('works', ({ id }) => {
+const worksCollection = await getCollection("works", ({ id }) => {
   return id.startsWith(`${lang}/`);
 });
 const { Content } = await worksCollection[0].render();
 ---
+
 <div class="timeline-container">
-    <ol class="timeline-list">
-      {worksCollection.map((project, index) => (
-          <TimelineList className={`${index % 2 === 0 ? 'timeline-item--left' : 'timeline-item--right'}`}
-                        companyName={project.data.companyName}
-                        companyIcon={project.data.companyIcon}
-                        companyLink={project.data.companyLink}
-                        time={project.data.time}
-                        title={project.data.title}>
-              <Content/>
-          </TimelineList>
-      ))}
-    </ol>
+  <ol class="timeline-list">
+    {
+      worksCollection.map((project, index) => (
+        <TimelineList
+          className={`${index % 2 === 0 ? "timeline-item--left" : "timeline-item--right"}`}
+          companyName={project.data.companyName}
+          companyIcon={project.data.companyIcon}
+          companyLink={project.data.companyLink}
+          time={project.data.time}
+          title={project.data.title}
+        >
+          <Content />
+        </TimelineList>
+      ))
+    }
+  </ol>
 </div>
 <style>
+  .timeline-container {
+    width: 100%;
+    height: auto;
+    padding-left: 12px;
+  }
+  .timeline-list {
+    padding-left: 0;
+    position: relative;
+    border-left: 1px solid var(--primary-color);
+  }
+  /* @media */
+  @media (min-width: 600px) {
     .timeline-container {
-        width: 100%;
-        height: auto;
-        padding-left: 12px;
+      max-width: 1100px;
+      padding: 0 16px;
+      margin: 0 auto;
     }
     .timeline-list {
-        padding-left: 0;
-        position: relative;
-        border-left: 1px solid var(--primary-color);
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      justify-content: center;
+      align-items: center;
+      border-left: 0;
     }
-    /* @media */
-    @media (min-width: 600px) {
-        .timeline-container {
-            max-width: 1100px;
-            padding: 0 16px;
-            margin: 0 auto;
-        }
-        .timeline-list {
-            padding: 0;
-            margin: 0;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(6, 1fr);
-            justify-content: center;
-            align-items: center;
-            border-left: 0;
-        }
-        .timeline-list :global(.timeline-item--left) {
-            padding-left: 0;
-            margin-left: 0;
-            margin-bottom: 0;
-            padding-right: 24px;
-            border-right: 1px solid var(--primary-color);
-        }
-        .timeline-list :global(.timeline-item--right) {
-            padding-right: 0;
-            margin-left: 0;
-            margin-bottom: 0;
-            padding-left: 24px;
-            border-left: 1px solid var(--primary-color);
-        }
-        .timeline-list :global(.timeline-item__title) {
-            margin-top: 0;
-        }
-        .timeline-list :global(.timeline-item--left .timeline-item__icon) {
-            left: unset;
-            right: -13px;
-        }
-        .timeline-list :global(.timeline-item--right .timeline-item__icon) {
-            right: unset;
-            left: -13px;
-        }
-        .timeline-list :global(.timeline-item:nth-child(1)) {
-            grid-column: 1 / 2;
-            grid-row: 1 / 2;
-        }
-        .timeline-list :global(.timeline-item:nth-child(2)) {
-            grid-column: 2 / 3;
-            grid-row: 2 / 3;
-        }
-        .timeline-list :global(.timeline-item:nth-child(3)) {
-            grid-column: 1 / 2;
-            grid-row: 3 / 4;
-        }
-        .timeline-list :global(.timeline-item:nth-child(4)) {
-            grid-column: 2 / 3;
-            grid-row: 4 / 5;
-        }
-        .timeline-list :global(.timeline-item:nth-child(5)) {
-            grid-column: 1 / 2;
-            grid-row: 5 / 6;
-        }
-        .timeline-list :global(.timeline-item:nth-child(6)) {
-            grid-column: 2 / 3;
-            grid-row: 6 / 6;
-        }
+    .timeline-list :global(.timeline-item--left) {
+      padding-left: 0;
+      margin-left: 0;
+      margin-bottom: 0;
+      padding-right: 24px;
+      border-right: 1px solid var(--primary-color);
     }
+    .timeline-list :global(.timeline-item--right) {
+      padding-right: 0;
+      margin-left: 0;
+      margin-bottom: 0;
+      padding-left: 24px;
+      border-left: 1px solid var(--primary-color);
+    }
+    .timeline-list :global(.timeline-item__title) {
+      margin-top: 0;
+    }
+    .timeline-list :global(.timeline-item--left .timeline-item__icon) {
+      left: unset;
+      right: -13px;
+    }
+    .timeline-list :global(.timeline-item--right .timeline-item__icon) {
+      right: unset;
+      left: -13px;
+    }
+    .timeline-list :global(.timeline-item:nth-child(1)) {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+    }
+    .timeline-list :global(.timeline-item:nth-child(2)) {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+    }
+    .timeline-list :global(.timeline-item:nth-child(3)) {
+      grid-column: 1 / 2;
+      grid-row: 3 / 4;
+    }
+    .timeline-list :global(.timeline-item:nth-child(4)) {
+      grid-column: 2 / 3;
+      grid-row: 4 / 5;
+    }
+    .timeline-list :global(.timeline-item:nth-child(5)) {
+      grid-column: 1 / 2;
+      grid-row: 5 / 6;
+    }
+    .timeline-list :global(.timeline-item:nth-child(6)) {
+      grid-column: 2 / 3;
+      grid-row: 6 / 6;
+    }
+  }
 </style>

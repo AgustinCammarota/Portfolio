@@ -1,5 +1,5 @@
 ---
-import CustomImage from '@components/CustomImage.astro';
+import CustomImage from "@components/CustomImage.astro";
 
 interface Props {
   text: string;
@@ -12,56 +12,67 @@ const { text, company, imagePath, altText } = Astro.props;
 ---
 
 <div class="banner">
-    <figure class="banner-image-container">
-        <CustomImage className="banner-image" width={800} height={800} quality="high" loading="eager" imagePath={imagePath} altText={altText}/>
-    </figure>
-    <div class="banner-work-container">
-        <p class="work-text">{text} <span class="work-text__company">{company}</span></p>
-    </div>
+  <figure class="banner-image-container">
+    <CustomImage
+      className="banner-image"
+      width={800}
+      height={800}
+      quality="high"
+      loading="eager"
+      imagePath={imagePath}
+      altText={altText}
+    />
+  </figure>
+  <div class="banner-work-container">
+    <h2 class="work-text">
+      {text}
+      <span class="work-text__company">{company}</span>
+    </h2>
+  </div>
 </div>
 <style>
+  .banner-image-container {
+    width: 100%;
+    height: 350px;
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 0;
+  }
+  .banner-work-container {
+    margin-top: 12px;
+    border: 1px solid var(--tertiary-color);
+    padding: 0 16px;
+    color: var(--tertiary-color);
+    .work-text {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      line-height: 22px;
+      text-wrap: wrap;
+    }
+    .work-text::before {
+      content: "";
+      margin-right: 8px;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-color: var(--primary-color);
+    }
+    .work-text__company {
+      display: contents;
+      margin-left: 8px;
+      color: var(--secondary-color);
+    }
+  }
+  /* @media */
+  @media (min-width: 600px) {
+    .banner {
+      width: 100%;
+      margin-top: 32px;
+    }
     .banner-image-container {
-        width: 100%;
-        height: 350px;
-        border-radius: 2px;
-        overflow: hidden;
-        margin: 0;
+      width: 100%;
+      height: 80%;
     }
-    .banner-work-container {
-        margin-top: 12px;
-        border: 1px solid var(--tertiary-color);
-        padding: 0 16px;
-        color: var(--tertiary-color);
-        .work-text {
-            display: flex;
-            justify-content: start;
-            align-items: center;
-            line-height: 22px;
-            text-wrap: wrap;
-        }
-        .work-text::before {
-            content: '';
-            margin-right: 8px;
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            background-color: var(--primary-color);
-        }
-        .work-text__company {
-            display: contents;
-            margin-left: 8px;
-            color: var(--secondary-color);
-        }
-    }
-    /* @media */
-    @media (min-width: 600px) {
-        .banner {
-            width: 100%;
-            margin-top: 32px;
-        }
-        .banner-image-container {
-            width: 100%;
-            height: 80%;
-        }
-    }
+  }
 </style>

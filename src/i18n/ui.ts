@@ -1,11 +1,11 @@
 enum Path {
-  en = '/',
-  es = '/es/'
+  en = "/",
+  es = "/es/",
 }
 
 enum Language {
-  en = 'English',
-  es = 'Español'
+  en = "English",
+  es = "Español",
 }
 
 export const languages = {
@@ -13,11 +13,11 @@ export const languages = {
   es: Language.es,
 };
 
-export const defaultLang = 'en';
+export const defaultLang = "en";
 
 export const PATHS = Object.freeze({
   en: Path.en,
-  es: Path.es
+  es: Path.es,
 });
 
-export const ROUTES: string[] = ['works', 'skills', 'projects', 'contact'];
+export const ROUTES: string[] = ["works", "skills", "projects", "contact"];

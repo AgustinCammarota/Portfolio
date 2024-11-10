@@ -1,7 +1,7 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 export const projectsCollection = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     image: z.object({
       src: z.string(),
@@ -11,8 +11,8 @@ export const projectsCollection = defineCollection({
     technologies: z.string(),
     title: z.string(),
     hasLink: z.boolean().default(false),
-    github: z.string().default(''),
+    github: z.string().default(""),
     hasWebsite: z.boolean().default(false),
-    website: z.string().default(''),
-  })
+    website: z.string().default(""),
+  }),
 });

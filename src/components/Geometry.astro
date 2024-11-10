@@ -1,64 +1,70 @@
 ---
-import { Icon } from 'astro-icon/components'
+import { Icon } from "astro-icon/components";
 
 interface Props {
-    isAbsolute?: boolean;
+  isAbsolute?: boolean;
 }
 
 interface Geometry {
-    icon: string;
-    title: string;
-    size: string;
+  icon: string;
+  title: string;
+  size: string;
 }
 
 const { isAbsolute = false } = Astro.props;
 
 const geometries: Geometry[] = [
-    {
-        icon: 'geometry',
-        title: 'Geometry',
-        size: '130',
-    },
-    {
-        icon: 'dots',
-        title: 'Dots',
-        size: '70',
-    },
-    {
-        icon: 'rectangle',
-        title: 'Rectangle',
-        size: '100'
-    }
+  {
+    icon: "geometry",
+    title: "Geometry",
+    size: "130",
+  },
+  {
+    icon: "dots",
+    title: "Dots",
+    size: "70",
+  },
+  {
+    icon: "rectangle",
+    title: "Rectangle",
+    size: "100",
+  },
 ].sort(() => Math.random() - 0.5);
-
 ---
-<div class:list={[ 'geometry', { absolute: isAbsolute }]}  aria-hidden="true">
-    {geometries.map((geometry, index) => (
-        <span class={`geometry-icon icon-${index + 1}`}>
-            <Icon name={geometry.icon} title={geometry.title} size={geometry.size} />
-        </span>
-    ))}
+
+<div class:list={["geometry", { absolute: isAbsolute }]} aria-hidden="true">
+  {
+    geometries.map((geometry, index) => (
+      <span class={`geometry-icon icon-${index + 1}`}>
+        <Icon
+          name={geometry.icon}
+          title={geometry.title}
+          size={geometry.size}
+        />
+      </span>
+    ))
+  }
 </div>
 <style>
-    .geometry {
-        width: 100%;
-        height: 100%;
-    }
-    .absolute {
-        position: absolute;
-    }
-    .geometry-icon {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
-    .icon-1 {
-        text-align: start;
-    }
-    .icon-2 {
-        text-align: end;
-    }
-    .icon-3 {
-        text-align: start;
-    }
+  .geometry {
+    width: 100%;
+    height: 100%;
+  }
+  .absolute {
+    position: absolute;
+  }
+  .geometry-icon {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .icon-1 {
+    text-align: start;
+  }
+  .icon-2 {
+    text-align: end;
+  }
+  .icon-3 {
+    text-align: start;
+  }
 </style>

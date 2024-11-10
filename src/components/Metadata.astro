@@ -1,40 +1,44 @@
 ---
-import { getLangFromUrl,useTranslations } from '@i18n/utils';
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 
 interface Props {
   description: string;
   keywords: string;
 }
 
-const {
-  description,
-  keywords
-} = Astro.props;
+const { description, keywords } = Astro.props;
 
-const authorName = 'Agustín Cammarota';
-const urlPage = 'https://agustincammarota.com/';
-const updateDate = new Date().toISOString().split('T')[0] || '';
+const authorName = "Agustín Cammarota";
+const urlPage = "https://agustincammarota.com/";
+const updateDate = new Date().toISOString().split("T")[0] || "";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-<meta charset="UTF-8"/>
-<meta name="description" content={description}/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="rating" content="General"/>
-<meta name="keywords" content={keywords}>
-<meta name="robots" content="index, follow">
+
+<meta charset="UTF-8" />
+<meta name="description" content={description} />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="rating" content="General" />
+<meta name="keywords" content={keywords} />
+<meta name="robots" content="index, follow" />
 <meta name="googlebot" content="index, follow" />
-<meta name="author" content={authorName}>
-<meta name="publisher" content={authorName}>
-<meta name="date" content={updateDate}>
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content={t('metadata.social.title')}/>
-<meta name="twitter:description" content={t('metadata.social.description')}>
-<meta name="twitter:image" content="https://agustincammarota.com/assets/website-agustin-cammarota.webp">
+<meta name="author" content={authorName} />
+<meta name="publisher" content={authorName} />
+<meta name="date" content={updateDate} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={t("metadata.social.title")} />
+<meta name="twitter:description" content={t("metadata.social.description")} />
+<meta
+  name="twitter:image"
+  content="https://agustincammarota.com/assets/website-agustin-cammarota.webp"
+/>
 <meta property="og:type" content="website" />
 <meta property="og:locale" content={lang} />
-<meta property="og:title" content={t('metadata.social.title')}>
-<meta property="og:description" content={t('metadata.social.description')}>
-<meta property="og:image" content="https://agustincammarota.com/assets/website-agustin-cammarota.webp">
-<meta property="og:url" content={urlPage}>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta property="og:title" content={t("metadata.social.title")} />
+<meta property="og:description" content={t("metadata.social.description")} />
+<meta
+  property="og:image"
+  content="https://agustincammarota.com/assets/website-agustin-cammarota.webp"
+/>
+<meta property="og:url" content={urlPage} />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />

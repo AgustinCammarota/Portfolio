@@ -1,9 +1,10 @@
 ---
 
 ---
+
 <script is:inline>
-  const storedTheme = localStorage.getItem('theme');
-  const defaultTheme = storedTheme || 'dark';
-  document.documentElement.setAttribute('data-theme', defaultTheme);
+  const storedTheme = localStorage.getItem("theme");
+  const defaultTheme = storedTheme || "dark";
+  document.documentElement.setAttribute("data-theme", defaultTheme);
   document.documentElement.style.colorScheme = defaultTheme;
 </script>
