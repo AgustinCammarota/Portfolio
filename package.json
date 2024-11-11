@@ -10,6 +10,13 @@
     "type": "git",
     "url": "https://github.com/AgustinCammarota/Portfolio"
   },
+  "keywords": [
+    "Portfolio",
+    "Agustin Cammarota",
+    "Software Architect",
+    "Astro JS",
+    "Solid JS"
+  ],
   "license": "MIT",
   "author": {
     "name": "Agustin Cammarota",
@@ -23,7 +30,8 @@
     "astro": "astro",
     "lint": "eslint \"src/**/*.{ts,tsx,js,astro}\"",
     "prettier": "npx prettier . --write",
-    "prettier-check": "npx prettier . --check"
+    "prettier-check": "npx prettier . --check",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
