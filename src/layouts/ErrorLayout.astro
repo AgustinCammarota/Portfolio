@@ -1,0 +1,72 @@
+---
+import "@fontsource-variable/fira-code";
+import "../styles/global.css";
+import { ViewTransitions } from "astro:transitions";
+import GoogleTagManager from "@components/GoogleTagManager.astro";
+import Metadata from "@components/Metadata.astro";
+import Theme from "@components/Theme.astro";
+import Favicon from "@components/Favicon.astro";
+import { getLangFromUrl } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+interface Props {
+  title: string;
+  description: string;
+  keywords: string;
+}
+
+const { title, description, keywords } = Astro.props;
+
+Astro.response.headers.set(
+  "CDN-Cache-Control",
+  "public, max-age=45, must-revalidate",
+);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <!-- Metadata start -->
+    <Metadata description={description} keywords={keywords} />
+    <!-- Metadata end -->
+
+    <!-- Favicon start -->
+    <Favicon />
+    <!-- Favicon end -->
+
+    <!-- Sitemap start -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- Sitemap end -->
+
+    <!-- Google tag start -->
+    <GoogleTagManager />
+    <!-- Google tag end -->
+
+    <!-- ViewTransitions start -->
+    <ViewTransitions />
+    <!-- ViewTransitions end -->
+    <title>{title}</title>
+  </head>
+  <body>
+    <main class="error-main-container">
+      <slot />
+    </main>
+  </body>
+</html>
+<Theme />
+<style>
+  .error-main-container {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  @supports (height: 100dvh) {
+    .error-main-container {
+      height: 100dvh;
+    }
+  }
+</style>

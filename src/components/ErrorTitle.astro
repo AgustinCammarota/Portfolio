@@ -1,0 +1,92 @@
+---
+import { getLangFromUrl } from "@i18n/utils";
+import { PATHS } from "@i18n/ui";
+
+interface Props {
+  code: string;
+  header: string;
+  link: string;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const { code, header, link } = Astro.props;
+---
+
+<section class="error-title-section">
+  <h1 class="error-title-status">{code}</h1>
+  <h2 class="error-title-header">{header}</h2>
+  <a class="error-title-link" href={PATHS[lang]} title={link}>{link}</a>
+</section>
+<style>
+  .error-title-section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .error-title-status {
+    margin: 0;
+    font-size: 64px;
+    letter-spacing: 12px;
+    color: var(--primary-color);
+  }
+
+  .error-title-header {
+    margin-top: 0;
+    text-align: center;
+    text-wrap: pretty;
+    line-height: 54px;
+    color: var(--primary-color);
+  }
+
+  .error-title-header::after {
+    content: "|";
+    opacity: 1;
+    display: inline-block;
+    color: var(--primary-color);
+    will-change: opacity;
+    animation-name: machine;
+    animation-iteration-count: infinite;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-in-out;
+  }
+
+  .error-title-link {
+    width: auto;
+    min-width: 200px;
+    padding: 0 8px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.4rem;
+    font-weight: 500;
+    border: 2px var(--primary-color) inset;
+    color: var(--primary-color);
+    cursor: pointer;
+  }
+
+  .error-title-link:hover {
+    border: 2px var(--secondary-color) outset;
+    color: var(--secondary-color);
+  }
+
+  @keyframes machine {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .error-title-header::after {
+      animation: none;
+    }
+  }
+</style>

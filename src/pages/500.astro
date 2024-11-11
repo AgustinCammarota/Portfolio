@@ -5,13 +5,13 @@ import ErrorTitle from "@components/ErrorTitle.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const title = t("not.found.title");
-const description = t("not.found.description");
-const keywords = t("not.found.keywords");
-const header = t("not.found.header");
-const link = t("not.found.link");
+const title = t("internal.error.title");
+const description = t("internal.error.description");
+const keywords = t("internal.error.keywords");
+const header = t("internal.error.header");
+const link = t("internal.error.link");
 ---
 
 <ErrorLayout title={title} description={description} keywords={keywords}>
-  <ErrorTitle header={header} code="4☹4" link={link} />
+  <ErrorTitle header={header} code="5☹5" link={link} />
 </ErrorLayout>
