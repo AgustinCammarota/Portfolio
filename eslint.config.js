@@ -14,6 +14,7 @@ export default [
   },
   {
     rules: {
+      "no-console": "error",
       "astro/no-set-html-directive": "error",
       "astro/no-conflict-set-directives": "error",
       "astro/no-unused-define-vars-in-style": "error",
