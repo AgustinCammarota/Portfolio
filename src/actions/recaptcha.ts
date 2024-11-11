@@ -1,32 +1,32 @@
-import { defineAction } from 'astro:actions';
-import { z } from 'astro:schema';
-import { PUBLIC_API_RECAPTCHA } from 'astro:env/client';
-import { SECRET_RECAPTCHA_KEY } from 'astro:env/server';
+import { defineAction } from "astro:actions";
+import { z } from "astro:schema";
+import { PUBLIC_API_RECAPTCHA } from "astro:env/client";
+import { SECRET_RECAPTCHA_KEY } from "astro:env/server";
 
 interface SendRecaptcha {
   token: string;
 }
 
-async function requestCaptcha(token: string): Promise<boolean>  {
+async function requestCaptcha(token: string): Promise<boolean> {
   try {
     const requestHeaders = {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      "Content-Type": "application/x-www-form-urlencoded",
     };
 
     const requestBody = new URLSearchParams({
       secret: SECRET_RECAPTCHA_KEY,
-      response: token
+      response: token,
     });
 
     const response = await fetch(PUBLIC_API_RECAPTCHA, {
-      method: 'POST',
+      method: "POST",
       headers: requestHeaders,
-      body: requestBody.toString()
+      body: requestBody.toString(),
     });
 
     return response.ok;
   } catch {
-   return false;
+    return false;
   }
 }
 
@@ -37,6 +37,6 @@ export const recaptcha = {
     }),
     handler: async ({ token }: SendRecaptcha): Promise<boolean> => {
       return await requestCaptcha(token);
-    }
-  })
-}
+    },
+  }),
+};

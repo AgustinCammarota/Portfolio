@@ -1,14 +1,14 @@
 ---
-import { getLangFromUrl, useTranslations } from '@i18n/utils';
-import Section from '@components/Section.astro';
-import SkillCard from '@components/SkillCard.astro';
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import Section from "@components/Section.astro";
+import SkillCard from "@components/SkillCard.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 interface Skill {
-    title: string;
-    icons: Icon[];
+  title: string;
+  icons: Icon[];
 }
 
 interface Icon {
@@ -17,201 +17,202 @@ interface Icon {
 }
 
 const skills: Skill[] = [
-    {
-        title: t('skills.languages.title'),
-        icons: [
-            {
-                name: 'javascript',
-                description: t('skills.javascript.description'),
-            },
-            {
-                name: 'typescript',
-                description: t('skills.typescript.description'),
-            },
-            {
-                name: 'html',
-                description: t('skills.html.description'),
-            },
-            {
-                name: 'css',
-                description: t('skills.css.description'),
-            },
-            {
-                name: 'sql',
-                description: t('skills.sql.description'),
-            }
-        ]
-    },
-    {
-      title: t('skills.frontend.title'),
-      icons: [
-        {
-          name: 'angular',
-          description: t('skills.angular.description'),
-        },
-        {
-          name: 'astro',
-          description: t('skills.astro.description'),
-        },
-        {
-          name: 'lit',
-          description: t('skills.lit.description'),
-        },
-        {
-          name: 'solid',
-          description: t('skills.solid.description'),
-        }
-      ]
-    },
-    {
-      title: t('skills.backend.title'),
-      icons: [
-        {
-          name: 'nodejs',
-          description: t('skills.express.description'),
-        },
-        {
-          name: 'postgresql',
-          description: t('skills.postgresql.description'),
-        },
-        {
-          name: 'mongodb',
-          description: t('skills.mongodb.description'),
-        }
-      ]
-    },
-    {
-      title: t('skills.testing.title'),
-      icons: [
-        {
-          name: 'cucumber',
-          description: t('skills.cucumber.description'),
-        },
-        {
-          name: 'jasmine',
-          description: t('skills.jasmine.description'),
-        },
-        {
-          name: 'jest',
-          description: t('skills.jest.description'),
-        },
-        {
-          name: 'puppeteer',
-          description: t('skills.puppeteer.description'),
-        },
-        {
-          name: 'selenium',
-          description: t('skills.selenium.description'),
-        },
-        {
-          name: 'webdriver',
-          description: t('skills.webdriver.description'),
-        }
-      ]
-    },
-    {
-      title: t('skills.others.title'),
-      icons: [
-        {
-          name: 'rxjs',
-          description: t('skills.rxjs.description'),
-        },
-        {
-          name: 'sass',
-          description: t('skills.sass.description'),
-        },
-        {
-          name: 'storybook',
-          description: t('skills.storybook.description'),
-        },
-        {
-          name: 'tailwind',
-          description: t('skills.tailwind.description'),
-        },
-        {
-          name: 'vite',
-          description: t('skills.vite.description'),
-        },
-        {
-          name: 'webpack',
-          description: t('skills.webpack.description'),
-        },
-        {
-          name: 'turborepo',
-          description: t('skills.turborepo.description'),
-        },
-        {
-          name: 'npm',
-          description: t('skills.npm.description'),
-        },
-        {
-          name: 'redux',
-          description: t('skills.redux.description'),
-        },
-        {
-          name: 'ionic',
-          description: t('skills.ionic.description'),
-        },
-        {
-          name: 'cordova',
-          description: t('skills.cordova.description'),
-        },
-        {
-          name: 'threejs',
-          description: t('skills.threejs.description'),
-        }
-      ]
-    }
+  {
+    title: t("skills.languages.title"),
+    icons: [
+      {
+        name: "javascript",
+        description: t("skills.javascript.description"),
+      },
+      {
+        name: "typescript",
+        description: t("skills.typescript.description"),
+      },
+      {
+        name: "html",
+        description: t("skills.html.description"),
+      },
+      {
+        name: "css",
+        description: t("skills.css.description"),
+      },
+      {
+        name: "sql",
+        description: t("skills.sql.description"),
+      },
+    ],
+  },
+  {
+    title: t("skills.frontend.title"),
+    icons: [
+      {
+        name: "angular",
+        description: t("skills.angular.description"),
+      },
+      {
+        name: "astro",
+        description: t("skills.astro.description"),
+      },
+      {
+        name: "lit",
+        description: t("skills.lit.description"),
+      },
+      {
+        name: "solid",
+        description: t("skills.solid.description"),
+      },
+    ],
+  },
+  {
+    title: t("skills.backend.title"),
+    icons: [
+      {
+        name: "nodejs",
+        description: t("skills.express.description"),
+      },
+      {
+        name: "postgresql",
+        description: t("skills.postgresql.description"),
+      },
+      {
+        name: "mongodb",
+        description: t("skills.mongodb.description"),
+      },
+    ],
+  },
+  {
+    title: t("skills.testing.title"),
+    icons: [
+      {
+        name: "cucumber",
+        description: t("skills.cucumber.description"),
+      },
+      {
+        name: "jasmine",
+        description: t("skills.jasmine.description"),
+      },
+      {
+        name: "jest",
+        description: t("skills.jest.description"),
+      },
+      {
+        name: "puppeteer",
+        description: t("skills.puppeteer.description"),
+      },
+      {
+        name: "selenium",
+        description: t("skills.selenium.description"),
+      },
+      {
+        name: "webdriver",
+        description: t("skills.webdriver.description"),
+      },
+    ],
+  },
+  {
+    title: t("skills.others.title"),
+    icons: [
+      {
+        name: "rxjs",
+        description: t("skills.rxjs.description"),
+      },
+      {
+        name: "sass",
+        description: t("skills.sass.description"),
+      },
+      {
+        name: "storybook",
+        description: t("skills.storybook.description"),
+      },
+      {
+        name: "tailwind",
+        description: t("skills.tailwind.description"),
+      },
+      {
+        name: "vite",
+        description: t("skills.vite.description"),
+      },
+      {
+        name: "webpack",
+        description: t("skills.webpack.description"),
+      },
+      {
+        name: "turborepo",
+        description: t("skills.turborepo.description"),
+      },
+      {
+        name: "npm",
+        description: t("skills.npm.description"),
+      },
+      {
+        name: "redux",
+        description: t("skills.redux.description"),
+      },
+      {
+        name: "ionic",
+        description: t("skills.ionic.description"),
+      },
+      {
+        name: "cordova",
+        description: t("skills.cordova.description"),
+      },
+      {
+        name: "threejs",
+        description: t("skills.threejs.description"),
+      },
+    ],
+  },
 ];
-
 ---
 
 <Section name="skills">
-    <div class="skills-grid">
-      {skills.map((skill: Skill) => (
-              <SkillCard icons={skill.icons} title={skill.title}/>
-      ))}
-    </div>
+  <div class="skills-grid">
+    {
+      skills.map((skill: Skill) => (
+        <SkillCard icons={skill.icons} title={skill.title} />
+      ))
+    }
+  </div>
 </Section>
 <style>
+  .skills-grid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  /* @media */
+  @media (min-width: 600px) {
+    .skills-grid :global([data-name="skill-languages"]) {
+      grid-area: languages;
+    }
+    .skills-grid :global([data-name="skill-frontend"]) {
+      grid-area: frontend;
+    }
+    .skills-grid :global([data-name="skill-backend"]) {
+      grid-area: backend;
+    }
+    .skills-grid :global([data-name="skill-others"]) {
+      grid-area: others;
+    }
+    .skills-grid :global([data-name="skill-testing"]) {
+      grid-area: testing;
+    }
+  }
+  @media (min-width: 730px) {
     .skills-grid {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-content: center;
-        align-items: center;
-        justify-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 24px;
+      display: grid;
+      grid-template-areas:
+        "languages testing"
+        "frontend others"
+        "backend others";
+      align-items: start;
+      gap: 12px;
     }
-    /* @media */
-    @media (min-width: 600px) {
-        .skills-grid :global([data-name="skill-languages"]) {
-            grid-area: languages;
-        }
-        .skills-grid :global([data-name="skill-frontend"]) {
-            grid-area: frontend;
-        }
-        .skills-grid :global([data-name="skill-backend"]) {
-            grid-area: backend;
-        }
-        .skills-grid :global([data-name="skill-others"]) {
-            grid-area: others;
-        }
-        .skills-grid :global([data-name="skill-testing"]) {
-            grid-area: testing;
-        }
-    }
-    @media (min-width: 730px) {
-        .skills-grid {
-            display: grid;
-            grid-template-areas:
-            "languages testing"
-            "frontend others"
-            "backend others";
-            align-items: start;
-            gap: 12px;
-        }
-    }
+  }
 </style>

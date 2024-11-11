@@ -1,140 +1,145 @@
 ---
-import '@fontsource-variable/fira-code';
-import '../styles/global.css';
-import { ViewTransitions } from 'astro:transitions';
-import GoogleTagManager from '@components/GoogleTagManager.astro';
-import Metadata from '@components/Metadata.astro';
-import Theme from '@components/Theme.astro';
-import Favicon from '@components/Favicon.astro';
-import { getLangFromUrl, useTranslations } from '@i18n/utils';
-import { PATHS } from '@i18n/ui';
+import "@fontsource-variable/fira-code";
+import "../styles/global.css";
+import { ViewTransitions } from "astro:transitions";
+import GoogleTagManager from "@components/GoogleTagManager.astro";
+import Metadata from "@components/Metadata.astro";
+import Theme from "@components/Theme.astro";
+import Favicon from "@components/Favicon.astro";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import { PATHS } from "@i18n/ui";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const title = t('not.found.title');
-const description = t('not.found.description');
-const keywords = t('not.found.keywords');
+const title = t("not.found.title");
+const description = t("not.found.description");
+const keywords = t("not.found.keywords");
 
-Astro.response.headers.set('CDN-Cache-Control', 'public, max-age=45, must-revalidate');
+Astro.response.headers.set(
+  "CDN-Cache-Control",
+  "public, max-age=45, must-revalidate",
+);
 ---
 
 <!doctype html>
 <html lang={lang}>
-<head>
+  <head>
     <!-- Metadata start -->
-    <Metadata description={description} keywords={keywords}/>
+    <Metadata description={description} keywords={keywords} />
     <!-- Metadata end -->
 
     <!-- Favicon start -->
-    <Favicon/>
+    <Favicon />
     <!-- Favicon end -->
 
     <!-- Sitemap start -->
-    <link rel="sitemap" href="/sitemap-index.xml"/>
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <!-- Sitemap end -->
 
     <!-- Google tag start -->
-    <GoogleTagManager/>
+    <GoogleTagManager />
     <!-- Google tag end -->
 
     <!-- ViewTransitions start -->
-    <ViewTransitions/>
+    <ViewTransitions />
     <!-- ViewTransitions end -->
     <title>{title}</title>
-</head>
-<body>
-<main>
-    <section class="not-found-section">
+  </head>
+  <body>
+    <main>
+      <section class="not-found-section">
         <h1 class="not-found-status">4&#9785;4</h1>
-        <h2 class="not-found-title">{t('not.found.header')}</h2>
-        <a class="not-found-link" href={PATHS[lang]} title={t('not.found.link')}>{t('not.found.link')}</a>
-    </section>
-</main>
-</body>
+        <h2 class="not-found-title">{t("not.found.header")}</h2>
+        <a class="not-found-link" href={PATHS[lang]} title={t("not.found.link")}
+          >{t("not.found.link")}</a
+        >
+      </section>
+    </main>
+  </body>
 </html>
-<Theme/>
+<Theme />
 <style>
+  main {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  @supports (height: 100dvh) {
     main {
-        width: 100%;
-        height: 100vh;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
+      height: 100dvh;
     }
+  }
 
-    @supports (height: 100dvh) {
-        main {
-            height: 100dvh;
-        }
-    }
+  .not-found-section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 16px;
+  }
 
-    .not-found-section {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        padding: 16px;
-    }
+  .not-found-status {
+    margin: 0;
+    font-size: 64px;
+    letter-spacing: 12px;
+    color: var(--primary-color);
+  }
 
-    .not-found-status {
-        margin: 0;
-        font-size: 64px;
-        letter-spacing: 12px;
-        color: var(--primary-color);
-    }
+  .not-found-title {
+    margin-top: 0;
+    text-align: center;
+    text-wrap: pretty;
+    line-height: 54px;
+    color: var(--primary-color);
+  }
 
-    .not-found-title {
-        margin-top: 0;
-        text-align: center;
-        text-wrap: pretty;
-        line-height: 54px;
-        color: var(--primary-color);
-    }
+  .not-found-title::after {
+    content: "|";
+    opacity: 1;
+    display: inline-block;
+    color: var(--primary-color);
+    will-change: opacity;
+    animation-name: machine;
+    animation-iteration-count: infinite;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-in-out;
+  }
 
-    .not-found-title::after {
-        content: '|';
-        opacity: 1;
-        display: inline-block;
-        color: var(--primary-color);
-        will-change: opacity;
-        animation-name: machine;
-        animation-iteration-count: infinite;
-        animation-duration: .7s;
-        animation-timing-function: ease-in-out;
-    }
+  .not-found-link {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.4rem;
+    font-weight: 500;
+    border: 2px var(--primary-color) inset;
+    color: var(--primary-color);
+    cursor: pointer;
+  }
 
-    .not-found-link {
-        width: 200px;
-        height: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 2.4rem;
-        font-weight: 500;
-        border: 2px var(--primary-color) inset;
-        color: var(--primary-color);
-        cursor: pointer;
-    }
+  .not-found-link:hover {
+    border: 2px var(--secondary-color) outset;
+    color: var(--secondary-color);
+  }
 
-    .not-found-link:hover {
-        border: 2px var(--secondary-color) outset;
-        color: var(--secondary-color);
+  @keyframes machine {
+    0% {
+      opacity: 0;
     }
+    100% {
+      opacity: 1;
+    }
+  }
 
-    @keyframes machine {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
+  @media (prefers-reduced-motion: reduce) {
+    .about-title::after {
+      animation: none;
     }
-
-    @media (prefers-reduced-motion: reduce) {
-        .about-title::after {
-            animation: none;
-        }
-    }
+  }
 </style>

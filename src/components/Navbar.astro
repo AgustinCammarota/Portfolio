@@ -1,12 +1,12 @@
 ---
-import { Icon } from 'astro-icon/components'
-import { getRelativeLocaleUrl } from 'astro:i18n';
-import { getLangFromUrl, useTranslations } from '@i18n/utils';
+import { Icon } from "astro-icon/components";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 
 interface Nav {
-    name: string;
-    link: string;
-    icon: string;
+  name: string;
+  link: string;
+  icon: string;
 }
 
 const currentPath: string = Astro.url.pathname;
@@ -14,96 +14,105 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const navItems: Nav[] = [
-    {
-        name: t('nav.home'),
-        link: '/',
-        icon: 'house'
-    },
-    {
-        name: t('nav.works'),
-        link: 'works',
-        icon: 'briefcase'
-    },
-    {
-        name: t('nav.skills'),
-        link: 'skills',
-        icon: 'gear'
-    },
-    {
-        name: t('nav.projects'),
-        link: 'projects',
-        icon: 'project'
-    },
-    {
-        name: t('nav.contact'),
-        link: 'contact',
-        icon: 'contact'
-    }
+  {
+    name: t("nav.home"),
+    link: "/",
+    icon: "house",
+  },
+  {
+    name: t("nav.works"),
+    link: "works",
+    icon: "briefcase",
+  },
+  {
+    name: t("nav.skills"),
+    link: "skills",
+    icon: "gear",
+  },
+  {
+    name: t("nav.projects"),
+    link: "projects",
+    icon: "project",
+  },
+  {
+    name: t("nav.contact"),
+    link: "contact",
+    icon: "contact",
+  },
 ];
-
 ---
 
-
 <nav class="navbar">
-    <ul class="list-container">
-        {navItems.map((item: Nav) => (
-            <li class="list-item">
-                <a class:list={['list-item__link', { 'list-item__link--active': currentPath === getRelativeLocaleUrl(lang, item.link)  }]}
-                   href={getRelativeLocaleUrl(lang, item.link)}
-                   data-astro-prefetch="tap">
-                    <Icon name={item.icon} title={item.name} size="24"/>
-                    <span>{item.name}</span>
-                </a>
-            </li>
-        ))}
-    </ul>
+  <ul class="list-container">
+    {
+      navItems.map((item: Nav) => (
+        <li class="list-item">
+          <a
+            class:list={[
+              "list-item__link",
+              {
+                "list-item__link--active":
+                  currentPath === getRelativeLocaleUrl(lang, item.link),
+              },
+            ]}
+            title={item.name}
+            href={getRelativeLocaleUrl(lang, item.link)}
+            data-astro-prefetch="tap"
+          >
+            <Icon name={item.icon} title={item.name} size="24" />
+            <span>{item.name}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </nav>
 <style>
-    .navbar {
-        width: 100%;
-        height: 80px;
-        align-content: center;
-        border-top: 1px solid var(--tertiary-color);
-        background-color: var(--backgroud-color);
+  .navbar {
+    width: 100%;
+    height: 80px;
+    align-content: center;
+    border-top: 1px solid var(--tertiary-color);
+    background-color: var(--backgroud-color);
+  }
+  .list-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
+  .list-item {
+    min-width: 20%;
+    .list-item__link {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      row-gap: 6px;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--tertiary-color);
     }
-    .list-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        text-align: center;
+    .list-item__link--active,
+    .list-item__link:hover {
+      color: var(--secondary-color);
     }
+    .list-item__link--active::before,
+    .list-item__link:hover::before {
+      content: "";
+      background: var(--primary-color);
+      position: absolute;
+      width: 20%;
+      height: 3px;
+      top: 0;
+    }
+  }
+  /* @media */
+  @media (min-width: 600px) {
     .list-item {
-        min-width: 20%;
-        .list-item__link {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            align-items: center;
-            row-gap: 6px;
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: var(--tertiary-color);
-        }
-        .list-item__link--active,
-        .list-item__link:hover {
-            color: var(--secondary-color);
-        }
-        .list-item__link--active::before,
-        .list-item__link:hover::before {
-            content: '';
-            background: var(--primary-color);
-            position: absolute;
-            width: 20%;
-            height: 3px;
-            top: 0;
-        }
+      .list-item__link {
+        font-size: 1.4rem;
+      }
     }
-    /* @media */
-    @media (min-width: 600px) {
-        .list-item {
-            .list-item__link {
-                font-size: 1.4rem;
-            }
-        }
-    }
+  }
 </style>

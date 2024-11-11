@@ -6,40 +6,44 @@ interface Props {
 
 const { author, rol } = Astro.props;
 ---
-<h1 class="about-title">{author} <span class="about-title__rol">{rol}</span></h1>
+
+<h1 class="about-title">
+  {author}
+  <span class="about-title__rol">{rol}</span>
+</h1>
 <style>
-    .about-title {
-        text-wrap: balance;
-        line-height: 40px;
-        font-weight: 600;
-        font-size: 2.5rem;
-        color: var(--secondary-color);
-        .about-title__rol {
-            color: var(--primary-color);
-        }
+  .about-title {
+    text-wrap: balance;
+    line-height: 40px;
+    font-weight: 600;
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    .about-title__rol {
+      color: var(--primary-color);
     }
+  }
+  .about-title__rol::after {
+    content: "|";
+    opacity: 1;
+    display: inline-block;
+    color: var(--primary-color);
+    will-change: opacity;
+    animation-name: machine;
+    animation-iteration-count: infinite;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-in-out;
+  }
+  @keyframes machine {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
     .about-title::after {
-        content: '|';
-        opacity: 1;
-        display: inline-block;
-        color: var(--primary-color);
-        will-change: opacity;
-        animation-name: machine;
-        animation-iteration-count: infinite;
-        animation-duration: .7s;
-        animation-timing-function: ease-in-out;
+      animation: none;
     }
-    @keyframes machine {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
-    @media (prefers-reduced-motion: reduce) {
-        .about-title::after {
-            animation: none;
-        }
-    }
+  }
 </style>

@@ -10,4 +10,5 @@ github: "https://github.com/AgustinCammarota/GreenHeat"
 hasWebsite: true
 website: "https://greenheatclima.com.ar/"
 ---
+
 In this project, I developed a landing page for a website offering climate control services. I used **Angular** as the main framework, leveraging the reactivity of **RXJS** and **Signals** to efficiently manage asynchronous data flows.

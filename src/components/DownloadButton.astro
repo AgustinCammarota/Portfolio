@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 
 interface Props {
   link: string;
@@ -10,36 +10,42 @@ interface Props {
 }
 
 const { link, title, ariaLabel, icon, linkText } = Astro.props;
-
 ---
-<a class="download-button" href={link} download title={title} aria-label={ariaLabel}>
-    <Icon class="download-button__icon" name={icon} title={icon} size="24"/>
-    <span class="download-button__text">{linkText}</span>
+
+<a
+  class="download-button"
+  href={link}
+  download
+  title={title}
+  aria-label={ariaLabel}
+>
+  <Icon class="download-button__icon" name={icon} title={icon} size="24" />
+  <span class="download-button__text">{linkText}</span>
 </a>
 <style>
+  .download-button {
+    width: 100%;
+    height: auto;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 32px auto 0 auto;
+    gap: 8px;
+    border: 1px outset var(--primary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    font-weight: 500;
+    transition: border 0.3s ease-in-out;
+  }
+  .download-button:hover {
+    color: var(--secondary-color);
+    border: 1px inset var(--secondary-color);
+  }
+  /* @media */
+  @media (min-width: 600px) {
     .download-button {
-        width: 100%;
-        height: auto;
-        padding: 16px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 32px auto 0 auto;
-        gap: 8px;
-        border: 1px outset var(--primary-color);
-        color: var(--primary-color);
-        cursor: pointer;
-        font-weight: 500;
-        transition: border 0.3s ease-in-out;
+      margin: 0 0 16px 0;
     }
-    .download-button:hover {
-        color: var(--secondary-color);
-        border: 1px inset var(--secondary-color);
-    }
-    /* @media */
-    @media (min-width: 600px) {
-        .download-button {
-            margin: 0 0 16px 0;
-        }
-    }
+  }
 </style>

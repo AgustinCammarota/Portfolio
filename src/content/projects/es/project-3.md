@@ -10,4 +10,5 @@ github: "https://github.com/AgustinCammarota/Portfolio"
 hasWebsite: true
 website: "https://agustincammarota.com/es/"
 ---
+
 En este proyecto, desarrollé mi portafolio con el objetivo de ofrecerte una mejor manera de conocerme. Para su creación, utilicé tecnologías como **Astro y Solid.js**, aprovechando su eficiencia y flexibilidad para construir una experiencia web rápida y moderna.

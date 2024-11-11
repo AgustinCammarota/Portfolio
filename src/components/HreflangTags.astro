@@ -1,24 +1,26 @@
 ---
 const urls = [
-  { en: '/', es: '/es/' },
-  { en: '/contact/', es: '/es/contact/' },
-  { en: '/projects/', es: '/es/projects/' },
-  { en: '/skills/', es: '/es/skills/' },
-  { en: '/works/', es: '/es/works/' },
+  { en: "/", es: "/es/" },
+  { en: "/contact/", es: "/es/contact/" },
+  { en: "/projects/", es: "/es/projects/" },
+  { en: "/skills/", es: "/es/skills/" },
+  { en: "/works/", es: "/es/works/" },
 ];
 
-const currentPath = Astro.url.pathname.replace(/^\/(es\/)?/, '/');
-
-const currentUrl = urls.find((url) => url.en === currentPath || url.es === currentPath);
-const currentLang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en';
+const currentPath = Astro.url.pathname.replace(/^\/(es\/)?/, "/");
+const currentUrl = urls.find(
+  (url) => url.en === currentPath || url.es === currentPath,
+);
 
 const enUrl = `https://agustincammarota.com${currentUrl?.en}`;
 const esUrl = `https://agustincammarota.com${currentUrl?.es}`;
 ---
 
-{currentUrl && (
-<>
-    <link rel="alternate" href={enUrl} hreflang="en" />
-    <link rel="alternate" href={esUrl} hreflang="es" />
-</>
-    )}
+{
+  currentUrl && (
+    <>
+      <link rel="alternate" href={enUrl} hreflang="en" />
+      <link rel="alternate" href={esUrl} hreflang="es" />
+    </>
+  )
+}

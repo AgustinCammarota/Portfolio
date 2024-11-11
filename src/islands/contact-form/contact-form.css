@@ -1,97 +1,99 @@
 .contact-form {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-    input, textarea, button,
-    input::placeholder,
-    textarea::placeholder {
-        color: var(--tertiary-color);
-        font-family: 'Fira Code Variable', monospace;
-        font-optical-sizing: auto;
-        font-weight: 300;
-        font-size: 1.6rem;
-        font-style: normal;
-    }
+  input,
+  textarea,
+  button,
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--tertiary-color);
+    font-family: "Fira Code Variable", monospace;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-size: 1.6rem;
+    font-style: normal;
+  }
 
-    button {
-        color: var(--primary-color);
-    }
+  button {
+    color: var(--primary-color);
+  }
 
-    input:-webkit-autofill {
-        -webkit-text-fill-color: var(--tertiary-color);
-        background-color: var(--backgroud-color);
-        color: var(--tertiary-color);
-        transition: background-color 5000s ease-in-out 0s;
-    }
+  input:-webkit-autofill {
+    -webkit-text-fill-color: var(--tertiary-color);
+    background-color: var(--backgroud-color);
+    color: var(--tertiary-color);
+    transition: background-color 5000s ease-in-out 0s;
+  }
 
-    input:focus-visible,
-    textarea:focus-visible {
-        outline: var(--primary-color) auto 1px;
-    }
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: var(--primary-color) auto 1px;
+  }
 }
 
 .form-field {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    margin-bottom: 16px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin-bottom: 16px;
 }
 
 .form-label {
-    width: 100%;
-    height: 100%;
-    display: block;
-    color: var(--tertiary-color);
-    font-size: 1.8rem;
-    font-weight: 300;
-    margin-bottom: 8px;
+  width: 100%;
+  height: 100%;
+  display: block;
+  color: var(--tertiary-color);
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-bottom: 8px;
 }
 
 .form-input {
-    width: 100%;
-    height: 37px;
-    padding: 8px;
-    border: 1px solid var(--tertiary-color);
-    border-radius: 0;
-    color: var(--tertiary-color);
-    background-color: var(--backgroud-color);
+  width: 100%;
+  height: 37px;
+  padding: 8px;
+  border: 1px solid var(--tertiary-color);
+  border-radius: 0;
+  color: var(--tertiary-color);
+  background-color: var(--backgroud-color);
 }
 
 .form-textarea {
-    width: 100%;
-    height: 120px;
-    padding: 8px;
-    border-color: 1px solid var(--tertiary-color);
-    color: var(--tertiary-color);
-    background-color: var(--backgroud-color);
-    border-radius: 0;
-    resize: none;
+  width: 100%;
+  height: 120px;
+  padding: 8px;
+  border-color: 1px solid var(--tertiary-color);
+  color: var(--tertiary-color);
+  background-color: var(--backgroud-color);
+  border-radius: 0;
+  resize: none;
 }
 
 .form-submit {
-    width: 100%;
-    height: 48px;
-    background-color: var(--backgroud-color);
-    border: 1px outset var(--primary-color);
-    cursor: pointer;
+  width: 100%;
+  height: 48px;
+  background-color: var(--backgroud-color);
+  border: 1px outset var(--primary-color);
+  cursor: pointer;
 
-    span {
-        font-size: 1.6rem;
-        font-weight: 500;
-    }
+  span {
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
 }
 
 .form-submit:hover {
-    border: 1px inset var(--secondary-color);
-    color: var(--secondary-color);
+  border: 1px inset var(--secondary-color);
+  color: var(--secondary-color);
 }
 
 .form-submit[disabled] {
-    border: 1px solid var(--tertiary-color);
-    color: var(--tertiary-color);
-    cursor: default;
+  border: 1px solid var(--tertiary-color);
+  color: var(--tertiary-color);
+  cursor: default;
 }

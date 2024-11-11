@@ -9,15 +9,46 @@ on:
   push:
     branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # This workflow contains a single job called "lint"
+  lint:
+    # Define a time-out flow
+    timeout-minutes: 15
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout code
+      - uses: actions/checkout@v4
 
-# This workflow contains a single job called "build"
+      # Runs a setup node environment
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4.0.3
+        with:
+          node-version: 20.11.1
+
+      # Get npm cache directory
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        shell: bash
+        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
+
+      # 1) Install dependencies
+      - name: Install dependencies
+        run: npm i
+
+      # 2) Run lint
+      - name: Lint
+        run: npm run lint
+
+  # This workflow contains a single job called "build"
   build:
     # Define a time-out flow
     timeout-minutes: 15
@@ -42,14 +73,14 @@ jobs:
 
       - name: Verify environment variables
         run: |
-         echo "PUBLIC_EMAIL: ${PUBLIC_EMAIL}"
-         echo "PUBLIC_GITHUB: ${PUBLIC_GITHUB}"
-         echo "PUBLIC_WHATSAPP: ${PUBLIC_WHATSAPP}"
-         echo "PUBLIC_LINKEDIN: ${PUBLIC_LINKEDIN}"
-         echo "PUBLIC_API_EMAILJS: ${PUBLIC_API_EMAILJS}"
-         echo "PUBLIC_API_RECAPTCHA: ${PUBLIC_API_RECAPTCHA}"
-         echo "PUBLIC_RECAPTCHA_SITE_KEY: ${PUBLIC_RECAPTCHA_SITE_KEY}" 
-         echo "PUBLIC_TAG_MANAGER_KEY: ${PUBLIC_TAG_MANAGER_KEY}"
+          echo "PUBLIC_EMAIL: ${PUBLIC_EMAIL}"
+          echo "PUBLIC_GITHUB: ${PUBLIC_GITHUB}"
+          echo "PUBLIC_WHATSAPP: ${PUBLIC_WHATSAPP}"
+          echo "PUBLIC_LINKEDIN: ${PUBLIC_LINKEDIN}"
+          echo "PUBLIC_API_EMAILJS: ${PUBLIC_API_EMAILJS}"
+          echo "PUBLIC_API_RECAPTCHA: ${PUBLIC_API_RECAPTCHA}"
+          echo "PUBLIC_RECAPTCHA_SITE_KEY: ${PUBLIC_RECAPTCHA_SITE_KEY}" 
+          echo "PUBLIC_TAG_MANAGER_KEY: ${PUBLIC_TAG_MANAGER_KEY}"
 
       # Runs a setup node environment
       - name: Setup Node.js environment
@@ -67,6 +98,6 @@ jobs:
       - name: Install dependencies
         run: npm i
 
-      # 2) Run e2e test
+      # 2) Run build test
       - name: Build
         run: npm run build

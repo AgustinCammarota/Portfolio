@@ -1,8 +1,8 @@
 ---
-import { Icon } from 'astro-icon/components'
-import { ProjectVideo } from '@islands/project-video/ProjectVideo';
-import { getLangFromUrl, useTranslations } from '@i18n/utils';
-import CustomImage from '@components/CustomImage.astro';
+import { Icon } from "astro-icon/components";
+import { ProjectVideo } from "@islands/project-video/ProjectVideo";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import CustomImage from "@components/CustomImage.astro";
 
 interface Props {
   image: string;
@@ -17,15 +17,15 @@ interface Props {
 }
 
 const {
-    image,
-    alt,
-    video,
-    title,
-    technologies,
-    hasLink,
-    github,
-    hasWebsite,
-    website
+  image,
+  alt,
+  video,
+  title,
+  technologies,
+  hasLink,
+  github,
+  hasWebsite,
+  website,
 } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
@@ -33,104 +33,128 @@ const t = useTranslations(lang);
 ---
 
 <div class="project-card">
-    <ProjectVideo client:load video={video}>
-        <CustomImage quality="mid" loading="eager" className="image" imagePath={image} altText={alt} height={500} width={500}/>
-    </ProjectVideo>
-    <p class="card-technologies">{technologies}</p>
+  <ProjectVideo client:load video={video}>
+    <CustomImage
+      quality="mid"
+      loading="eager"
+      className="image"
+      imagePath={image}
+      altText={alt}
+      height={500}
+      width={500}
+    />
+  </ProjectVideo>
+  <p class="card-technologies">{technologies}</p>
 
-    <div class="card-body">
-        <h3 class="card-body__title">{title}</h3>
-        <div class="card-body-description">
-            <slot name="description"/>
-        </div>
-      <div class="card-body-links">
-          {hasLink && (
-              <a class="card-body__link" href={github} title={t('project.card.github.title')} target="_blank" rel="noopener noreferrer">
-                  <span>{t('project.card.github.link')}</span>
-                  <Icon name="forward" title="Forward" size="18"/>
-              </a>
-          )}
-          {hasWebsite && (
-              <a class="card-body__link card-body__link--gray" href={website} title={t('project.card.website.title')} target="_blank" rel="noopener noreferrer">
-                  <span>{t('project.card.website.link')}</span>
-                  <Icon name="double-arrow" title="Double Arrow" size="18"/>
-              </a>
-          )}
-      </div>
+  <div class="card-body">
+    <h2 class="card-body__title">{title}</h2>
+    <div class="card-body-description">
+      <slot name="description" />
     </div>
+    <div class="card-body-links">
+      {
+        hasLink && (
+          <a
+            class="card-body__link"
+            href={github}
+            title={t("project.card.github.title")}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>{t("project.card.github.link")}</span>
+            <Icon name="forward" title="Forward" size="18" />
+          </a>
+        )
+      }
+      {
+        hasWebsite && (
+          <a
+            class="card-body__link card-body__link--gray"
+            href={website}
+            title={t("project.card.website.title")}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>{t("project.card.website.link")}</span>
+            <Icon name="double-arrow" title="Double Arrow" size="18" />
+          </a>
+        )
+      }
+    </div>
+  </div>
 </div>
 <style>
-    .project-card {
-        width: 100%;
-        max-width: 350px;
-        min-width: 300px;
-        height: max-content;
-        position: relative;
-        border: 1px solid var(--primary-color);
-    }
-    .card-technologies {
-        margin: 0;
-        padding: 8px;
-        border-bottom: 1px solid var(--primary-color);
-        border-top: 1px solid var(--primary-color);
-        color: var(--primary-color);
-        text-wrap: wrap;
-        font-weight: 400;
-        font-size: 1.4rem;
-        line-height: 18px;
-    }
-    .card-body {
-        width: 100%;
-        height: auto;
-        padding: 16px;
+  .project-card {
+    width: 100%;
+    max-width: 350px;
+    min-width: 300px;
+    height: max-content;
+    position: relative;
+    border: 1px solid var(--primary-color);
+  }
+  .card-technologies {
+    margin: 0;
+    padding: 8px;
+    border-bottom: 1px solid var(--primary-color);
+    border-top: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    text-wrap: wrap;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 18px;
+  }
+  .card-body {
+    width: 100%;
+    height: auto;
+    padding: 16px;
 
-        .card-body__title {
-            margin: 0;
-            color: var(--secondary-color);
-            font-weight: 400;
-            font-size: 2.2rem;
-            text-wrap: balance;
-        }
-        .card-body-description p {
-            margin-bottom: 0;
-            margin-top: 12px;
-            color: var(--tertiary-color);
-            text-wrap: balance;
-            font-size: 1.5rem;
-            line-height: 24px;
-        }
+    .card-body__title {
+      margin: 0;
+      color: var(--secondary-color);
+      font-weight: 400;
+      font-size: 2.2rem;
+      text-wrap: balance;
     }
-    .card-body-links {
-        width: 100%;
-        height: auto;
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        gap: 18px;
-
-        .card-body__link {
-            width: max-content;
-            height: 40px;
-            margin-top: 16px;
-            padding: 8px 16px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            font-weight: 500;
-
-            span {
-                margin-right: 4px;
-            }
-        }
-        .card-body__link:hover {
-            border: 1px solid var(--secondary-color);
-            color: var(--secondary-color);
-        }
-        .card-body__link--gray {
-            border: 1px solid var(--tertiary-color);
-            color: var(--tertiary-color);
-        }
+    .card-body-description p {
+      margin-bottom: 0;
+      margin-top: 12px;
+      color: var(--tertiary-color);
+      text-wrap: balance;
+      font-size: 1.5rem;
+      line-height: 24px;
     }
+  }
+  .card-body-links {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 18px;
+
+    .card-body__link {
+      width: max-content;
+      height: 40px;
+      margin-top: 16px;
+      padding: 8px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid var(--primary-color);
+      color: var(--primary-color);
+      font-weight: 500;
+
+      span {
+        margin-right: 4px;
+      }
+    }
+    .card-body__link:hover {
+      border: 1px solid var(--secondary-color);
+      color: var(--secondary-color);
+    }
+    .card-body__link--gray {
+      border: 1px solid var(--tertiary-color);
+      color: var(--tertiary-color);
+    }
+  }
 </style>

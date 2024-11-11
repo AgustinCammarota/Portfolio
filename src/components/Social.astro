@@ -1,7 +1,12 @@
 ---
-import { PUBLIC_EMAIL, PUBLIC_LINKEDIN, PUBLIC_GITHUB, PUBLIC_WHATSAPP } from 'astro:env/client';
-import { Icon } from 'astro-icon/components'
-import { getLangFromUrl, useTranslations } from '@i18n/utils';
+import {
+  PUBLIC_EMAIL,
+  PUBLIC_LINKEDIN,
+  PUBLIC_GITHUB,
+  PUBLIC_WHATSAPP,
+} from "astro:env/client";
+import { Icon } from "astro-icon/components";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 
 interface Social {
   icon: string;
@@ -15,64 +20,67 @@ const t = useTranslations(lang);
 
 const socials: Social[] = [
   {
-    icon: 'github',
+    icon: "github",
     action: PUBLIC_GITHUB,
-    ariaLabel: t('social.github'),
-    nofollow: false
+    ariaLabel: t("social.github"),
+    nofollow: false,
   },
   {
-    icon: 'linkedin',
+    icon: "linkedin",
     action: PUBLIC_LINKEDIN,
-    ariaLabel: t('social.linkedin'),
-    nofollow: false
+    ariaLabel: t("social.linkedin"),
+    nofollow: false,
   },
   {
-    icon: 'email',
+    icon: "email",
     action: PUBLIC_EMAIL,
-    ariaLabel: t('social.email'),
-    nofollow: false
+    ariaLabel: t("social.email"),
+    nofollow: false,
   },
   {
-    icon: 'phone',
+    icon: "phone",
     action: PUBLIC_WHATSAPP,
-    ariaLabel: t('social.phone'),
-    nofollow: true
-  }
+    ariaLabel: t("social.phone"),
+    nofollow: true,
+  },
 ];
-
 ---
 
 <section class="social-section">
-  {socials.map((social: Social) => (
-      <a href={social.action}
-              class="social-icon-container"
-              target="_blank"
-              rel={`${social.nofollow ? 'noopener noreferrer nofollow' : 'noopener noreferrer'}`}
-              title={social.ariaLabel}
-              aria-label={social.ariaLabel}>
-          <Icon name={social.icon} title={social.icon} size="24"/>
+  {
+    socials.map((social: Social) => (
+      <a
+        href={social.action}
+        class="social-icon-container"
+        target="_blank"
+        rel={`${social.nofollow ? "noopener noreferrer nofollow" : "noopener noreferrer"}`}
+        title={social.ariaLabel}
+        aria-label={social.ariaLabel}
+      >
+        <Icon name={social.icon} title={social.icon} size="24" />
       </a>
-  ))}
+    ))
+  }
 </section>
 <style>
-    .social-section {
-        width: max-content;
-        height: auto;
-    }
-    .social-icon-container {
-        display: inline-block;
-        width: max-content;
-        height: auto;
-        margin: 0 6px;
-        color: var(--tertiary-color);
-        cursor: pointer;
-        transition: transform linear .2s;
-    }
-    .social-icon-container:first-of-type {
-        margin-left: 0;
-    }
-    .social-icon-container:hover {
-        color: var(--secondary-color);
-        transform: scale(1.2);
-    }
+  .social-section {
+    width: max-content;
+    height: auto;
+  }
+  .social-icon-container {
+    display: inline-block;
+    width: max-content;
+    height: auto;
+    margin: 0 6px;
+    color: var(--tertiary-color);
+    cursor: pointer;
+    transition: transform linear 0.2s;
+  }
+  .social-icon-container:first-of-type {
+    margin-left: 0;
+  }
+  .social-icon-container:hover {
+    color: var(--secondary-color);
+    transform: scale(1.2);
+  }
 </style>

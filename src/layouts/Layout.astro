@@ -1,83 +1,80 @@
 ---
-import '@fontsource-variable/fira-code';
-import '../styles/global.css';
-import { ViewTransitions } from 'astro:transitions';
-import Navbar from '@components/Navbar.astro';
-import ConfigurationPicker from '@components/ConfigurationPicker.astro';
-import Social from '@components/Social.astro';
-import GoogleTagManager from '@components/GoogleTagManager.astro';
-import GoogleRecaptcha from '@components/GoogleRecaptcha.astro';
-import Theme from '@components/Theme.astro';
-import Favicon from '@components/Favicon.astro';
-import Metadata from '@components/Metadata.astro';
-import HreflangTags from '@components/HreflangTags.astro';
-import { getLangFromUrl } from '@i18n/utils';
+import "@fontsource-variable/fira-code";
+import "../styles/global.css";
+import { ViewTransitions } from "astro:transitions";
+import Navbar from "@components/Navbar.astro";
+import ConfigurationPicker from "@components/ConfigurationPicker.astro";
+import Social from "@components/Social.astro";
+import GoogleTagManager from "@components/GoogleTagManager.astro";
+import GoogleRecaptcha from "@components/GoogleRecaptcha.astro";
+import Theme from "@components/Theme.astro";
+import Favicon from "@components/Favicon.astro";
+import Metadata from "@components/Metadata.astro";
+import HreflangTags from "@components/HreflangTags.astro";
+import { getLangFromUrl } from "@i18n/utils";
 
 interface Props {
-	title: string;
-	description: string;
-	keywords: string;
-	hasRecaptcha?: boolean;
+  title: string;
+  description: string;
+  keywords: string;
+  hasRecaptcha?: boolean;
 }
 
-const {
-	title,
-	description,
-	keywords,
-	hasRecaptcha = false
-} = Astro.props;
+const { title, description, keywords, hasRecaptcha = false } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 
-Astro.response.headers.set('CDN-Cache-Control', 'public, max-age=45, must-revalidate');
+Astro.response.headers.set(
+  "CDN-Cache-Control",
+  "public, max-age=45, must-revalidate",
+);
 ---
 
 <!doctype html>
 <html lang={lang}>
-	<head>
-		<!-- Metadata start -->
-		<Metadata description={description} keywords={keywords}/>
-		<!-- Metadata end -->
+  <head>
+    <!-- Metadata start -->
+    <Metadata description={description} keywords={keywords} />
+    <!-- Metadata end -->
 
-		<!-- Favicon start -->
-		<Favicon/>
-		<!-- Favicon end -->
+    <!-- Favicon start -->
+    <Favicon />
+    <!-- Favicon end -->
 
-		<!-- Sitemap start -->
-		<link rel="sitemap" href="/sitemap-index.xml"/>
-		<!-- Sitemap end -->
+    <!-- Sitemap start -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- Sitemap end -->
 
-		<!-- HreflangTags start -->
-		<HreflangTags/>
-		<!-- HreflangTags end -->
+    <!-- HreflangTags start -->
+    <HreflangTags />
+    <!-- HreflangTags end -->
 
-		<!-- Google Recaptcha start -->
-		{ hasRecaptcha ? <GoogleRecaptcha/> : '' }
-		<!-- Google Recaptcha end -->
+    <!-- Google Recaptcha start -->
+    {hasRecaptcha ? <GoogleRecaptcha /> : ""}
+    <!-- Google Recaptcha end -->
 
-		<!-- Google tag start -->
-		<GoogleTagManager/>
-		<!-- Google tag end -->
+    <!-- Google tag start -->
+    <GoogleTagManager />
+    <!-- Google tag end -->
 
-		<!-- ViewTransitions start -->
-		<ViewTransitions/>
-		<!-- ViewTransitions end -->
-		<title>{title}</title>
-	</head>
-	<body>
-		<header>
-			<Navbar></Navbar>
-		</header>
+    <!-- ViewTransitions start -->
+    <ViewTransitions />
+    <!-- ViewTransitions end -->
+    <title>{title}</title>
+  </head>
+  <body>
+    <header>
+      <Navbar />
+    </header>
 
-		<main transition:animate="fade">
-			<slot/>
-		</main>
+    <main transition:animate="fade">
+      <slot />
+    </main>
 
-		<footer>
-			<Social/>
-			<ConfigurationPicker/>
-		</footer>
-	</body>
+    <footer>
+      <Social />
+      <ConfigurationPicker />
+    </footer>
+  </body>
 </html>
-<Theme/>
-
+<Theme />

@@ -1,43 +1,43 @@
 .card-video {
+  width: 100%;
+  height: 160px;
+
+  .video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    max-height: 160px;
+    object-position: top;
+    object-fit: cover;
+    cursor: pointer;
+    transition: max-height 0.5s ease-in-out;
+    z-index: 200;
+  }
+
+  .image {
     width: 100%;
     height: 160px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-position: center;
+    object-fit: cover;
+  }
 
-    .video {
-        width: 100%;
-        height: 100%;
-        display: block;
-        max-height: 160px;
-        object-position: top;
-        object-fit: cover;
-        cursor: pointer;
-        transition: max-height .5s ease-in-out;
-        z-index: 200;
-    }
-
-    .image {
-        width: 100%;
-        height: 160px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        object-position: center;
-        object-fit: cover;
-    }
-
-    .card-video__button {
-        width: 100%;
-        height: 160px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-image: url('/src/icons/play-button.svg');
-        background-color: var(--gray-color);
-        opacity: 0.5;
-        cursor: pointer;
-        z-index: 100;
-        border: none;
-    }
+  .card-video__button {
+    width: 100%;
+    height: 160px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("/src/icons/play-button.svg");
+    background-color: var(--gray-color);
+    opacity: 0.5;
+    cursor: pointer;
+    z-index: 100;
+    border: none;
+  }
 }

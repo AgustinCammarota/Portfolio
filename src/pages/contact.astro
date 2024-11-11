@@ -1,15 +1,17 @@
 ---
-import Layout from '@layouts/Layout.astro';
-import ContactSection from '@sections/Contact.astro';
-import { getLangFromUrl, useTranslations } from '@i18n/utils';
+import Layout from "@layouts/Layout.astro";
+import ContactSection from "@sections/Contact.astro";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout title={t('title.contact')}
-        description={t('description.contact')}
-        keywords={t('keywords.contact')}
-        hasRecaptcha>
-    <ContactSection/>
+<Layout
+  title={t("title.contact")}
+  description={t("description.contact")}
+  keywords={t("keywords.contact")}
+  hasRecaptcha
+>
+  <ContactSection />
 </Layout>

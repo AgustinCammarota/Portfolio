@@ -1,9 +1,9 @@
 .theme-button {
-    display: contents;
-    cursor: pointer;
-    color: var(--tertiary-color);
+  display: contents;
+  cursor: pointer;
+  color: var(--tertiary-color);
 }
 
 .theme-button:hover {
-    color: var(--secondary-color);
+  color: var(--secondary-color);
 }

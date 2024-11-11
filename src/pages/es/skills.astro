@@ -1,14 +1,16 @@
 ---
-import Layout from '@layouts/Layout.astro';
-import SkillsSection from '@sections/Skills.astro';
-import { getLangFromUrl, useTranslations } from '@i18n/utils';
+import Layout from "@layouts/Layout.astro";
+import SkillsSection from "@sections/Skills.astro";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout title={t('title.skills')}
-        description={t('description.skills')}
-        keywords={t('keywords.skills')}>
-    <SkillsSection/>
+<Layout
+  title={t("title.skills")}
+  description={t("description.skills")}
+  keywords={t("keywords.skills")}
+>
+  <SkillsSection />
 </Layout>
