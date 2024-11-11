@@ -119,6 +119,15 @@ To run lint, run the following command
   npm run lint
 ```
 
+## Running Prettier
+
+To run prettier, run the following command
+
+```bash
+  npm run prettier
+  npm run prettier-check
+```
+
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
