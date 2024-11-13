@@ -28,10 +28,10 @@ export default defineConfig({
     environment: "jsdom",
     globals: true,
     alias: {
-      "astro:actions": "/src/islands/__mocks__/astro:actions.ts",
-      "astro:env/client": "/src/islands/__mocks__/astro:env/client.ts",
+      "astro:actions": "/src/islands/__mocks__/astro-actions.ts",
+      "astro:env/client": "/src/islands/__mocks__/astro-env/client.ts",
       "astro:transitions/client":
-        "/src/islands/__mocks__/astro:transitions/client.ts",
+        "/src/islands/__mocks__/astro-transitions/client.ts",
       "@i18n/utils": "/src/i18n/utils.ts",
       "@i18n/ui": "/src/i18n/ui.ts",
     },
