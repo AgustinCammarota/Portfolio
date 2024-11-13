@@ -1,7 +1,7 @@
 import { navigate } from "astro:transitions/client";
 import type { Component, JSX } from "solid-js";
 import { createSignal, For } from "solid-js";
-import { languages, PATHS } from "@i18n/ui.ts";
+import { languages, PATHS } from "@i18n/ui";
 import "./select-language.css";
 
 interface Props {
@@ -13,9 +13,7 @@ interface Props {
 }
 
 const SelectLanguage: Component<Props> = (props: Props) => {
-  const [selected, setSelected] = createSignal<"en" | "es">(
-    props.currentLang || "en",
-  );
+  const [selected, setSelected] = createSignal<"en" | "es">(props.currentLang);
   let select!: HTMLSelectElement;
 
   const changeSelect = async (event: Event) => {
