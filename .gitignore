@@ -1,6 +1,3 @@
-# Test
-coverage
-
 # Env
 .env
 .env.development
@@ -38,3 +35,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Test
+coverage
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
