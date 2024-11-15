@@ -3,8 +3,8 @@ import { actions } from "astro:actions";
 import { ContactForm } from "./ContactForm";
 
 global.window.grecaptcha = {
-  ready: vi.fn().mockResolvedValue(true),
-  execute: vi.fn().mockResolvedValue("mocked-recaptcha-token"),
+  ready: vi.fn((callback) => callback()),
+  execute: vi.fn(() => Promise.resolve("mocked-token")),
 };
 
 describe("ContactForm Component", () => {
