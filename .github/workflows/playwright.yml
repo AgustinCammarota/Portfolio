@@ -1,0 +1,70 @@
+# This is a basic workflow to build the app
+
+name: Playwright Tests
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "master" branch
+  pull_request:
+    branches: [master]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "e2e"
+  e2e:
+    timeout-minutes: 60
+    # Define a time-out flow
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    environment: PUBLICS_ENVIRONMENTS
+    env:
+      PUBLIC_EMAIL: ${{ vars.PUBLIC_EMAIL }}
+      PUBLIC_GITHUB: ${{ vars.PUBLIC_GITHUB }}
+      PUBLIC_WHATSAPP: ${{ vars.PUBLIC_WHATSAPP }}
+      PUBLIC_LINKEDIN: ${{ vars.PUBLIC_LINKEDIN }}
+      PUBLIC_API_EMAILJS: ${{ vars.PUBLIC_API_EMAILJS }}
+      PUBLIC_API_RECAPTCHA: ${{ vars.PUBLIC_API_RECAPTCHA }}
+      PUBLIC_RECAPTCHA_SITE_KEY: ${{ vars.PUBLIC_RECAPTCHA_SITE_KEY }}
+      PUBLIC_TAG_MANAGER_KEY: ${{ vars.PUBLIC_TAG_MANAGER_KEY }}
+      # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Runs a setup node environment
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4.0.3
+        with:
+          node-version: 20.11.1
+
+      # Get npm cache directory
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        shell: bash
+        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
+
+      # 1) Install dependencies
+      - name: Install dependencies
+        run: npm i
+
+      # 2) Install Playwright Browsers
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      # 3) Install Playwright Browsers
+      - name: Run test
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 10
+          max_attempts: 1
+          command: npm run e2e
+
+      # 4) Deploy artifact coverage
+      - name: Deploy artifact coverage
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30

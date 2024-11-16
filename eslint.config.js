@@ -25,6 +25,13 @@ export default [
       ],
       "@typescript-eslint/explicit-module-boundary-types": "warn",
       "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-unused-expressions": [
+        "error",
+        {
+          allowTernary: true,
+          allowTaggedTemplates: true,
+        },
+      ],
       "jsx-a11y/no-autofocus": "warn",
       "astro/jsx-a11y/alt-text": "warn",
       "astro/jsx-a11y/anchor-ambiguous-text": "warn",

@@ -1,6 +1,13 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "exclude": ["dist", "coverage", "**/*.test.ts", "**/*.test.tsx", "src/tests"],
+  "exclude": [
+    "dist",
+    "coverage",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/*.test.tsx",
+    "src/tests"
+  ],
   "compilerOptions": {
     "strict": true,
     "target": "ESNext",

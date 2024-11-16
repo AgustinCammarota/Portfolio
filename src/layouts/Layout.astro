@@ -49,10 +49,6 @@ Astro.response.headers.set(
     <HreflangTags />
     <!-- HreflangTags end -->
 
-    <!-- Google Recaptcha start -->
-    {hasRecaptcha ? <GoogleRecaptcha /> : ""}
-    <!-- Google Recaptcha end -->
-
     <!-- Google tag start -->
     <GoogleTagManager />
     <!-- Google tag end -->
@@ -75,6 +71,10 @@ Astro.response.headers.set(
       <Social />
       <ConfigurationPicker />
     </footer>
+
+    <!-- Google Recaptcha start -->
+    {hasRecaptcha ? <GoogleRecaptcha /> : ""}
+    <!-- Google Recaptcha end -->
   </body>
 </html>
 <Theme />

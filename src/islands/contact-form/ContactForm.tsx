@@ -25,37 +25,68 @@ const ContactForm: Component<Props> = (props: Props) => {
   const lang = getLangFromUrl(props.currentUrl);
   const t = useTranslations(lang);
 
-  async function sendEmail(): Promise<void> {
+  async function sendEmail(): Promise<boolean> {
     const { data } = await actions.email.sendEmail({
       email: email(),
       subject: subject(),
       message: message(),
     });
-    validateResponse(data ?? false);
+    return data ?? false;
   }
 
-  async function sendCaptcha(): Promise<void> {
-    const token: string = await window.grecaptcha.execute(
-      PUBLIC_RECAPTCHA_SITE_KEY,
-      { action: "submit" },
-    );
-    const { data } = await actions.recaptcha.verifyCaptcha({ token });
-    validateResponse(data ?? false);
+  async function sendCaptcha(): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      window.grecaptcha.ready(() => {
+        window.grecaptcha
+          .execute(PUBLIC_RECAPTCHA_SITE_KEY, { action: "submit" })
+          .then(async (token: string) => {
+            const { data } = await actions.recaptcha.verifyCaptcha({ token });
+            resolve(data ?? false);
+          })
+          .catch(() => {
+            reject(false);
+          });
+      });
+    });
   }
 
-  function validateResponse(success: boolean): void {
+  function onErrorResponse(): void {
+    setDisabled(false);
+    setState({
+      text: t("form.fail.state"),
+      icon: "❌",
+    });
+  }
+
+  function onSuccessResponse(): void {
+    setState({
+      text: t("form.sent.state"),
+      icon: "✅",
+    });
+    resetForm();
+  }
+
+  function onLoadingResponse(): void {
+    setDisabled(true);
+    setState({
+      text: t("form.loading.state"),
+      icon: "⏳",
+    });
+  }
+
+  function onSuccessSendEmail(success: boolean): void {
     if (success) {
-      setState({
-        text: t("form.sent.state"),
-        icon: "✅",
-      });
+      onSuccessResponse();
     } else {
-      setDisabled(false);
-      setState({
-        text: t("form.fail.state"),
-        icon: "❌",
-      });
-      return;
+      onErrorResponse();
+    }
+  }
+
+  async function onSuccessVerifyCaptcha(success: boolean): Promise<void> {
+    if (success) {
+      onSuccessSendEmail(await sendEmail());
+    } else {
+      onErrorResponse();
     }
   }
 
@@ -70,15 +101,8 @@ const ContactForm: Component<Props> = (props: Props) => {
     const form = event.target as HTMLFormElement;
 
     if (form.checkValidity()) {
-      setDisabled(true);
-      setState({
-        text: t("form.loading.state"),
-        icon: "⏳",
-      });
-
-      await sendCaptcha();
-      await sendEmail();
-      resetForm();
+      onLoadingResponse();
+      await onSuccessVerifyCaptcha(await sendCaptcha());
     }
   }
 
