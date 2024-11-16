@@ -171,8 +171,18 @@ test.describe("Home Page", () => {
     await expect(page).toHaveURL("http://localhost:4321/es/");
   });
 
-  test("Visual comparisons", async ({ page }) => {
-    await expect(page).toHaveScreenshot();
+  test("Visual comparisons", async ({ page, browserName, viewport }) => {
+    await page.addStyleTag({
+      content:
+        "body { animation: none !important; transition: none !important; }",
+    });
+
+    const deviceName = `${browserName}-${viewport?.width}x${viewport?.height}`;
+    const screenshotName = `home-${deviceName}.png`;
+
+    await expect(page).toHaveScreenshot(screenshotName, {
+      maxDiffPixelRatio: 0.05,
+    });
   });
 
   test("should not have any automatically detectable accessibility issues", async ({

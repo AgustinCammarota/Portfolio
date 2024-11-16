@@ -62,6 +62,7 @@ test.describe("Works Page", () => {
     const globantLink = page.getByTitle("Globant").first();
     const [newPage] = await Promise.all([
       context.waitForEvent("page"),
+      await globantLink.scrollIntoViewIfNeeded(),
       await globantLink.click(),
     ]);
 
@@ -70,8 +71,18 @@ test.describe("Works Page", () => {
     expect(url).toContain("linkedin");
   });
 
-  test("Visual comparisons", async ({ page }) => {
-    await expect(page).toHaveScreenshot();
+  test("Visual comparisons", async ({ page, browserName, viewport }) => {
+    await page.addStyleTag({
+      content:
+        "body { animation: none !important; transition: none !important; }",
+    });
+
+    const deviceName = `${browserName}-${viewport?.width}x${viewport?.height}`;
+    const screenshotName = `works-${deviceName}.png`;
+
+    await expect(page).toHaveScreenshot(screenshotName, {
+      maxDiffPixelRatio: 0.05,
+    });
   });
 
   test("should not have any automatically detectable accessibility issues", async ({

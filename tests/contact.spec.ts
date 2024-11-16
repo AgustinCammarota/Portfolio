@@ -78,12 +78,16 @@ test.describe("Contact Page", () => {
     ).toBeVisible();
   });
 
-  test("Visual comparisons", async ({ page }) => {
+  test("Visual comparisons", async ({ page, browserName, viewport }) => {
     await page.addStyleTag({
       content:
         "body { animation: none !important; transition: none !important; }",
     });
-    await expect(page).toHaveScreenshot({
+
+    const deviceName = `${browserName}-${viewport?.width}x${viewport?.height}`;
+    const screenshotName = `contact-${deviceName}.png`;
+
+    await expect(page).toHaveScreenshot(screenshotName, {
       maxDiffPixelRatio: 0.05,
     });
   });
