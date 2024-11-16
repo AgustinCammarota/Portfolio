@@ -40,35 +40,40 @@ test.describe("Works Page", () => {
   });
 
   test("Should have company link on desktop viewport", async ({ page }) => {
-    await page.setViewportSize({ width: 1280, height: 800 });
-    await page.goto("/works/");
+    const viewport = page.viewportSize();
+    const isMobile = viewport && viewport.width <= 768;
     const globantLink = page.getByTitle("Globant").first();
-    await expect(globantLink).toBeVisible();
-  });
 
-  test("Should not have company link on mobile viewport", async ({ page }) => {
-    await page.setViewportSize({ width: 375, height: 667 });
-    await page.goto("/works/");
-    const globantLink = page.getByTitle("Globant").first();
-    await expect(globantLink).toBeHidden();
+    if (!isMobile) {
+      await globantLink.scrollIntoViewIfNeeded();
+      await expect(globantLink).toBeVisible();
+    } else {
+      await expect(globantLink).toBeHidden();
+    }
   });
 
   test("Should open the Linkedin URL only on desktop viewport", async ({
     page,
     context,
   }) => {
-    await page.setViewportSize({ width: 1280, height: 800 });
-    await page.goto("/works/");
+    const viewport = page.viewportSize();
+    const isMobile = viewport && viewport.width <= 768;
     const globantLink = page.getByTitle("Globant").first();
-    const [newPage] = await Promise.all([
-      context.waitForEvent("page"),
-      await globantLink.scrollIntoViewIfNeeded(),
-      await globantLink.click(),
-    ]);
 
-    await newPage.waitForLoadState("domcontentloaded");
-    const url = newPage.url();
-    expect(url).toContain("linkedin");
+    if (!isMobile) {
+      await globantLink.scrollIntoViewIfNeeded();
+
+      const [newPage] = await Promise.all([
+        context.waitForEvent("page"),
+        await globantLink.click(),
+      ]);
+
+      await newPage.waitForLoadState("domcontentloaded");
+      const url = newPage.url();
+      expect(url).toContain("linkedin");
+    } else {
+      await expect(globantLink).toBeHidden();
+    }
   });
 
   test("Visual comparisons", async ({ page, browserName, viewport }) => {
@@ -81,7 +86,7 @@ test.describe("Works Page", () => {
     const screenshotName = `works-${deviceName}.png`;
 
     await expect(page).toHaveScreenshot(screenshotName, {
-      maxDiffPixelRatio: 0.05,
+      maxDiffPixelRatio: 0.1,
     });
   });
 

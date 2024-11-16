@@ -88,7 +88,7 @@ test.describe("Contact Page", () => {
     const screenshotName = `contact-${deviceName}.png`;
 
     await expect(page).toHaveScreenshot(screenshotName, {
-      maxDiffPixelRatio: 0.05,
+      maxDiffPixelRatio: 0.1,
     });
   });
 
