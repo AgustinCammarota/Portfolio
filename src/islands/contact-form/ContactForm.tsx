@@ -25,6 +25,10 @@ const ContactForm: Component<Props> = (props: Props) => {
   const lang = getLangFromUrl(props.currentUrl);
   const t = useTranslations(lang);
 
+  function sendAnalyticsEvent(eventName: string, data: unknown) {
+    window.gtag("event", eventName, data);
+  }
+
   async function sendEmail(): Promise<boolean> {
     const { data } = await actions.email.sendEmail({
       email: email(),
@@ -78,6 +82,7 @@ const ContactForm: Component<Props> = (props: Props) => {
     if (success) {
       onSuccessResponse();
     } else {
+      sendAnalyticsEvent("on-error-send-email", {});
       onErrorResponse();
     }
   }
@@ -86,6 +91,7 @@ const ContactForm: Component<Props> = (props: Props) => {
     if (success) {
       onSuccessSendEmail(await sendEmail());
     } else {
+      sendAnalyticsEvent("on-error-verify-captcha", {});
       onErrorResponse();
     }
   }
@@ -101,6 +107,10 @@ const ContactForm: Component<Props> = (props: Props) => {
     const form = event.target as HTMLFormElement;
 
     if (form.checkValidity()) {
+      sendAnalyticsEvent("form_submit_click", {
+        interaction_name: "form-send",
+        email: email(),
+      });
       onLoadingResponse();
       await onSuccessVerifyCaptcha(await sendCaptcha());
     }

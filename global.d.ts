@@ -8,5 +8,8 @@ declare global {
   interface Window {
     grecaptcha: Grecaptcha;
   }
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
 }
 export {};

@@ -31,16 +31,45 @@ const {
   </div>
   <span class="timeline-item__company">
     <a
+      class="timeline-item-link"
       href={companyLink}
       target="_blank"
       rel="noopener noreferrer"
       title={companyName}
       aria-label={companyName}
+      data-name={companyName}
     >
       <Icon name={companyIcon} title={companyName} size="120" />
     </a>
   </span>
 </li>
+<script>
+  document.addEventListener("astro:page-load", addEventListenerElements);
+
+  function addEventListenerElements() {
+    const links = document.querySelectorAll<HTMLAnchorElement>(
+      ".timeline-item-link",
+    );
+    if (links && links.length) {
+      links.forEach((link) => {
+        link.addEventListener("click", (event: MouseEvent) => {
+          const target = event.target as HTMLElement;
+          const element = target.closest(
+            ".timeline-item-link",
+          ) as HTMLAnchorElement;
+          sendAnalyticsEvent("company_link_click", {
+            company_network: element.dataset.name || "",
+            link_url: element.href,
+          });
+        });
+      });
+    }
+  }
+
+  function sendAnalyticsEvent(eventName: string, data: unknown) {
+    window.gtag("event", eventName, data);
+  }
+</script>
 <style>
   .timeline-item {
     padding-left: 8px;

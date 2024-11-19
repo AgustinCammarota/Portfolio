@@ -112,6 +112,16 @@ To run tests, run the following command
   npm run coverage
 ```
 
+## Running e2e
+
+To run e2e, run the following command
+
+```bash
+  npm run e2e
+  npm run e2e-ui
+  npm e2e-report
+```
+
 ## Running Lint
 
 To run lint, run the following command

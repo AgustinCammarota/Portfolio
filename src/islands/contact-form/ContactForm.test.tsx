@@ -7,6 +7,8 @@ global.window.grecaptcha = {
   execute: vi.fn(() => Promise.resolve("mocked-token")),
 };
 
+vi.stubGlobal("gtag", vi.fn());
+
 describe("ContactForm Component", () => {
   const props = {
     subjectText: "Subject",
@@ -119,6 +121,56 @@ describe("ContactForm Component", () => {
     await waitFor(() => {
       expect(submitButton).not.toBeDisabled();
       expect(submitButton).toHaveTextContent("Retry ❌");
+    });
+  });
+
+  it("should call gtag with on-error-send-email parameters", async () => {
+    actions.email.sendEmail.mockResolvedValueOnce({ data: undefined });
+    fireEvent.input(emailInput, { target: { value: "test@example.com" } });
+    fireEvent.input(subjectInput, { target: { value: "Test Subject" } });
+    fireEvent.input(messageInput, {
+      target: { value: "This is a test message" },
+    });
+    fireEvent.submit(submitButton);
+
+    await waitFor(() => {
+      expect(window.gtag).toHaveBeenCalledWith(
+        "event",
+        "on-error-send-email",
+        {},
+      );
+    });
+  });
+
+  it("should call gtag with on-error-verify-captcha parameters", async () => {
+    actions.recaptcha.verifyCaptcha.mockResolvedValueOnce({ data: undefined });
+    fireEvent.input(emailInput, { target: { value: "test@example.com" } });
+    fireEvent.input(subjectInput, { target: { value: "Test Subject" } });
+    fireEvent.input(messageInput, {
+      target: { value: "This is a test message" },
+    });
+    fireEvent.submit(submitButton);
+
+    await waitFor(() => {
+      expect(window.gtag).toHaveBeenCalledWith(
+        "event",
+        "on-error-verify-captcha",
+        {},
+      );
+    });
+  });
+
+  it("should call gtag with form-send parameters", () => {
+    fireEvent.input(emailInput, { target: { value: "test@example.com" } });
+    fireEvent.input(subjectInput, { target: { value: "Test Subject" } });
+    fireEvent.input(messageInput, {
+      target: { value: "This is a test message" },
+    });
+    fireEvent.submit(submitButton);
+
+    expect(window.gtag).toHaveBeenCalledWith("event", "form_submit_click", {
+      interaction_name: "form-send",
+      email: "test@example.com",
     });
   });
 

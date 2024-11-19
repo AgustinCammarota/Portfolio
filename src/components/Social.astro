@@ -9,7 +9,7 @@ import { Icon } from "astro-icon/components";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 
 interface Social {
-  icon: string;
+  name: string;
   action: string;
   ariaLabel: string;
   nofollow: boolean;
@@ -20,25 +20,25 @@ const t = useTranslations(lang);
 
 const socials: Social[] = [
   {
-    icon: "github",
+    name: "github",
     action: PUBLIC_GITHUB,
     ariaLabel: t("social.github"),
     nofollow: false,
   },
   {
-    icon: "linkedin",
+    name: "linkedin",
     action: PUBLIC_LINKEDIN,
     ariaLabel: t("social.linkedin"),
     nofollow: false,
   },
   {
-    icon: "email",
+    name: "email",
     action: PUBLIC_EMAIL,
     ariaLabel: t("social.email"),
     nofollow: false,
   },
   {
-    icon: "phone",
+    name: "phone",
     action: PUBLIC_WHATSAPP,
     ariaLabel: t("social.phone"),
     nofollow: true,
@@ -51,23 +51,48 @@ const socials: Social[] = [
     socials.map((social: Social) => (
       <a
         href={social.action}
-        class="social-icon-container"
+        class="social-icon-link"
         target="_blank"
         rel={`${social.nofollow ? "noopener noreferrer nofollow" : "noopener noreferrer"}`}
         title={social.ariaLabel}
         aria-label={social.ariaLabel}
+        data-name={social.name}
       >
-        <Icon name={social.icon} title={social.icon} size="24" />
+        <Icon name={social.name} title={social.name} size="24" />
       </a>
     ))
   }
 </section>
+<script>
+  document.addEventListener("astro:page-load", addEventListenerElements);
+
+  function addEventListenerElements() {
+    const links =
+      document.querySelectorAll<HTMLAnchorElement>(".social-icon-link");
+    if (links && links.length) {
+      links.forEach((link) => {
+        link.addEventListener("click", (event: MouseEvent) => {
+          const target = event.target as HTMLElement;
+          const link = target.closest(".social-icon-link") as HTMLAnchorElement;
+          sendAnalyticsEvent("social_link_click", {
+            social_network: link.dataset.name || "",
+            link_url: link.href,
+          });
+        });
+      });
+    }
+  }
+
+  function sendAnalyticsEvent(eventName: string, data: unknown) {
+    window.gtag("event", eventName, data);
+  }
+</script>
 <style>
   .social-section {
     width: max-content;
     height: auto;
   }
-  .social-icon-container {
+  .social-icon-link {
     display: inline-block;
     width: max-content;
     height: auto;
@@ -76,10 +101,10 @@ const socials: Social[] = [
     cursor: pointer;
     transition: transform linear 0.2s;
   }
-  .social-icon-container:first-of-type {
+  .social-icon-link:first-of-type {
     margin-left: 0;
   }
-  .social-icon-container:hover {
+  .social-icon-link:hover {
     color: var(--secondary-color);
     transform: scale(1.2);
   }
