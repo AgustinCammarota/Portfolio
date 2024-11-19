@@ -6,10 +6,11 @@ const src = `https://www.googletagmanager.com/gtag/js?id=${PUBLIC_TAG_MANAGER_KE
 
 <script is:inline type="text/partytown" async src={src}></script>
 <script is:inline type="text/partytown">
+  /* eslint-disable prefer-rest-params */
   window.dataLayer = window.dataLayer || [];
-  function gtag(...args) {
-    dataLayer.push(...args);
-  }
+  window.gtag = function gtag() {
+    dataLayer.push(arguments);
+  };
   gtag("js", new Date());
 
   gtag("config", "G-0CE2K20GS5");

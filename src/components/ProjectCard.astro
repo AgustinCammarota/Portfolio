@@ -55,8 +55,10 @@ const t = useTranslations(lang);
       {
         hasLink && (
           <a
+            id="cardBodyLinkRepository"
             class="card-body__link"
             href={github}
+            data-name="repository"
             title={t("project.card.github.title")}
             target="_blank"
             rel="noopener noreferrer"
@@ -69,7 +71,9 @@ const t = useTranslations(lang);
       {
         hasWebsite && (
           <a
+            id="cardBodyLinkWebsite"
             class="card-body__link card-body__link--gray"
+            data-name="website"
             href={website}
             title={t("project.card.website.title")}
             target="_blank"
@@ -83,6 +87,58 @@ const t = useTranslations(lang);
     </div>
   </div>
 </div>
+<script>
+  document.addEventListener("astro:page-load", addEventListenerElements);
+
+  function addEventListenerElements() {
+    addEventListenerCardBodyLinkRepository();
+    addEventListenerCardBodyLinkWebsite();
+  }
+
+  function addEventListenerCardBodyLinkRepository() {
+    const links = document.querySelectorAll<HTMLAnchorElement>(
+      "#cardBodyLinkRepository",
+    );
+    if (links && links.length) {
+      links.forEach((link) => {
+        link.addEventListener("click", (event: MouseEvent) => {
+          const target = event.target as HTMLElement;
+          const element = target.closest(
+            "#cardBodyLinkRepository",
+          ) as HTMLAnchorElement;
+          sendAnalyticsEvent("repository_link_click", {
+            interaction_name: element.dataset.name || "",
+            link_url: element.href,
+          });
+        });
+      });
+    }
+  }
+
+  function addEventListenerCardBodyLinkWebsite() {
+    const links = document.querySelectorAll<HTMLAnchorElement>(
+      "#cardBodyLinkWebsite",
+    );
+    if (links && links.length) {
+      links.forEach((link) => {
+        link.addEventListener("click", (event: MouseEvent) => {
+          const target = event.target as HTMLElement;
+          const element = target.closest(
+            "#cardBodyLinkWebsite",
+          ) as HTMLAnchorElement;
+          sendAnalyticsEvent("website_link_click", {
+            interaction_name: element.dataset.name || "",
+            link_url: element.href,
+          });
+        });
+      });
+    }
+  }
+
+  function sendAnalyticsEvent(eventName: string, data: unknown) {
+    window.gtag("event", eventName, data);
+  }
+</script>
 <style>
   .project-card {
     width: 100%;
