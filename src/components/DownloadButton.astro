@@ -22,27 +22,6 @@ const { link, title, ariaLabel, icon, linkText } = Astro.props;
   <Icon class="download-button__icon" name={icon} title={icon} size="24" />
   <span class="download-button__text">{linkText}</span>
 </a>
-<script>
-  document.addEventListener("astro:page-load", addEventListenerElement);
-
-  function addEventListenerElement() {
-    const link = document.querySelector<HTMLAnchorElement>(".download-button");
-    if (link) {
-      link.addEventListener("click", (event: MouseEvent) => {
-        const target = event.target as HTMLElement;
-        const element = target.closest(".download-button") as HTMLAnchorElement;
-        sendAnalyticsEvent("download_cv_click", {
-          document_type: "cv",
-          link_url: element.href,
-        });
-      });
-    }
-  }
-
-  function sendAnalyticsEvent(eventName: string, data: unknown) {
-    window.gtag("event", eventName, data);
-  }
-</script>
 <style>
   .download-button {
     width: 100%;
@@ -70,3 +49,24 @@ const { link, title, ariaLabel, icon, linkText } = Astro.props;
     }
   }
 </style>
+<script>
+  document.addEventListener("astro:page-load", addEventListenerElement);
+
+  function addEventListenerElement() {
+    const link = document.querySelector<HTMLAnchorElement>(".download-button");
+    if (link) {
+      link.addEventListener("click", (event: MouseEvent) => {
+        const target = event.target as HTMLElement;
+        const element = target.closest(".download-button") as HTMLAnchorElement;
+        sendAnalyticsEvent("download_cv_click", {
+          document_type: "cv",
+          link_url: element.href,
+        });
+      });
+    }
+  }
+
+  function sendAnalyticsEvent(eventName: string, data: unknown) {
+    window.gtag("event", eventName, data);
+  }
+</script>

@@ -7,3 +7,13 @@
 .theme-button:hover {
   color: var(--secondary-color);
 }
+
+/* @media */
+@media (min-width: 900px) {
+  .theme-button {
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+}

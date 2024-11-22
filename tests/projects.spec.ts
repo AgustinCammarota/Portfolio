@@ -30,8 +30,11 @@ test.describe("Projects Page", () => {
     await expect(
       page.getByRole("heading", { level: 2, name: "Hiring Insurance" }),
     ).toBeVisible();
+    await expect(
+      page.getByRole("heading", { level: 2, name: "Andean Refuge" }),
+    ).toBeVisible();
     expect((await page.getByRole("heading", { level: 2 }).all()).length).toBe(
-      5,
+      6,
     );
     await expect(
       page.getByText(
@@ -78,6 +81,14 @@ test.describe("Projects Page", () => {
       page.getByText(
         "In this project, I developed a system for insurance enrollment available on both mobile and web platforms, using Angular and Ionic as the main technologies. This system enabled users to easily and efficiently manage their insurance purchases, ensuring an optimized user experience across both environments.",
       ),
+    ).toBeVisible();
+    await expect(
+      page.getByText(
+        "In this project, I developed an online store that enables users to complete the end-to-end purchase process for notebooks and journals, from browsing the catalog to payment and order confirmation. The implementation leveraged Empretienda as the base platform, utilizing HTML, CSS, and JavaScript to customize the user experience and optimize site functionality.",
+      ),
+    ).toBeVisible();
+    await expect(
+      page.getByText("Empretienda HTML CSS JavaScript"),
     ).toBeVisible();
   });
 
