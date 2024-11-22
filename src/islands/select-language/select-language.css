@@ -5,9 +5,11 @@
   cursor: pointer;
   --backgroud-icon-color: var(--tertiary-color);
 }
+
 .language-icon {
   color: var(--backgroud-icon-color);
 }
+
 .language-container:hover {
   --backgroud-icon-color: var(--secondary-color);
 }
@@ -15,4 +17,21 @@
 .language-select {
   padding: 0 0 0 6px;
   color: var(--backgroud-icon-color);
+}
+
+/* @media */
+@media (min-width: 900px) {
+  .language-select {
+    font-size: 1.6rem;
+  }
+
+  .language-icon[slot="iconRight"] {
+    width: 20px;
+    height: 20px;
+  }
+
+  .language-icon[slot="iconLeft"] {
+    width: 28px;
+    height: 28px;
+  }
 }

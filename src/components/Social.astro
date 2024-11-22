@@ -63,6 +63,38 @@ const socials: Social[] = [
     ))
   }
 </section>
+<style>
+  .social-section {
+    width: max-content;
+    height: auto;
+  }
+  .social-icon-link {
+    display: inline-block;
+    width: max-content;
+    height: auto;
+    margin: 0 6px;
+    color: var(--tertiary-color);
+    cursor: pointer;
+    transition: transform linear 0.2s;
+  }
+  .social-icon-link:first-of-type {
+    margin-left: 0;
+  }
+  .social-icon-link:hover {
+    color: var(--secondary-color);
+    transform: scale(1.2);
+  }
+  /* @media */
+  @media (min-width: 900px) {
+    .social-icon-link {
+      margin: 0 8px;
+      svg {
+        width: 28px;
+        height: 28px;
+      }
+    }
+  }
+</style>
 <script>
   document.addEventListener("astro:page-load", addEventListenerElements);
 
@@ -87,25 +119,3 @@ const socials: Social[] = [
     window.gtag("event", eventName, data);
   }
 </script>
-<style>
-  .social-section {
-    width: max-content;
-    height: auto;
-  }
-  .social-icon-link {
-    display: inline-block;
-    width: max-content;
-    height: auto;
-    margin: 0 6px;
-    color: var(--tertiary-color);
-    cursor: pointer;
-    transition: transform linear 0.2s;
-  }
-  .social-icon-link:first-of-type {
-    margin-left: 0;
-  }
-  .social-icon-link:hover {
-    color: var(--secondary-color);
-    transform: scale(1.2);
-  }
-</style>

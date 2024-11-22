@@ -22,7 +22,9 @@
 }
 html,
 body {
-  max-width: 1200px;
+  height: auto;
+  width: 100%;
+  max-width: 1400px;
   margin: 0 auto;
   font-family: "Fira Code Variable", monospace;
   font-optical-sizing: auto;
@@ -40,7 +42,7 @@ nav {
   font-size: 1.6rem;
 }
 header {
-  max-width: 1200px;
+  max-width: 1400px;
   width: 100%;
   height: auto;
   position: fixed;
@@ -57,7 +59,7 @@ main {
   margin-top: 32px;
 }
 footer {
-  max-width: 1200px;
+  max-width: 1400px;
   width: 100%;
   height: auto;
   display: flex;
@@ -114,4 +116,18 @@ select:hover {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+/* @media */
+@media (min-width: 900px) {
+  header {
+    padding: 0 16px;
+  }
+
+  footer {
+    padding: 24px 16px;
+  }
+
+  main {
+    margin-top: 40px;
+  }
 }
