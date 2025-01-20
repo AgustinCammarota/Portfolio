@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import { getLangFromUrl } from "@i18n/utils";
 import Section from "@components/Section.astro";
 import ProjectCard from "@components/ProjectCard.astro";
@@ -27,7 +27,7 @@ const projectsCollection = await getCollection("projects", ({ id }) => {
           website={project.data.website}
         >
           <Fragment slot="description">
-            {project.render().then(({ Content }) => (
+            {render(project).then(({ Content }) => (
               <Content />
             ))}
           </Fragment>

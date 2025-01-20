@@ -8,15 +8,16 @@ import {
 import "./theme-manager.css";
 
 interface Props {
-  defaultTheme: "dark" | "light";
   ariaLabel: string;
   iconLight?: JSX.Element;
   iconDark?: JSX.Element;
 }
 
 const ThemeManager: Component<Props> = (props: Props) => {
+  const mediaMatcher = window.matchMedia("(prefers-color-scheme: light)");
+  const systemTheme = mediaMatcher.matches ? "light" : "dark";
   const [theme, setTheme] = createSignal<"dark" | "light">(
-    (localStorage.getItem("theme") as "dark" | "light") || props.defaultTheme,
+    (localStorage.getItem("theme") as "dark" | "light") || systemTheme,
   );
 
   createEffect(() => {

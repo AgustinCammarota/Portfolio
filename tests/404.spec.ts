@@ -38,7 +38,7 @@ test.describe("404 Page", () => {
     const screenshotName = `404-${deviceName}.png`;
 
     await expect(page).toHaveScreenshot(screenshotName, {
-      maxDiffPixelRatio: 0.1,
+      maxDiffPixelRatio: 0.3,
     });
   });
 

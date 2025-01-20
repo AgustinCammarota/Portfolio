@@ -2,12 +2,7 @@
 import { Icon } from "astro-icon/components";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
-
-interface Nav {
-  name: string;
-  link: string;
-  icon: string;
-}
+import type { Nav } from "@interfaces/nav.interface";
 
 const currentPath: string = Astro.url.pathname;
 const lang = getLangFromUrl(Astro.url);

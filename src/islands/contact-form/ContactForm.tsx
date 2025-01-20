@@ -13,9 +13,6 @@ interface Props {
 }
 
 const ContactForm: Component<Props> = (props: Props) => {
-  const [subject, setSubject] = createSignal("");
-  const [email, setEmail] = createSignal("");
-  const [message, setMessage] = createSignal("");
   const [isDisabled, setDisabled] = createSignal(false);
   const [state, setState] = createSignal({
     text: props.buttonText,
@@ -29,23 +26,21 @@ const ContactForm: Component<Props> = (props: Props) => {
     window.gtag("event", eventName, data);
   }
 
-  async function sendEmail(): Promise<boolean> {
-    const { data } = await actions.email.sendEmail({
-      email: email(),
-      subject: subject(),
-      message: message(),
-    });
-    return data ?? false;
+  async function sendEmail(formData: FormData): Promise<boolean> {
+    const { data, error } = await actions.emailAction.sendEmail(formData);
+    return !!data && !error;
   }
 
-  async function sendCaptcha(): Promise<boolean> {
+  async function verifyCaptcha(): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       window.grecaptcha.ready(() => {
         window.grecaptcha
           .execute(PUBLIC_RECAPTCHA_SITE_KEY, { action: "submit" })
           .then(async (token: string) => {
-            const { data } = await actions.recaptcha.verifyCaptcha({ token });
-            resolve(data ?? false);
+            const { data, error } = await actions.recaptchaAction.verifyCaptcha(
+              { token },
+            );
+            resolve(!!data && !error);
           })
           .catch(() => {
             reject(false);
@@ -54,7 +49,7 @@ const ContactForm: Component<Props> = (props: Props) => {
     });
   }
 
-  function onErrorResponse(): void {
+  function onErrorOperative(): void {
     setDisabled(false);
     setState({
       text: t("form.fail.state"),
@@ -62,15 +57,14 @@ const ContactForm: Component<Props> = (props: Props) => {
     });
   }
 
-  function onSuccessResponse(): void {
+  function onSuccessOperative(): void {
     setState({
       text: t("form.sent.state"),
       icon: "✅",
     });
-    resetForm();
   }
 
-  function onLoadingResponse(): void {
+  function onLoadingOperative(): void {
     setDisabled(true);
     setState({
       text: t("form.loading.state"),
@@ -78,41 +72,35 @@ const ContactForm: Component<Props> = (props: Props) => {
     });
   }
 
-  function onSuccessSendEmail(success: boolean): void {
-    if (success) {
-      onSuccessResponse();
-    } else {
-      sendAnalyticsEvent("on-error-send-email", {});
-      onErrorResponse();
-    }
-  }
-
-  async function onSuccessVerifyCaptcha(success: boolean): Promise<void> {
-    if (success) {
-      onSuccessSendEmail(await sendEmail());
-    } else {
-      sendAnalyticsEvent("on-error-verify-captcha", {});
-      onErrorResponse();
-    }
-  }
-
-  function resetForm(): void {
-    setMessage("");
-    setSubject("");
-    setEmail("");
-  }
-
   async function handleSubmit(event: Event): Promise<void> {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
 
     if (form.checkValidity()) {
       sendAnalyticsEvent("form_submit_click", {
         interaction_name: "form-send",
-        email: email(),
+        email: formData.get("email") as string,
       });
-      onLoadingResponse();
-      await onSuccessVerifyCaptcha(await sendCaptcha());
+
+      onLoadingOperative();
+
+      const isVerifyCaptcha = await verifyCaptcha();
+
+      if (!isVerifyCaptcha) {
+        sendAnalyticsEvent("on-error-verify-captcha", {});
+        return onErrorOperative();
+      }
+
+      const isSendEmail = await sendEmail(formData);
+
+      if (!isSendEmail) {
+        sendAnalyticsEvent("on-error-send-email", {});
+        return onErrorOperative();
+      }
+
+      form.reset();
+      onSuccessOperative();
     }
   }
 
@@ -125,12 +113,10 @@ const ContactForm: Component<Props> = (props: Props) => {
         <input
           class="form-input"
           placeholder={props.emailText}
-          onInput={(e) => setEmail(e.target.value)}
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
           id="email"
           type="email"
           name="email"
-          value={email()}
           required
         />
       </div>
@@ -141,13 +127,11 @@ const ContactForm: Component<Props> = (props: Props) => {
         </label>
         <input
           class="form-input"
-          onInput={(e) => setSubject(e.target.value)}
           placeholder={props.subjectText}
           id="subject"
           name="subject"
           type="text"
           autocomplete="off"
-          value={subject()}
           required
           maxlength="60"
           minlength="5"
@@ -166,8 +150,6 @@ const ContactForm: Component<Props> = (props: Props) => {
           minLength="10"
           maxLength="500"
           placeholder={props.messageText}
-          onInput={(e) => setMessage(e.target.value)}
-          value={message()}
           required
         />
       </div>

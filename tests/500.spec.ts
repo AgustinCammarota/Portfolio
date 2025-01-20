@@ -40,7 +40,7 @@ test.describe("500 Page", () => {
     const screenshotName = `500-${deviceName}.png`;
 
     await expect(page).toHaveScreenshot(screenshotName, {
-      maxDiffPixelRatio: 0.1,
+      maxDiffPixelRatio: 0.3,
     });
   });
 

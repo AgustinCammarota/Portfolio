@@ -1,7 +1,7 @@
 ---
 import "@fontsource-variable/fira-code";
 import "../styles/global.css";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import Navbar from "@components/Navbar.astro";
 import ConfigurationPicker from "@components/ConfigurationPicker.astro";
 import Social from "@components/Social.astro";
@@ -54,7 +54,7 @@ Astro.response.headers.set(
     <!-- Google tag end -->
 
     <!-- ViewTransitions start -->
-    <ViewTransitions />
+    <ClientRouter />
     <!-- ViewTransitions end -->
     <title>{title}</title>
   </head>

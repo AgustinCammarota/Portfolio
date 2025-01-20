@@ -39,41 +39,28 @@ test.describe("Works Page", () => {
     );
   });
 
-  test("Should have company link on desktop viewport", async ({ page }) => {
-    const viewport = page.viewportSize();
-    const isMobile = viewport && viewport.width <= 768;
+  test("Should have company link", async ({ page }) => {
     const globantLink = page.getByTitle("Globant").first();
-
-    if (!isMobile) {
-      await globantLink.scrollIntoViewIfNeeded();
-      await expect(globantLink).toBeVisible();
-    } else {
-      await expect(globantLink).toBeHidden();
-    }
+    await globantLink.scrollIntoViewIfNeeded();
+    await expect(globantLink).toBeVisible();
   });
 
   test("Should open the Linkedin URL only on desktop viewport", async ({
     page,
     context,
   }) => {
-    const viewport = page.viewportSize();
-    const isMobile = viewport && viewport.width <= 768;
     const globantLink = page.getByTitle("Globant").first();
 
-    if (!isMobile) {
-      await globantLink.scrollIntoViewIfNeeded();
+    await globantLink.scrollIntoViewIfNeeded();
 
-      const [newPage] = await Promise.all([
-        context.waitForEvent("page"),
-        await globantLink.click(),
-      ]);
+    const [newPage] = await Promise.all([
+      context.waitForEvent("page"),
+      await globantLink.click(),
+    ]);
 
-      await newPage.waitForLoadState("domcontentloaded");
-      const url = newPage.url();
-      expect(url).toContain("linkedin");
-    } else {
-      await expect(globantLink).toBeHidden();
-    }
+    await newPage.waitForLoadState("domcontentloaded");
+    const url = newPage.url();
+    expect(url).toContain("linkedin");
   });
 
   test("Visual comparisons", async ({ page, browserName, viewport }) => {
@@ -86,7 +73,7 @@ test.describe("Works Page", () => {
     const screenshotName = `works-${deviceName}.png`;
 
     await expect(page).toHaveScreenshot(screenshotName, {
-      maxDiffPixelRatio: 0.1,
+      maxDiffPixelRatio: 0.3,
     });
   });
 

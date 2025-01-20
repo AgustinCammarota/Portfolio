@@ -1,5 +1,6 @@
 {
   "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
   "exclude": [
     "dist",
     "coverage",
@@ -12,7 +13,7 @@
     "strict": true,
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "preserve",
@@ -27,7 +28,8 @@
       "@components/*": ["src/components/*"],
       "@sections/*": ["src/sections/*"],
       "@layouts/*": ["src/layouts/*"],
-      "@content/*": ["src/content/*"],
+      "@data/*": ["src/data/*"],
+      "@interfaces/*": ["src/interfaces/*"],
       "@islands/*": ["src/islands/*"],
       "@actions/*": ["src/actions/*"],
       "@assets/*": ["src/assets/*"],

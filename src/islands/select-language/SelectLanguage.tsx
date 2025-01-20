@@ -2,6 +2,7 @@ import { navigate } from "astro:transitions/client";
 import type { Component, JSX } from "solid-js";
 import { createSignal, For } from "solid-js";
 import { languages, PATHS } from "@i18n/ui";
+import Cookies from "js-cookie";
 import "./select-language.css";
 
 interface Props {
@@ -22,6 +23,10 @@ const SelectLanguage: Component<Props> = (props: Props) => {
       | "es"
       | "en";
     setSelected(selectedLang);
+    const inOneHour = new Date(new Date().getTime() + 60 * 60 * 1000);
+    Cookies.set("lang", selectedLang, {
+      expires: inOneHour,
+    });
     const path = props.currentLink ? `${props.currentLink}/` : "";
     await navigate(PATHS[selected()].concat(path));
   };

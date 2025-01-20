@@ -1,4 +1,5 @@
 ---
+order: 3
 title: "Ssr. Advanced Frontend Engineer at Globant"
 time: "Mar 2022 - Dec 2022"
 companyName: "Globant"

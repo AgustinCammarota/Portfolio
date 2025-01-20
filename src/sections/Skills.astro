@@ -2,19 +2,10 @@
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import Section from "@components/Section.astro";
 import SkillCard from "@components/SkillCard.astro";
+import type { Skill } from "@interfaces/skill.interface";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
-interface Skill {
-  title: string;
-  icons: Icon[];
-}
-
-interface Icon {
-  name: string;
-  description: string;
-}
 
 const skills: Skill[] = [
   {

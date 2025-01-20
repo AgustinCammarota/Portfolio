@@ -1,4 +1,5 @@
 ---
+order: 2
 title: "Senior Frontend Engineer at Globant"
 time: "Dec 2022 - Mar 2024"
 companyName: "Globant"

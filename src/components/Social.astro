@@ -7,13 +7,7 @@ import {
 } from "astro:env/client";
 import { Icon } from "astro-icon/components";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
-
-interface Social {
-  name: string;
-  action: string;
-  ariaLabel: string;
-  nofollow: boolean;
-}
+import type { Social } from "@interfaces/social.interface";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

@@ -8,6 +8,7 @@ interface Props {
   companyName: string;
   companyIcon: string;
   className?: string;
+  id?: string;
 }
 
 const {
@@ -17,19 +18,17 @@ const {
   companyLink,
   companyIcon,
   className = "",
+  id = "",
 } = Astro.props;
 ---
 
-<li class={`timeline-item ${className}`}>
+<li class={`timeline-item ${className}`} data-id={id}>
   <span class="timeline-item__icon">
     <Icon name="calendar" title="Calendar" size="24" />
   </span>
   <h2 class="timeline-item__title">{title}</h2>
   <time class="timeline-item__time">{time}</time>
-  <div class="timeline-item-description-container">
-    <slot />
-  </div>
-  <span class="timeline-item__company">
+  <div class="timeline-item__company">
     <a
       class="timeline-item-link"
       href={companyLink}
@@ -39,37 +38,13 @@ const {
       aria-label={companyName}
       data-name={companyName}
     >
-      <Icon name={companyIcon} title={companyName} size="120" />
+      <Icon name={companyIcon} title={companyName} width="80" height="40" />
     </a>
-  </span>
+  </div>
+  <div class="timeline-item-description-container">
+    <slot />
+  </div>
 </li>
-<script>
-  document.addEventListener("astro:page-load", addEventListenerElements);
-
-  function addEventListenerElements() {
-    const links = document.querySelectorAll<HTMLAnchorElement>(
-      ".timeline-item-link",
-    );
-    if (links && links.length) {
-      links.forEach((link) => {
-        link.addEventListener("click", (event: MouseEvent) => {
-          const target = event.target as HTMLElement;
-          const element = target.closest(
-            ".timeline-item-link",
-          ) as HTMLAnchorElement;
-          sendAnalyticsEvent("company_link_click", {
-            company_network: element.dataset.name || "",
-            link_url: element.href,
-          });
-        });
-      });
-    }
-  }
-
-  function sendAnalyticsEvent(eventName: string, data: unknown) {
-    window.gtag("event", eventName, data);
-  }
-</script>
 <style>
   .timeline-item {
     padding-left: 8px;
@@ -88,7 +63,14 @@ const {
     background-color: var(--backgroud-color);
   }
   .timeline-item__company {
-    display: none;
+    height: 100%;
+    width: 100%;
+  }
+  .timeline-item-link {
+    width: max-content;
+    height: 100%;
+    display: flex;
+    cursor: pointer;
   }
   .timeline-item__icon svg {
     color: var(--primary-color);
@@ -117,6 +99,7 @@ const {
     color: var(--tertiary-color);
 
     p {
+      margin-top: 12px;
       font-size: 1.6rem;
     }
 
@@ -142,17 +125,22 @@ const {
   @media (min-width: 600px) {
     .timeline-item__company {
       width: max-content;
-      height: 100%;
       top: 0;
       position: absolute;
       display: flex;
       justify-content: center;
       align-items: center;
 
-      a {
+      svg {
+        width: 120px;
+        height: 120px;
+      }
+
+      .timeline-item-link {
+        height: max-content;
         transition: transform linear 0.2s;
       }
-      a:hover {
+      .timeline-item-link:hover {
         transform: scale(1.1);
       }
     }
@@ -164,3 +152,30 @@ const {
     }
   }
 </style>
+<script>
+  document.addEventListener("astro:page-load", addEventListenerElements);
+
+  function addEventListenerElements() {
+    const links = document.querySelectorAll<HTMLAnchorElement>(
+      ".timeline-item-link",
+    );
+    if (links && links.length) {
+      links.forEach((link) => {
+        link.addEventListener("click", (event: MouseEvent) => {
+          const target = event.target as HTMLElement;
+          const element = target.closest(
+            ".timeline-item-link",
+          ) as HTMLAnchorElement;
+          sendAnalyticsEvent("company_link_click", {
+            company_network: element.dataset.name || "",
+            link_url: element.href,
+          });
+        });
+      });
+    }
+  }
+
+  function sendAnalyticsEvent(eventName: string, data: unknown) {
+    window.gtag("event", eventName, data);
+  }
+</script>

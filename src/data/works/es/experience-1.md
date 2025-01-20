@@ -1,4 +1,5 @@
 ---
+order: 1
 title: "Arquitecto de Software Junior en Globant"
 time: "Ene 2024 - Presente"
 companyName: "Globant"
