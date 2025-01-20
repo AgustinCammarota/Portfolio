@@ -3,8 +3,10 @@
 ---
 
 <script is:inline>
+  const mediaMatcher = window.matchMedia("(prefers-color-scheme: light)");
+  const systemTheme = mediaMatcher.matches ? "light" : "dark";
   const storedTheme = localStorage.getItem("theme");
-  const defaultTheme = storedTheme || "dark";
+  const defaultTheme = storedTheme || systemTheme;
   document.documentElement.setAttribute("data-theme", defaultTheme);
   document.documentElement.style.colorScheme = defaultTheme;
 </script>

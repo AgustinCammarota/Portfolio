@@ -44,7 +44,8 @@ Inside of my project, you'll see the following folders and files:
 │   ├── components/
 │   ├── actions/
 │   ├── assets/
-│   ├── content/
+│   ├── interfaces/
+│   ├── data/
 │   ├── i18n/
 │   ├── icons/
 │   ├── islands/

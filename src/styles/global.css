@@ -50,13 +50,13 @@ header {
   transform: translateX(-50%);
   bottom: 0;
   z-index: 500;
+  background-color: var(--backgroud-color);
 }
 main {
   width: 100%;
   height: auto;
   overflow: hidden;
-  padding: 16px;
-  margin-top: 32px;
+  padding: 48px 16px 16px 16px;
 }
 footer {
   max-width: 1400px;
@@ -117,17 +117,20 @@ select:hover {
   white-space: nowrap;
   border-width: 0;
 }
+.grecaptcha-badge {
+  bottom: 100px !important;
+}
 /* @media */
+@media (min-width: 600px) {
+  main {
+    padding: 56px 24px 16px 24px;
+  }
+}
 @media (min-width: 900px) {
   header {
     padding: 0 16px;
   }
-
   footer {
     padding: 24px 16px;
-  }
-
-  main {
-    margin-top: 40px;
   }
 }

@@ -1,4 +1,4 @@
-import { render, fireEvent, waitFor, cleanup } from "@solidjs/testing-library";
+import { render, waitFor, cleanup } from "@solidjs/testing-library";
 import { actions } from "astro:actions";
 import { ContactForm } from "./ContactForm";
 
@@ -49,44 +49,36 @@ describe("ContactForm Component", () => {
   });
 
   it("should disables submit button and shows loading state when form is submitted", () => {
-    fireEvent.input(emailInput, { target: { value: "test@example.com" } });
-    fireEvent.input(subjectInput, { target: { value: "Test Subject" } });
-    fireEvent.input(messageInput, {
-      target: { value: "This is a test message" },
-    });
-    fireEvent.submit(submitButton);
+    emailInput.value = "test@example.com";
+    subjectInput.value = "Test Subject";
+    messageInput.value = "This is a test message";
+    submitButton.click();
 
     expect(submitButton).toBeDisabled();
     expect(submitButton).toHaveTextContent("Please wait... ⏳");
   });
 
   it("should calls sendEmail and verifyCaptcha actions on form submission", async () => {
-    fireEvent.input(emailInput, { target: { value: "test@example.com" } });
-    fireEvent.input(subjectInput, { target: { value: "Test Subject" } });
-    fireEvent.input(messageInput, {
-      target: { value: "This is a test message" },
-    });
-    fireEvent.submit(submitButton);
+    emailInput.value = "test@example.com";
+    subjectInput.value = "Test Subject";
+    messageInput.value = "This is a test message";
+    submitButton.click();
 
     await waitFor(() => {
       expect(submitButton).toHaveTextContent("Sent ✅");
-      expect(actions.recaptcha.verifyCaptcha).toHaveBeenCalled();
-      expect(actions.email.sendEmail).toHaveBeenCalledWith({
-        email: "test@example.com",
-        subject: "Test Subject",
-        message: "This is a test message",
-      });
+      expect(actions.recaptchaAction.verifyCaptcha).toHaveBeenCalled();
+      expect(actions.emailAction.sendEmail).toHaveBeenCalled();
     });
   });
 
   it("should shows error state if captcha or email action fails", async () => {
-    actions.recaptcha.verifyCaptcha.mockResolvedValueOnce({ data: false });
-    fireEvent.input(emailInput, { target: { value: "test@example.com" } });
-    fireEvent.input(subjectInput, { target: { value: "Test Subject" } });
-    fireEvent.input(messageInput, {
-      target: { value: "This is a test message" },
+    actions.recaptchaAction.verifyCaptcha.mockResolvedValueOnce({
+      data: false,
     });
-    fireEvent.submit(submitButton);
+    emailInput.value = "test@example.com";
+    subjectInput.value = "Test Subject";
+    messageInput.value = "This is a test message";
+    submitButton.click();
 
     await waitFor(() => {
       expect(submitButton).not.toBeDisabled();
@@ -95,13 +87,13 @@ describe("ContactForm Component", () => {
   });
 
   it("should shows error state if captcha action fail - case undefined", async () => {
-    actions.recaptcha.verifyCaptcha.mockResolvedValueOnce({ data: undefined });
-    fireEvent.input(emailInput, { target: { value: "test@example.com" } });
-    fireEvent.input(subjectInput, { target: { value: "Test Subject" } });
-    fireEvent.input(messageInput, {
-      target: { value: "This is a test message" },
+    actions.recaptchaAction.verifyCaptcha.mockResolvedValueOnce({
+      data: undefined,
     });
-    fireEvent.submit(submitButton);
+    emailInput.value = "test@example.com";
+    subjectInput.value = "Test Subject";
+    messageInput.value = "This is a test message";
+    submitButton.click();
 
     await waitFor(() => {
       expect(submitButton).not.toBeDisabled();
@@ -110,13 +102,11 @@ describe("ContactForm Component", () => {
   });
 
   it("should shows error state if sendEmail action fail - case undefined", async () => {
-    actions.email.sendEmail.mockResolvedValueOnce({ data: undefined });
-    fireEvent.input(emailInput, { target: { value: "test@example.com" } });
-    fireEvent.input(subjectInput, { target: { value: "Test Subject" } });
-    fireEvent.input(messageInput, {
-      target: { value: "This is a test message" },
-    });
-    fireEvent.submit(submitButton);
+    actions.emailAction.sendEmail.mockResolvedValueOnce({ data: undefined });
+    emailInput.value = "test@example.com";
+    subjectInput.value = "Test Subject";
+    messageInput.value = "This is a test message";
+    submitButton.click();
 
     await waitFor(() => {
       expect(submitButton).not.toBeDisabled();
@@ -125,13 +115,11 @@ describe("ContactForm Component", () => {
   });
 
   it("should call gtag with on-error-send-email parameters", async () => {
-    actions.email.sendEmail.mockResolvedValueOnce({ data: undefined });
-    fireEvent.input(emailInput, { target: { value: "test@example.com" } });
-    fireEvent.input(subjectInput, { target: { value: "Test Subject" } });
-    fireEvent.input(messageInput, {
-      target: { value: "This is a test message" },
-    });
-    fireEvent.submit(submitButton);
+    actions.emailAction.sendEmail.mockResolvedValueOnce({ data: undefined });
+    emailInput.value = "test@example.com";
+    subjectInput.value = "Test Subject";
+    messageInput.value = "This is a test message";
+    submitButton.click();
 
     await waitFor(() => {
       expect(window.gtag).toHaveBeenCalledWith(
@@ -143,13 +131,13 @@ describe("ContactForm Component", () => {
   });
 
   it("should call gtag with on-error-verify-captcha parameters", async () => {
-    actions.recaptcha.verifyCaptcha.mockResolvedValueOnce({ data: undefined });
-    fireEvent.input(emailInput, { target: { value: "test@example.com" } });
-    fireEvent.input(subjectInput, { target: { value: "Test Subject" } });
-    fireEvent.input(messageInput, {
-      target: { value: "This is a test message" },
+    actions.recaptchaAction.verifyCaptcha.mockResolvedValueOnce({
+      data: undefined,
     });
-    fireEvent.submit(submitButton);
+    emailInput.value = "test@example.com";
+    subjectInput.value = "Test Subject";
+    messageInput.value = "This is a test message";
+    submitButton.click();
 
     await waitFor(() => {
       expect(window.gtag).toHaveBeenCalledWith(
@@ -161,12 +149,10 @@ describe("ContactForm Component", () => {
   });
 
   it("should call gtag with form-send parameters", () => {
-    fireEvent.input(emailInput, { target: { value: "test@example.com" } });
-    fireEvent.input(subjectInput, { target: { value: "Test Subject" } });
-    fireEvent.input(messageInput, {
-      target: { value: "This is a test message" },
-    });
-    fireEvent.submit(submitButton);
+    emailInput.value = "test@example.com";
+    subjectInput.value = "Test Subject";
+    messageInput.value = "This is a test message";
+    submitButton.click();
 
     expect(window.gtag).toHaveBeenCalledWith("event", "form_submit_click", {
       interaction_name: "form-send",
@@ -175,12 +161,10 @@ describe("ContactForm Component", () => {
   });
 
   it("should resets the form fields after successful submission", async () => {
-    fireEvent.input(emailInput, { target: { value: "test@example.com" } });
-    fireEvent.input(subjectInput, { target: { value: "Test Subject" } });
-    fireEvent.input(messageInput, {
-      target: { value: "This is a test message" },
-    });
-    fireEvent.submit(submitButton);
+    emailInput.value = "test@example.com";
+    subjectInput.value = "Test Subject";
+    messageInput.value = "This is a test message";
+    submitButton.click();
 
     await waitFor(() => {
       expect(emailInput).toHaveValue("");

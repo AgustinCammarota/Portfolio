@@ -1,6 +1,6 @@
 ---
 import { getLangFromUrl } from "@i18n/utils";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import TimelineList from "@components/TimelineList.astro";
 
 const lang = getLangFromUrl(Astro.url);
@@ -8,22 +8,28 @@ const lang = getLangFromUrl(Astro.url);
 const worksCollection = await getCollection("works", ({ id }) => {
   return id.startsWith(`${lang}/`);
 });
-const { Content } = await worksCollection[0].render();
+
+const sortCollection = worksCollection.sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <div class="timeline-container">
   <ol class="timeline-list">
     {
-      worksCollection.map((project, index) => (
+      sortCollection.map((works, index) => (
         <TimelineList
+          id={works.id.split("/")[1] ?? ""}
           className={`${index % 2 === 0 ? "timeline-item--left" : "timeline-item--right"}`}
-          companyName={project.data.companyName}
-          companyIcon={project.data.companyIcon}
-          companyLink={project.data.companyLink}
-          time={project.data.time}
-          title={project.data.title}
+          companyName={works.data.companyName}
+          companyIcon={works.data.companyIcon}
+          companyLink={works.data.companyLink}
+          time={works.data.time}
+          title={works.data.title}
         >
-          <Content />
+          {render(works).then(({ Content }) => (
+            <Content />
+          ))}
         </TimelineList>
       ))
     }
@@ -52,7 +58,7 @@ const { Content } = await worksCollection[0].render();
       margin: 0;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(6, 1fr);
+      grid-template-rows: repeat(6, auto);
       justify-content: center;
       align-items: center;
       border-left: 0;
@@ -82,27 +88,27 @@ const { Content } = await worksCollection[0].render();
       right: unset;
       left: -13px;
     }
-    .timeline-list :global(.timeline-item:nth-child(1)) {
+    .timeline-list :global([data-id="experience-1"]) {
       grid-column: 1 / 2;
       grid-row: 1 / 2;
     }
-    .timeline-list :global(.timeline-item:nth-child(2)) {
+    .timeline-list :global([data-id="experience-2"]) {
       grid-column: 2 / 3;
       grid-row: 2 / 3;
     }
-    .timeline-list :global(.timeline-item:nth-child(3)) {
+    .timeline-list :global([data-id="experience-3"]) {
       grid-column: 1 / 2;
       grid-row: 3 / 4;
     }
-    .timeline-list :global(.timeline-item:nth-child(4)) {
+    .timeline-list :global([data-id="experience-4"]) {
       grid-column: 2 / 3;
       grid-row: 4 / 5;
     }
-    .timeline-list :global(.timeline-item:nth-child(5)) {
+    .timeline-list :global([data-id="experience-5"]) {
       grid-column: 1 / 2;
       grid-row: 5 / 6;
     }
-    .timeline-list :global(.timeline-item:nth-child(6)) {
+    .timeline-list :global([data-id="experience-6"]) {
       grid-column: 2 / 3;
       grid-row: 6 / 6;
     }

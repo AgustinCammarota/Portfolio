@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import Banner from "@components/Banner.astro";
 import DownloadButton from "@components/DownloadButton.astro";
@@ -10,7 +10,8 @@ const lang = getLangFromUrl(Astro.url);
 const aboutCollection = await getCollection("about", ({ id }) => {
   return id.startsWith(`${lang}/`);
 });
-const { Content } = await aboutCollection[0].render();
+
+const { Content } = await render(aboutCollection[0]);
 const aboutInformation = aboutCollection[0].data;
 const t = useTranslations(lang);
 ---

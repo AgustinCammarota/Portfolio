@@ -1,3 +1,5 @@
+declare module "js-cookie";
+
 interface Grecaptcha {
   ready(callback: () => void): void;
   execute(siteKey: string, options: { action: string }): Promise<string>;

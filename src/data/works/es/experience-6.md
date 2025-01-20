@@ -1,4 +1,5 @@
 ---
+order: 6
 title: "Desarrollador Full Stack como Freelance"
 time: "Jul 2018 - Ago 2020"
 companyName: "Freelancer"

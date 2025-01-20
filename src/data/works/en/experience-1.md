@@ -1,4 +1,5 @@
 ---
+order: 1
 title: "Junior Software Architect at Globant"
 time: "Jan 2024 - Present"
 companyName: "Globant"

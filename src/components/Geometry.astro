@@ -1,14 +1,9 @@
 ---
 import { Icon } from "astro-icon/components";
+import type { Geometry } from "@interfaces/geometry.interface";
 
 interface Props {
   isAbsolute?: boolean;
-}
-
-interface Geometry {
-  icon: string;
-  title: string;
-  size: string;
 }
 
 const { isAbsolute = false } = Astro.props;
@@ -17,17 +12,17 @@ const geometries: Geometry[] = [
   {
     icon: "geometry",
     title: "Geometry",
-    size: "130",
+    size: "140",
   },
   {
     icon: "dots",
     title: "Dots",
-    size: "70",
+    size: "100",
   },
   {
     icon: "rectangle",
     title: "Rectangle",
-    size: "100",
+    size: "120",
   },
 ].sort(() => Math.random() - 0.5);
 ---

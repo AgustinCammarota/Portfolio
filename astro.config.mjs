@@ -9,7 +9,7 @@ import icon from "astro-icon";
 // https://astro.build/config
 export default defineConfig({
   site: "https://agustincammarota.com",
-  output: "hybrid",
+  output: "server",
   adapter: netlify({
     imageCDN: true,
     cacheOnDemandPages: true,
@@ -25,6 +25,9 @@ export default defineConfig({
       },
     }),
     sitemap({
+      changefreq: "weekly",
+      priority: 0.7,
+      lastmod: new Date(),
       i18n: {
         defaultLocale: "en",
         locales: {
@@ -34,7 +37,10 @@ export default defineConfig({
       },
     }),
   ],
-  prefetch: true,
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: "viewport",
+  },
   i18n: {
     defaultLocale: "en",
     locales: ["es", "en"],
@@ -43,70 +49,72 @@ export default defineConfig({
       es: "en",
     },
   },
-  experimental: {
-    env: {
-      schema: {
-        PUBLIC_EMAIL: envField.string({
-          context: "client",
-          access: "public",
-          optional: false,
-        }),
-        PUBLIC_GITHUB: envField.string({
-          context: "client",
-          access: "public",
-          optional: false,
-        }),
-        PUBLIC_WHATSAPP: envField.string({
-          context: "client",
-          access: "public",
-          optional: false,
-        }),
-        PUBLIC_LINKEDIN: envField.string({
-          context: "client",
-          access: "public",
-          optional: false,
-        }),
-        PUBLIC_API_EMAILJS: envField.string({
-          context: "client",
-          access: "public",
-          optional: false,
-        }),
-        PUBLIC_API_RECAPTCHA: envField.string({
-          context: "client",
-          access: "public",
-          optional: false,
-        }),
-        PUBLIC_RECAPTCHA_SITE_KEY: envField.string({
-          context: "client",
-          access: "public",
-          optional: false,
-        }),
-        PUBLIC_TAG_MANAGER_KEY: envField.string({
-          context: "client",
-          access: "public",
-          optional: false,
-        }),
-        SECRET_RECAPTCHA_KEY: envField.string({
-          context: "server",
-          access: "secret",
-        }),
-        SECRET_SERVICE_ID: envField.string({
-          context: "server",
-          access: "secret",
-        }),
-        SECRET_TEMPLATE_ID: envField.string({
-          context: "server",
-          access: "secret",
-        }),
-        SECRET_USER_ID: envField.string({
-          context: "server",
-          access: "secret",
-        }),
-        SECRET_PRIVATE_KEY: envField.string({
-          context: "server",
-          access: "secret",
-        }),
-      },
+  env: {
+    schema: {
+      PUBLIC_EMAIL: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
+      PUBLIC_GITHUB: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
+      PUBLIC_WHATSAPP: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
+      PUBLIC_LINKEDIN: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
+      PUBLIC_API_EMAILJS: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
+      PUBLIC_API_RECAPTCHA: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
+      PUBLIC_RECAPTCHA_SITE_KEY: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
+      PUBLIC_TAG_MANAGER_KEY: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
+      SECRET_RECAPTCHA_KEY: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      SECRET_SERVICE_ID: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      SECRET_TEMPLATE_ID: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      SECRET_USER_ID: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      SECRET_PRIVATE_KEY: envField.string({
+        context: "server",
+        access: "secret",
+      }),
     },
+  },
+  experimental: {
+    responsiveImages: true,
+    clientPrerender: true,
   },
 });

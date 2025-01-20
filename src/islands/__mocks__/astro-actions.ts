@@ -1,10 +1,10 @@
 export const actions = {
-  email: {
+  emailAction: {
     sendEmail: vi.fn(async () => {
       return { data: true };
     }),
   },
-  recaptcha: {
+  recaptchaAction: {
     verifyCaptcha: vi.fn(async () => {
       return { data: true };
     }),

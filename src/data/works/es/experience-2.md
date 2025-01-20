@@ -1,4 +1,5 @@
 ---
+order: 2
 title: "Ingeniero Frontend Senior en Globant"
 time: "Dic 2022 - Mar 2024"
 companyName: "Globant"

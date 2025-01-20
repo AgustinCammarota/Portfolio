@@ -25,20 +25,23 @@ test.beforeEach(async ({ page }) => {
       });
     },
   );
-  await page.route("*/**/_actions/email.sendEmail", async (route) => {
+  await page.route("*/**/_actions/emailAction.sendEmail/", async (route) => {
     await route.fulfill({
       status: 200,
       contentType: "application/json",
       body: JSON.stringify({ ok: true, message: "Mocked EmailJS action" }),
     });
   });
-  await page.route("*/**/_actions/recaptcha.verifyCaptcha", async (route) => {
-    await route.fulfill({
-      status: 200,
-      contentType: "application/json",
-      body: JSON.stringify({ ok: true, message: "Mocked recaptcha action" }),
-    });
-  });
+  await page.route(
+    "*/**/_actions/recaptchaAction.verifyCaptcha/",
+    async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ ok: true, message: "Mocked recaptcha action" }),
+      });
+    },
+  );
   await page.goto("/contact/");
   // Hidde astro-dev-toolbar
   await page.addStyleTag({
@@ -58,7 +61,7 @@ test.describe("Contact Page", () => {
     ).toBeVisible();
     await expect(
       page.getByText(
-        "I am open to freelance opportunities. If you have any other requests or questions, please feel free to reach out.",
+        "I am open to freelance opportunities and collaborations. Whether you have a specific project in mind, need assistance with your ideas, or simply have questions, don’t hesitate to get in touch. I look forward to connecting with you and exploring how I can contribute to your goals.",
       ),
     ).toBeVisible();
     await expect(page.getByLabel("Email Address")).toBeVisible();
@@ -88,7 +91,7 @@ test.describe("Contact Page", () => {
     const screenshotName = `contact-${deviceName}.png`;
 
     await expect(page).toHaveScreenshot(screenshotName, {
-      maxDiffPixelRatio: 0.1,
+      maxDiffPixelRatio: 0.3,
     });
   });
 

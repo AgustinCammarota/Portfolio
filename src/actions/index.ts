@@ -1,7 +1,7 @@
-import { email } from "@actions/email.ts";
-import { recaptcha } from "@actions/recaptcha.ts";
+import { emailAction } from "@actions/send-email.action.ts";
+import { recaptchaAction } from "@actions/send-recaptcha.action.ts";
 
 export const server = {
-  email,
-  recaptcha,
+  emailAction,
+  recaptchaAction,
 };
