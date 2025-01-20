@@ -43,7 +43,7 @@
     "@astrojs/netlify": "^5.5.4",
     "@astrojs/partytown": "^2.1.2",
     "@astrojs/sitemap": "^3.2.1",
-    "@astrojs/solid-js": "^4.4.2",
+    "@astrojs/solid-js": "^5.0.3",
     "@fontsource-variable/fira-code": "^5.1.0",
     "astro": "^4.16.0",
     "astro-icon": "^1.1.1",
