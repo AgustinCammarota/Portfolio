@@ -9,7 +9,7 @@ import icon from "astro-icon";
 // https://astro.build/config
 export default defineConfig({
   site: "https://agustincammarota.com",
-  output: "server",
+  output: "static",
   adapter: netlify({
     imageCDN: true,
     cacheOnDemandPages: true,
@@ -44,9 +44,11 @@ export default defineConfig({
   i18n: {
     defaultLocale: "en",
     locales: ["es", "en"],
-    routing: "manual",
     fallback: {
       es: "en",
+    },
+    routing: {
+      fallbackType: "rewrite",
     },
   },
   env: {
