@@ -11,7 +11,7 @@ const { title, icons } = Astro.props;
 ---
 
 <div class="skill-card" data-name={`skill-${title.toLowerCase()}`}>
-  <h2 class="skill-card__title">{title}</h2>
+  <h4 class="skill-card__title">{title}</h4>
   <div class="skill-container">
     {
       icons.map((icon: Icon) => (
@@ -43,8 +43,7 @@ const { title, icons } = Astro.props;
       border-bottom: 1px solid var(--tertiary-color);
       color: var(--secondary-color);
       margin: 0;
-      font-size: 1.6rem;
-      font-weight: 500;
+      font-weight: 400;
     }
   }
   .skill-container {

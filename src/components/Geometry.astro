@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon/components";
+import CustomIcon from "@components/CustomIcon.astro";
 import type { Geometry } from "@interfaces/geometry.interface";
 
 interface Props {
@@ -29,14 +29,10 @@ const geometries: Geometry[] = [
 
 <div class:list={["geometry", { absolute: isAbsolute }]} aria-hidden="true">
   {
-    geometries.map((geometry, index) => (
-      <span class={`geometry-icon icon-${index + 1}`}>
-        <Icon
-          name={geometry.icon}
-          title={geometry.title}
-          size={geometry.size}
-        />
-      </span>
+    geometries.map(({ icon, size, title }, index) => (
+      <div class={`geometry-icon icon-${index + 1}`} aria-label={title}>
+        <CustomIcon name={icon} label={title} width={size} height={size} />
+      </div>
     ))
   }
 </div>
@@ -51,15 +47,16 @@ const geometries: Geometry[] = [
   .geometry-icon {
     width: 100%;
     height: auto;
-    display: block;
+    display: flex;
+    align-items: center;
   }
   .icon-1 {
-    text-align: start;
+    justify-content: start;
   }
   .icon-2 {
-    text-align: end;
+    justify-content: end;
   }
   .icon-3 {
-    text-align: start;
+    justify-content: start;
   }
 </style>

@@ -1,0 +1,39 @@
+---
+import type { JSX } from "astro/jsx-runtime";
+interface Props {
+  name: string;
+  width: string;
+  height: string;
+  label: string;
+  class?: string;
+}
+
+const { name, label, width, height, class: className = "" } = Astro.props;
+
+const svgs = import.meta.glob("@icons/*.svg");
+const svgPath = `/src/icons/${name}.svg`;
+
+let IconSvg: ((_props: JSX.SVGAttributes) => unknown) | undefined;
+
+const importFn = svgs[svgPath];
+
+if (importFn) {
+  const mod = (await importFn()) as { default: (props: unknown) => unknown };
+  IconSvg = mod.default;
+}
+
+if (!IconSvg) {
+  throw new Error('Path does not exist in glob: "src/icons/*.{svg}');
+}
+---
+
+<span class={className}>
+  <IconSvg width={width} height={height} aria-label={label} />
+</span>
+<style>
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

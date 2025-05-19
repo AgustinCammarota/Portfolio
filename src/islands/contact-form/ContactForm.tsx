@@ -155,9 +155,9 @@ const ContactForm: Component<Props> = (props: Props) => {
       </div>
 
       <button class="form-submit" disabled={isDisabled()} type="submit">
-        <span>
+        <p>
           {state().text} {state().icon}
-        </span>
+        </p>
       </button>
     </form>
   );

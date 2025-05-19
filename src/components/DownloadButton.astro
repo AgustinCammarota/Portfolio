@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon/components";
+import CustomIcon from "@components/CustomIcon.astro";
 
 interface Props {
   link: string;
@@ -19,7 +19,13 @@ const { link, title, ariaLabel, icon, linkText } = Astro.props;
   title={title}
   aria-label={ariaLabel}
 >
-  <Icon class="download-button__icon" name={icon} title={icon} size="24" />
+  <CustomIcon
+    class="download-button__icon"
+    name={icon}
+    label={icon}
+    height="24"
+    width="24"
+  />
   <span class="download-button__text">{linkText}</span>
 </a>
 <style>

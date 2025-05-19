@@ -1,6 +1,6 @@
 <svg aria-label="Dots" role="img" width="84" height="84" viewBox="0 0 84 84" fill="none" xmlns="http://www.w3.org/2000/svg">
     <style type="text/css">
-        .st0{fill: var(--secondary-color)}
+        .st0{fill: var(--primary-color)}
     </style>
 <circle class="st0" cx="2" cy="2" r="2"/>
 <circle class="st0" cx="22" cy="2" r="2"/>

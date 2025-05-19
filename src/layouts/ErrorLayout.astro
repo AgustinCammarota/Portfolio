@@ -1,7 +1,7 @@
 ---
-import "@fontsource-variable/fira-code";
 import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
+import { Font } from "astro:assets";
 import GoogleTagManager from "@components/GoogleTagManager.astro";
 import Metadata from "@components/Metadata.astro";
 import Theme from "@components/Theme.astro";
@@ -30,6 +30,10 @@ Astro.response.headers.set(
     <!-- Metadata start -->
     <Metadata description={description} keywords={keywords} />
     <!-- Metadata end -->
+
+    <!-- Font start -->
+    <Font cssVariable="--fira-code" preload />
+    <!-- Font start -->
 
     <!-- Favicon start -->
     <Favicon />

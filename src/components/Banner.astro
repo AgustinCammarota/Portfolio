@@ -24,10 +24,10 @@ const { text, company, imagePath, altText } = Astro.props;
     />
   </figure>
   <div class="banner-work-container">
-    <h2 class="work-text">
+    <p class="work-text">
       {text}
       <span class="work-text__company">{company}</span>
-    </h2>
+    </p>
   </div>
 </div>
 <style>
@@ -47,16 +47,15 @@ const { text, company, imagePath, altText } = Astro.props;
       display: flex;
       justify-content: start;
       align-items: center;
-      line-height: 22px;
       text-wrap: wrap;
-      font-size: 1.6rem;
       font-weight: normal;
+      font-size: var(--fs-sm);
     }
     .work-text::before {
       content: "";
-      margin-right: 8px;
+      margin-right: 12px;
       display: inline-block;
-      width: 20px;
+      width: 24px;
       height: 20px;
       background-color: var(--primary-color);
     }
@@ -74,7 +73,7 @@ const { text, company, imagePath, altText } = Astro.props;
     }
     .banner-image-container {
       width: 100%;
-      height: 80%;
+      height: 88%;
     }
   }
 </style>

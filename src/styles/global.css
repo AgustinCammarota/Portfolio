@@ -1,9 +1,22 @@
-:root,
+:root {
+  /* Font sizes (based on 1rem = 10px) */
+  --fs-sm: clamp(1.4rem, 1.5vw, 1.6rem); /* 14–16px */
+  --fs-base: clamp(1.6rem, 1.9vw, 2rem); /* 16–20px */
+  --fs-md: clamp(2rem, 2vw, 2.4rem); /* 20–24px */
+  --fs-lg: clamp(2.4rem, 2.5vw, 2.8rem); /* 24–28px */
+  --fs-xl: clamp(2.8rem, 4vw, 3.2rem); /* 28–32px */
+
+  /* Line heights */
+  --lh-snug: 1.2;
+  --lh-normal: 1.4;
+  --lh-relaxed: 1.6;
+  --lh-loose: 1.8;
+}
 :root[data-theme="dark"] {
   --primary-color: #c778dd;
   --secondary-color: #ffffff;
   --tertiary-color: #abb2bf;
-  --backgroud-color: #282c33;
+  --background-color: #282c33;
   --gray-color: #dcdcdc;
   color-scheme: dark;
 }
@@ -11,7 +24,7 @@
   --primary-color: #a94ac3;
   --secondary-color: #4a4e56;
   --tertiary-color: #282c33;
-  --backgroud-color: #ffffff;
+  --background-color: #f3f4f6;
   --gray-color: #dcdcdc;
   color-scheme: light;
 }
@@ -20,26 +33,22 @@
 *:after {
   box-sizing: border-box;
 }
-html,
-body {
-  height: 100%;
+html {
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  font-family: "Fira Code Variable", monospace;
+  height: 100%;
+  font-family: var(--fira-code), monospace;
   font-optical-sizing: auto;
   font-weight: 400;
-  font-style: normal;
   font-size: 62.5%;
-  transition: font-family 0.2s ease-in-out;
-  background: var(--backgroud-color);
+  font-style: normal;
 }
 body,
 nav {
   width: 100%;
-  margin: 0;
-  padding: 0;
-  font-size: 1.6rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: var(--background-color);
+  font-size: var(--fs-base);
 }
 header {
   max-width: 1400px;
@@ -50,7 +59,7 @@ header {
   transform: translateX(-50%);
   bottom: 0;
   z-index: 500;
-  background-color: var(--backgroud-color);
+  background-color: var(--background-color);
 }
 main {
   width: 100%;
@@ -72,6 +81,38 @@ footer {
   top: 0;
   z-index: 50;
 }
+h1 {
+  font-size: var(--fs-xl);
+  line-height: var(--lh-normal);
+}
+h2 {
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+}
+h3 {
+  font-size: var(--fs-md);
+  line-height: var(--lh-snug);
+}
+p,
+li,
+time,
+input,
+label,
+textarea,
+a {
+  font-size: var(--fs-base);
+  line-height: var(--lh-loose);
+}
+small,
+select {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+}
+strong {
+  font-weight: bold;
+  font-size: var(--fs-base);
+  line-height: var(--lh-loose);
+}
 ul {
   margin: 0;
   padding: 0;
@@ -88,11 +129,10 @@ a {
 }
 select {
   appearance: none;
-  background-color: var(--backgroud-color);
+  background-color: var(--background-color);
   color: var(--tertiary-color);
   border: none;
   padding: 6px 16px;
-  font-size: 1.4rem;
   font-weight: 600;
   cursor: pointer;
   transition:

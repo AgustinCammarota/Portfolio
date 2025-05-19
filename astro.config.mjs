@@ -1,10 +1,9 @@
 // @ts-check
-import { defineConfig, envField } from "astro/config";
+import { defineConfig, envField, fontProviders } from "astro/config";
 import solid from "@astrojs/solid-js";
 import netlify from "@astrojs/netlify";
 import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
-import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,7 +15,6 @@ export default defineConfig({
     edgeMiddleware: true,
   }),
   integrations: [
-    icon(),
     solid({ devtools: true }),
     partytown({
       config: {
@@ -50,6 +48,13 @@ export default defineConfig({
     routing: {
       fallbackType: "rewrite",
     },
+  },
+  server: {
+    allowedHosts: [
+      "agustincammarota.com",
+      "www.agustincammarota.com",
+      "portfolio-agustin-cammarota.netlify.app",
+    ],
   },
   env: {
     schema: {
@@ -118,5 +123,13 @@ export default defineConfig({
   experimental: {
     responsiveImages: true,
     clientPrerender: true,
+    fonts: [
+      {
+        provider: fontProviders.fontsource(),
+        weights: ["100 700", "bold"],
+        name: "Fira Code",
+        cssVariable: "--fira-code",
+      },
+    ],
   },
 });

@@ -1,8 +1,9 @@
 ---
-import { Icon } from "astro-icon/components";
 import { ProjectVideo } from "@islands/project-video/ProjectVideo";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import CustomImage from "@components/CustomImage.astro";
+import Forward from "@icons/forward.svg";
+import DoubleArrow from "@icons/double-arrow.svg";
 
 interface Props {
   image: string;
@@ -47,7 +48,7 @@ const t = useTranslations(lang);
   <p class="card-technologies">{technologies}</p>
 
   <div class="card-body">
-    <h2 class="card-body__title">{title}</h2>
+    <h3 class="card-body__title">{title}</h3>
     <div class="card-body-description">
       <slot name="description" />
     </div>
@@ -64,7 +65,12 @@ const t = useTranslations(lang);
             rel="noopener noreferrer"
           >
             <span>{t("project.card.github.link")}</span>
-            <Icon name="forward" title="Forward" size="18" />
+            <Forward
+              aria-label="forward"
+              width="28"
+              height="18"
+              fill="currentColor"
+            />
           </a>
         )
       }
@@ -80,7 +86,12 @@ const t = useTranslations(lang);
             rel="noopener noreferrer"
           >
             <span>{t("project.card.website.link")}</span>
-            <Icon name="double-arrow" title="Double Arrow" size="18" />
+            <DoubleArrow
+              aria-label="Double Arrow"
+              width="18"
+              height="18"
+              fill="currentColor"
+            />
           </a>
         )
       }
@@ -90,7 +101,7 @@ const t = useTranslations(lang);
 <style>
   .project-card {
     width: 100%;
-    max-width: 350px;
+    max-width: 400px;
     min-width: 300px;
     height: max-content;
     position: relative;
@@ -104,8 +115,7 @@ const t = useTranslations(lang);
     color: var(--primary-color);
     text-wrap: wrap;
     font-weight: 400;
-    font-size: 1.4rem;
-    line-height: 18px;
+    font-size: var(--fs-sm);
   }
   .card-body {
     width: 100%;
@@ -116,16 +126,15 @@ const t = useTranslations(lang);
       margin: 0;
       color: var(--secondary-color);
       font-weight: 400;
-      font-size: 2.2rem;
       text-wrap: balance;
     }
-    .card-body-description p {
+    .card-body-description p,
+    .card-body-description strong {
       margin-bottom: 0;
       margin-top: 12px;
       color: var(--tertiary-color);
       text-wrap: balance;
-      font-size: 1.5rem;
-      line-height: 24px;
+      font-size: 1.8rem;
     }
   }
   .card-body-links {

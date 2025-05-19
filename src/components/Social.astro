@@ -5,7 +5,7 @@ import {
   PUBLIC_GITHUB,
   PUBLIC_WHATSAPP,
 } from "astro:env/client";
-import { Icon } from "astro-icon/components";
+import CustomIcon from "@components/CustomIcon.astro";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import type { Social } from "@interfaces/social.interface";
 
@@ -52,7 +52,12 @@ const socials: Social[] = [
         aria-label={social.ariaLabel}
         data-name={social.name}
       >
-        <Icon name={social.name} title={social.name} size="24" />
+        <CustomIcon
+          name={social.name}
+          label={social.name}
+          width="24"
+          height="24"
+        />
       </a>
     ))
   }
@@ -83,8 +88,8 @@ const socials: Social[] = [
     .social-icon-link {
       margin: 0 8px;
       svg {
-        width: 28px;
-        height: 28px;
+        width: 32px;
+        height: 32px;
       }
     }
   }

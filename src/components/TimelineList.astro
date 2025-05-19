@@ -1,5 +1,6 @@
 ---
-import { Icon } from "astro-icon/components";
+import CustomIcon from "@components/CustomIcon.astro";
+import Calendar from "@icons/calendar.svg";
 
 interface Props {
   title: string;
@@ -24,7 +25,7 @@ const {
 
 <li class={`timeline-item ${className}`} data-id={id}>
   <span class="timeline-item__icon">
-    <Icon name="calendar" title="Calendar" size="24" />
+    <Calendar width="24" height="24" fill="currentColor" />
   </span>
   <h2 class="timeline-item__title">{title}</h2>
   <time class="timeline-item__time">{time}</time>
@@ -38,7 +39,12 @@ const {
       aria-label={companyName}
       data-name={companyName}
     >
-      <Icon name={companyIcon} title={companyName} width="80" height="40" />
+      <CustomIcon
+        name={companyIcon}
+        label={companyName}
+        width="90"
+        height="40"
+      />
     </a>
   </div>
   <div class="timeline-item-description-container">
@@ -59,8 +65,8 @@ const {
     align-items: center;
     left: -28px;
     top: 0;
-    box-shadow: 0 0 0 0.5rem var(--backgroud-color);
-    background-color: var(--backgroud-color);
+    box-shadow: 0 0 0 0.5rem var(--background-color);
+    background-color: var(--background-color);
   }
   .timeline-item__company {
     height: 100%;
@@ -79,15 +85,12 @@ const {
     display: flex;
     align-items: center;
     margin-bottom: 4px;
-    font-size: 1.8rem;
     font-weight: 600;
-    line-height: 24px;
     text-wrap: balance;
     color: var(--primary-color);
   }
   .timeline-item__time {
     display: block;
-    font-size: 1.6rem;
     font-weight: lighter;
     color: var(--secondary-color);
   }
@@ -95,12 +98,10 @@ const {
     margin-top: 12px;
     text-wrap: pretty;
     font-weight: normal;
-    line-height: 24px;
     color: var(--tertiary-color);
 
     p {
       margin-top: 12px;
-      font-size: 1.6rem;
     }
 
     strong {
@@ -112,7 +113,6 @@ const {
       justify-content: start;
       align-items: start;
       margin-bottom: 8px;
-      font-size: 1.4rem;
     }
 
     li:before {
@@ -132,8 +132,8 @@ const {
       align-items: center;
 
       svg {
-        width: 120px;
-        height: 120px;
+        width: 140px;
+        height: 140px;
       }
 
       .timeline-item-link {
@@ -145,10 +145,10 @@ const {
       }
     }
     .timeline-item--left .timeline-item__company {
-      right: -140px;
+      right: -160px;
     }
     .timeline-item--right .timeline-item__company {
-      left: -140px;
+      left: -160px;
     }
   }
 </style>

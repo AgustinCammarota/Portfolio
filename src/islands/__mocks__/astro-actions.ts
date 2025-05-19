@@ -1,3 +1,5 @@
+import { vi } from "vitest";
+
 export const actions = {
   emailAction: {
     sendEmail: vi.fn(async () => {

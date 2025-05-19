@@ -25,10 +25,11 @@ const {
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/*.{jpeg,jpg,png,gif,webp}",
 );
-if (!images[imagePath])
+if (!images[imagePath]) {
   throw new Error(
     'Path does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif,webp}',
   );
+}
 ---
 
 <Image

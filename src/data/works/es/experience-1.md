@@ -1,6 +1,6 @@
 ---
 order: 1
-title: "Arquitecto de Software Junior en Globant"
+title: "Lider de Equipo y Arquitecto de Software en Globant"
 time: "Ene 2024 - Presente"
 companyName: "Globant"
 companyIcon: "globant-logo"

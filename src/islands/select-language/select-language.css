@@ -21,10 +21,6 @@
 
 /* @media */
 @media (min-width: 900px) {
-  .language-select {
-    font-size: 1.6rem;
-  }
-
   .language-icon[slot="iconRight"] {
     width: 20px;
     height: 20px;
