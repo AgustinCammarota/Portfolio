@@ -20,14 +20,22 @@ async function requestCaptcha(token: string): Promise<boolean> {
     body: requestBody.toString(),
   });
 
-  if (!response.ok) {
+  const result = await response.json();
+
+  const isValid =
+    response.ok &&
+    result.success === true &&
+    result.action === "contact" &&
+    result.score >= 0.5;
+
+  if (!isValid) {
     throw new ActionError({
       code: "BAD_REQUEST",
       message: "Error recaptcha request.",
     });
   }
 
-  return response.ok;
+  return isValid;
 }
 
 export const recaptchaAction = {

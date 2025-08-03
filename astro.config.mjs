@@ -15,7 +15,7 @@ export default defineConfig({
     edgeMiddleware: true,
   }),
   integrations: [
-    solid({ devtools: true }),
+    solid(),
     partytown({
       config: {
         debug: false,
